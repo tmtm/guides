@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mailers on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/mailers/</link>
+    <description>Recent content in Mailers on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/mailers/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic Usage</title>
+      <link>https://tmtm.github.io/hanami-guides/mailers/basic-usage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/mailers/basic-usage/</guid>
+      <description>In the previous section, we generated a mailer, let&amp;rsquo;s use it.
+Sender &amp;amp; Recipient Firstly, we need to specify sender and recipient(s) and the subject of the email. For this purpose a mailer exposes three mandatory methods: .from, .to, .subject and two optional: .cc, .bcc.
+They all accept a string, but .to can also accept an array of strings in order to set multiple recipients.
+module Mailers class Welcome include Hanami::Mailer from &amp;#39;noreply@bookshelf.</description>
+    </item>
+    
+    <item>
+      <title>Delivery</title>
+      <link>https://tmtm.github.io/hanami-guides/mailers/delivery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/mailers/delivery/</guid>
+      <description>Multipart Delivery By default a mailer delivers a multipart email, that has a HTML and a text part. This is the reason why the generator creates two templates.
+To render both the templates and deliver them as a multipart message, we simply do:
+Mailers::Welcome.deliver Hanami mailers are flexible enough to adapt to several scenarios.
+Single Part Delivery Let&amp;rsquo;s say in our application users can opt for HTML or textual emails.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/mailers/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/mailers/overview/</guid>
+      <description>A mailer is an object that&amp;rsquo;s responsible to deliver a mail message, by rendering one or more templates.
+For simplicity, each mailer can handle only one use case (feature). If in our application we need to send emails for several features like: &amp;ldquo;confirm your email address&amp;rdquo; or &amp;ldquo;forgot password&amp;rdquo;, we will have Mailers::ConfirmEmailAddress and Mailers::ForgotPassword instead of a generic UserMailer that manages all these use cases.
+Example Hanami ships a generator that creates a mailer, two templates and the test code.</description>
+    </item>
+    
+    <item>
+      <title>Share Code</title>
+      <link>https://tmtm.github.io/hanami-guides/mailers/share-code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/mailers/share-code/</guid>
+      <description>Prepare In our settings (lib/bookshelf.rb), there is code block that allows to share the code for all the mailers of our application. When a mailer includes the Hanami::Mailer module, that block code is yielded within the context of that class. This is heavily inspired by Ruby Module and its included hook.
+Imagine we want to set a default sender for all the mailers. Instead of specifying it for each mailer, we can use a DRY approach.</description>
+    </item>
+    
+    <item>
+      <title>Templates</title>
+      <link>https://tmtm.github.io/hanami-guides/mailers/templates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/mailers/templates/</guid>
+      <description>Templates A template is a file that contains a body for a specific format of a multipart email. For instance, welcome.html.erb describes the markup of the HTML part of the message, while welcome.txt.erb is for the textual part.
+It is rendered by bounding the context of a mailer and using a template engine.
+Naming For convenience, there is a correlation between the view mailer name and the template file name.</description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://tmtm.github.io/hanami-guides/mailers/testing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/mailers/testing/</guid>
+      <description>During development and testing we don&amp;rsquo;t want to accidentally send emails to the real world. The delivery method for these two envs is set to :test.
+In order to assert that a mailer sent a message, we can look at Hanami::Mailer.deliveries. It&amp;rsquo;s an array of messages that the framework pretended to deliver during a test. Please make sure to clear them in testing setup.
+# spec/bookshelf/mailers/welcome_spec.rb RSpec.describe Mailers::Welcome do before { Hanami::Mailer.</description>
+    </item>
+    
+  </channel>
+</rss>

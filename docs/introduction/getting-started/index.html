@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Introduction: はじめに | Hanami Guides" />
+
+    <meta property="og:url"          content="https://tmtm.github.io/hanami-guides/introduction/getting-started/" />
+    <meta property="og:type"         content="article" />
+    <meta property="og:locale"       content="en_US" />
+    <meta property="og:site_name"    content="Hanami Guides" />
+    <meta property="og:title"        content="Introduction: はじめに | Hanami Guides" />
+    <meta property="og:description"  content="Introduction: はじめに | Hanami Guides" />
+    <meta property="og:image"        content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
+    <meta property="og:image:type"   content="image/png" />
+    <meta property="og:image:width"  content="2968" />
+    <meta property="og:image:height" content="2968" />
+    <meta property="og:image:alt"    content="" />
+
+    <meta name="twitter:card"        content="summary" />
+    <meta name="twitter:site"        content="@hanamirb" />
+    <meta name="twitter:creator"     content="@hanamirb" />
+    <meta name="twitter:title"       content="Introduction: はじめに | Hanami Guides" />
+    <meta name="twitter:description" content="Introduction: はじめに | Hanami Guides" />
+    <meta name="twitter:image"       content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
+
+    <title>Introduction: はじめに | Hanami Guides</title>
+
+    <meta name="author" content="Hanami team">
+    <meta name="keywords" content="hanami,hanamirb,hanami guides,documentation,lotus,lotusrb,web,framework,ruby,open source,oss,os,software,free,free software,architecture,fast,lightweight,testing,tdd,bdd,test driven development,behaviour driven development,full stack,mvc,model view object,pattern,patterns,design patterns,oop,object oriented programming,testability,http,https,routing,router,http router,restful,resource,resources,convention,controller,models,repository,query,sql,interactors,two-step view,view,template,presenters,render,rendering,helpers,erb,haml,tilt,json,xml,yaml,yml,framwork,framewrok,riby,free sowftare" />
+    
+    <link rel="shortcut icon" href="/hanami-guides/assets/img/brand/favicon.ico">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    
+    <link href="/hanami-guides/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+    <link href="/hanami-guides/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link type="text/css" href="/hanami-guides/assets/css/argon.css?v=1.0.1" rel="stylesheet">
+    
+    <link type="text/css" href="/hanami-guides/assets/css/docs.min.css" rel="stylesheet">
+    
+    <link type="text/css" href="/hanami-guides/assets/css/theme.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+  </head>
+  <body data-spy="scroll" data-target="#secondary-navigation" data-offset="50">
+    <header class="navbar navbar-expand navbar-dark flex-row align-items-md-center ct-navbar">
+      <a class="navbar-brand mr-0 mr-md-2" href="/hanami-guides/" aria-label="Bootstrap">
+      <img src="/hanami-guides/assets/img/brand/white.png" alt="Hanami guides logo">
+    </a>
+    <ul class="navbar-nav flex-row mr-auto ml-4 d-none d-md-flex">
+      <li class="nav-item">
+        <form>
+          <input type="text" placeholder="Search" class="form-control" id="search-input" />
+        </form>
+      </li>
+    </ul>
+    <div class="d-none d-sm-block ml-auto">
+      <ul class="navbar-nav ct-navbar-nav flex-row align-items-center">
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="http://hanamirb.org" target="_blank" title="Hanami website">
+            <i class="ni ni-world"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://github.com/hanami/guides/edit//content/introduction/getting-started.md" target="_blank" title="Edit this page">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://github.com/hanami/hanami" target="_blank" title="Star Hanami on GitHub">
+            <i class="fa fa-github"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://twitter.com/hanamirb" target="_blank" title="Follow Hanami on Twitter">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://www.facebook.com/hanamirb" target="_blank" title="Like Hanami on Facebook">
+            <i class="fa fa-facebook-square"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://www.instagram.com/hanamirb" target="_blank" title="Follow Hanami on Instagram">
+            <i class="fa fa-instagram"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="http://chat.hanamirb.org/" target="_blank" title="Hanami chat">
+            <i class="ni ni-chat-round"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://github.com/hanami/guides/releases" target="_blank" title="Download Hanami Guides for offline usage">
+            <i class="fa fa-cloud-download"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <span class="badge badge-pill badge-primary">v1.3.1</span>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+      <div class="col-12 col-md-3 col-xl-2 ct-sidebar">
+        <nav class="collapse ct-links" id="ct-docs-nav">
+          
+          <div class="ct-toc-item active">
+          
+          
+            <span class="ct-toc-link">Introduction</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li class="active ct-sidenav-active">
+              
+                <a href="/hanami-guides/introduction/getting-started/">はじめに</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Architecture</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/architecture/overview/">概要</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/architecture/interactors/">インタラクター</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Projects</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/code-reloading/">Code Reloading</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/rake/">Rake Tasks</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/logging/">Logging</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/initializers/">Initializers</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/rack-middleware/">Rack Middleware</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/security/">Project Security</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/http2-early-hints/">HTTP/2 Early Hints</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/selectively-boot-apps/">Selectively boot apps</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Routing</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/restful-resources/">RESTful Resource(s)</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Actions</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/parameters/">Parameters</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/request-and-response/">Request &amp; Response</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/exposures/">Exposures</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/rack-integration/">Rack Integration</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/mime-types/">MIME Types</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/cookies/">Cookies</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/sessions/">Sessions</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/exception-handling/">Exception Handling</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/control-flow/">Control Flow</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/http-caching/">HTTP Caching</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/share-code/">Share Code</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Views</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/templates/">Templates</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/mime-types/">MIME Types</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/layouts/">Layouts</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/custom-error-pages/">Custom Error Pages</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/share-code/">Share Code</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Models</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/models/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/models/database-configuration/">Database Configuration</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/models/use-your-own-orm/">Use Your Own ORM</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Repositories</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/repositories/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/repositories/sql-queries/">SQL Queries</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/repositories/postgresql/">PostgreSQL</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Entities</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/entities/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/entities/custom-schema/">Custom Schema</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/entities/data-types/">Data Types</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Associations</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/has-many/">Has Many</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/belongs-to/">Belongs To</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/has-one/">Has One</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/has-many-through/">Has Many Through</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Migrations</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/migrations/overview/">Migrations</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/migrations/create-table/">Create Table</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/migrations/alter-table/">Alter Table</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Validations</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/boolean-logic/">Boolean Logic</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/custom-predicates/">Custom Predicates</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/advanced-usage/">Advanced Usage</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Helpers</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/html5/">HTML5</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/forms/">Forms</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/routing/">Routing</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/assets/">Assets</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/links/">Links</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/escape/">Markup Escape</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/numbers/">Numbers</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/custom-helpers/">Custom Helpers</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Mailers</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/templates/">Templates</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/delivery/">Delivery</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/share-code/">Share Code</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Assets</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/preprocessors/">Preprocessors</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/compressors/">Compressors</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/content-delivery-network/">Content Delivery Network (CDN)</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/use-your-own-assets-management-tool/">Use Your Own Assets Management</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Command Line</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/project/">Project</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/generators/">Generators</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/destroy/">Destroy</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/database/">Database</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/assets/">Assets</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/routes/">Routes</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/version/">Version</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/plugins/">Plugins</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Upgrade Notes</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v060/">v0.6.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v070/">v0.7.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v080/">v0.8.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v090/">v0.9.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v100/">v1.0.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v110/">v1.1.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v120/">v1.2.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v130/">v1.3.0</a>
+              </li>
+            
+            </ul>
+          
+          </div>
+        </nav>
+      </div>
+      <div class="d-none d-xl-block col-xl-2 ct-toc">
+        <ul class="section-nav" id="secondary-navigation">
+        
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e5%89%8d%e6%8f%90%e6%9d%a1%e4%bb%b6" class="nav-link">前提条件</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e6%96%b0%e3%81%97%e3%81%84hanami%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%ae%e4%bd%9c%e6%88%90" class="nav-link">新しいHanamiプロジェクトの作成</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#hanami%e3%81%ae%e3%82%a2%e3%83%bc%e3%82%ad%e3%83%86%e3%82%af%e3%83%81%e3%83%a3" class="nav-link">Hanamiのアーキテクチャ</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e6%9c%80%e5%88%9d%e3%81%ae%e3%83%86%e3%82%b9%e3%83%88%e3%82%92%e6%9b%b8%e3%81%8f" class="nav-link">最初のテストを書く</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e6%96%b0%e3%81%97%e3%81%84%e3%82%a2%e3%82%af%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%92%e7%94%9f%e6%88%90%e3%81%99%e3%82%8b" class="nav-link">新しいアクションを生成する</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e3%82%a8%e3%83%b3%e3%83%86%e3%82%a3%e3%83%86%e3%82%a3%e3%81%a7%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e3%83%a2%e3%83%87%e3%83%ab%e5%8c%96%e3%81%99%e3%82%8b" class="nav-link">エンティティでデータをモデル化する</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e4%bd%9c%e6%88%90%e3%81%99%e3%82%8b%e3%81%9f%e3%82%81%e3%81%ae%e3%83%95%e3%82%a9%e3%83%bc%e3%83%a0%e3%81%ae%e6%a7%8b%e7%af%89" class="nav-link">レコードを作成するためのフォームの構築</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e3%81%be%e3%81%a8%e3%82%81" class="nav-link">まとめ</a>
+          </li>
+        
+        </ul>
+      </div>
+      <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 ct-content">
+        <div class="ct-page-title">
+          <h1 class="ct-title" id="content">Introduction: はじめに</h1>
+          <div class="avatar-group mt-3">
+          </div>
+        </div>
+        <hr>
+        
+
+<p id="getting-started-lead" class="lead">
+  こんにちは。あなたがこのページを見ているということはおそらくHanamiについてもっと学びたいということでしょう。
+  すばらしい。おめでとう！ メンテ可能でセキュアで高速でテスト可能なWebアプリケーションを構築する新しい方法を探しているのであれば大丈夫です。
+  <br><br>
+  <strong>Hanamiはあなたのような人のために作られています。</strong>
+  <br><br>
+  あなたが完全な初心者であろうと経験豊富な開発者であろうと<strong>この学習プロセスは難しい</strong>ことを警告します。
+  時間が経つにつれて、私たちは物事がどうあるべきかについての期待を築き、それを変えるのは苦痛になる可能性があります。 しかし、<strong>変化がなければ、挑戦はありません</strong>。そして挑戦がなければ、成長はありません。
+  <br><br>
+  機能が正しく見えないことがあっても、それはあなたが正しくないということではありません。
+  それは、形成された習慣、設計上の誤り、またはバグである可能性があります。
+  <br><br>
+  私とコミュニティは、Hanamiを良くするために毎日最善の努力を払っています。
+  <br><br>
+   このガイドでは、最初のHanamiプロジェクトをセットアップし、簡単な本棚Webアプリケーションを作成します。
+   テストによって導かれる、Hanamiフレームワークのすべての主要コンポーネントに触れます。
+  <br><br>
+  <strong>あなたが孤独を感じている、または欲求不満を感じているなら、あきらめないで、私たちの<a href="http://chat.hanamirb.org">チャット</a>に飛び乗って助けを求めてください。</strong>
+  あなたと話をすることでより幸せになる人がいるでしょう。
+  <br><br>
+  エンジョイ<br>
+  Luca Guidi<br>
+  <em>Hanami作者</em>
+</p>
+
+<p><br>
+<hr></p>
+
+<h2 id="前提条件">前提条件</h2>
+
+<p>始める前に、離れていくつかの前提条件を見てみましょう。
+まず、Webアプリケーション開発の基本的な知識を想定しています。</p>
+
+<p>また<a href="http://bundler.io">Bundler</a>, <a href="http://rake.rubyforge.org">Rake</a>, 端末の操作, および <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model, View, Controller</a>パラダイムを使用したアプリケーションの作成にも精通している必要があります。</p>
+
+<p>最後に、このガイドでは<a href="https://sqlite.org/">SQLite</a>データベースを使います。
+先に進む場合は、Ruby 2.3以降とSQLite 3以降がシステムにインストールされていることを確認してください。</p>
+
+<h2 id="新しいhanamiプロジェクトの作成">新しいHanamiプロジェクトの作成</h2>
+
+<p>新しいHanamiプロジェクトを作成するには、RubygemsからHanami gemをインストールする必要があります。
+それから、新しい<code>hanami</code>実行ファイルを使って新しいプロジェクトを生成することができます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ gem install hanami
+$ hanami new bookshelf</code></pre></div>
+<p class="notice">
+ デフォルトでは、プロジェクトはSQLiteデータベースを使用するように設定されます。実際のプロジェクトでは、エンジンを指定できます:
+  <br>
+  <code>
+    $ hanami new bookshelf --database=postgres
+  </code>
+</p>
+
+<p>これにより、現在の場所に新しいディレクトリ<code>bookshelf</code>が作成されます。
+内容を見てみましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ <span style="color:#111">cd</span> bookshelf
+$ tree -L <span style="color:#ae81ff">1</span>
+.
+├── Gemfile
+├── README.md
+├── Rakefile
+├── apps
+├── config
+├── config.ru
+├── db
+├── lib
+├── public
+└── spec
+
+<span style="color:#ae81ff">6</span> directories, <span style="color:#ae81ff">4</span> files</code></pre></div>
+<p>ここで私たちが知る必要があるもの:</p>
+
+<ul>
+<li><code>Gemfile</code> 私たちのRubygemsの依存関係を定義しています(Bundlerを使って)。</li>
+<li><code>README.md</code> プロジェクトの設定方法と使い方を教えてくれます。</li>
+<li><code>Rakefile</code> 私たちのRakeタスクを記述しています。</li>
+<li><code>apps</code> Rackと互換性のある1つ以上のWebアプリケーションが含まれていて、<code>web</code>という最初に生成されたHanamiアプリケーションを見つけることができます。
+そこには controllers, views, routes, templates が置かれています。</li>
+<li><code>config</code> 設定ファイルを含んでいます。</li>
+<li><code>config.ru</code> Rackサーバー用です。</li>
+<li><code>db</code> データベーススキーマとマイグレーションを含んでいます。</li>
+<li><code>lib</code> エンティティやリポジトリを含む私たちのビジネスロジックとドメインモデルが含まれています。</li>
+<li><code>public</code> コンパイルされた静的アセットを含んでいます。</li>
+<li><code>spec</code> テストを含んでいます。</li>
+</ul>
+
+<p>Bundlerを使ってgemの依存関係をインストールしてください。それから開発用サーバーを立ち上げます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle install
+$ bundle <span style="color:#111">exec</span> hanami server</code></pre></div>
+<p>そして… <a href="http://localhost:2300">http://localhost:2300</a>であなたの最初のHanamiプロジェクトの栄光を浴びてください！ 次のような画面が表示されます:</p>
+
+<p><img src="welcome-page.png" alt="Hanami welcome page" class="img-responsive"></p>
+
+<h2 id="hanamiのアーキテクチャ">Hanamiのアーキテクチャ</h2>
+
+<p>Hanamiのアーキテクチャは、多くの<code>apps</code>を含むプロジェクトを中心に解決します。
+これらはすべて同じコードベースに存在し、同じRubyプロセスに存在します。</p>
+
+<p>これらは <code>apps/</code> 配下にあります。</p>
+
+<p>デフォルトでは、<code>web</code>アプリがあります。これは、標準のユーザー向けWebインターフェイスと見なすことができます。
+これは最もポピュラーなので、おそらくあなたの将来のHanamiプロジェクトでそれを保ちたいと思うでしょう。
+しかし、このアプリに特有のものは何もありません。Hanamiがそれを生成するのはごく普通のことです。</p>
+
+<p>後で(実際のプロジェクトで)<code>admin</code>パネル、JSON <code>api</code>、または分析<code>dashboard</code>などの他のアプリを追加します。
+また、<code>web</code>アプリを小さな部品に分割して、分離された機能の一部を抽出することもできます。
+Hanamiもそれをフルサポートします！</p>
+
+<p>さまざまな<code>apps</code>が<strong>配信メカニズム</strong>を表します。
+つまり、それらはあなたのプロジェクトの中核、つまり「ビジネスロジック」と対話するためのさまざまな方法であるということです。</p>
+
+<p>Hanamiは<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">自分自身を繰り返す</a>ことを望んでいないので、「ビジネスロジック」が共有されています。
+Webアプリケーションは、ほとんどの場合、データベースに格納されているデータに作用します。
+私たちの「ビジネスロジック」と永続性はどちらも<code>lib/</code>にあります。</p>
+
+<p>(Hanamiのアーキテクチャは<a href="https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html">Clean Architecture</a>に強く触発されています)</p>
+
+<h2 id="最初のテストを書く">最初のテストを書く</h2>
+
+<p>ブラウザをアプリに向けた時に目にするスクリーンは、ルートが定義されていない時に表示されるデフォルトページです</p>
+
+<p>HanamiはWebアプリケーションを書く方法として<a href="https://en.wikipedia.org/wiki/Behavior-driven_development">振る舞い駆動開発</a>(BDD)を奨励します。
+最初のカスタムページを表示させるために、高レベルの機能テストを書きます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/web/features/visit_home_spec.rb</span>
+<span style="color:#111">require</span> <span style="color:#d88200">&#39;features_helper&#39;</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#d88200">&#39;Visit home&#39;</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;is successful&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">visit</span> <span style="color:#d88200">&#39;/&#39;</span>
+
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">page</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">have_content</span><span style="color:#111">(</span><span style="color:#d88200">&#39;Bookshelf&#39;</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>Hanamiは、革新的な振る舞い駆動開発(BDD)ワークフローの準備ができていますが、<strong>特定のテストフレームワークに制限されることは決してありません</strong>。
+特別なテスト統合やライブラリは付属していませんので、RSpec(またはMinitest)を知っていれば、そこで学ぶことは何も新しいことではありません。</p>
+
+<p>次を実行して、テストデータベース内のスキーマをマイグレーションする必要があります:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ <span style="color:#111">HANAMI_ENV</span><span style="color:#f92672">=</span><span style="color:#111">test</span> bundle <span style="color:#111">exec</span> hanami db prepare</code></pre></div>
+<p>最初の<code>HANAMI_ENV</code>は環境変数です。これは、Hanamiに<code>test</code>環境を使用するように指示します。
+デフォルトは<code>HANAMI_ENV=development</code>であるため、これはここで必要です。</p>
+
+<p class="notice">
+問題がおこった場合は、<tt>DATABASE_URL</tt>が<tt>.env.test</tt>に定義されています。
+</p>
+
+<h3 id="リクエストに従う">リクエストに従う</h3>
+
+<p>これでテストが終わりました。失敗するのがわかります:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> rake
+F.
+
+Failures:
+
+  <span style="color:#ae81ff">1</span><span style="color:#f92672">)</span> Visit home is successful
+     Failure/Error: expect<span style="color:#f92672">(</span>page<span style="color:#f92672">)</span>.to have_content<span style="color:#f92672">(</span><span style="color:#d88200">&#39;Bookshelf&#39;</span><span style="color:#f92672">)</span>
+       expected to find text <span style="color:#d88200">&#34;Bookshelf&#34;</span> in <span style="color:#d88200">&#34;404 - Not Found&#34;</span>
+     <span style="color:#75715e"># ./spec/web/features/visit_home_spec.rb:7:in `block (2 levels) in &lt;top (required)&gt;&#39;</span>
+
+Finished in <span style="color:#ae81ff">0</span>.02604 seconds <span style="color:#f92672">(</span>files took <span style="color:#ae81ff">1</span>.14 seconds to load<span style="color:#f92672">)</span>
+<span style="color:#ae81ff">2</span> examples, <span style="color:#ae81ff">1</span> failure
+
+Failed examples:
+
+rspec ./spec/web/features/visit_home_spec.rb:4 <span style="color:#75715e"># Visit home is successful</span></code></pre></div>
+<p>それでは成功させましょう。
+このテストに成功するために必要なコードを段階的に追加します。</p>
+
+<p>最初に追加する必要があるものはルートです：</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># apps/web/config/routes.rb</span>
+<span style="color:#111">root</span> <span style="color:#d88200">to</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;home#index&#39;</span></code></pre></div>
+<p>アプリのroot URLを<code>home</code>コントローラの<code>index</code>アクションに向けます(詳細は<a href="/routing/overview">ルーティングガイド</a>を見てください)。</p>
+
+<p>テストを実行すると、エンドポイントが見つからないというエラーが発生します。</p>
+
+<p><code>home#index</code>アクションを作成する必要があるので、それは合理的です。</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># apps/web/controllers/home/index.rb</span>
+<span style="color:#00a8c8">module</span> <span style="color:#111">Web</span>
+  <span style="color:#00a8c8">module</span> <span style="color:#111">Controllers</span>
+    <span style="color:#00a8c8">module</span> <span style="color:#111">Home</span>
+      <span style="color:#00a8c8">class</span> <span style="color:#75af00">Index</span>
+        <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Web</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Action</span>
+
+        <span style="color:#00a8c8">def</span> <span style="color:#75af00">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+        <span style="color:#00a8c8">end</span>
+      <span style="color:#00a8c8">end</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>これは何も特別なことをしない空のアクションです。
+Hanamiの各アクションは<a href="https://en.wikipedia.org/wiki/Single_responsibility_principle">単一のクラス</a>によって定義されているため、テストが簡単になります。
+さらに、各アクションには対応するビューがあり、これもそのクラスによって定義されています。
+これを要求を完了するために追加する必要があります。</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># apps/web/views/home/index.rb</span>
+<span style="color:#00a8c8">module</span> <span style="color:#111">Web</span>
+  <span style="color:#00a8c8">module</span> <span style="color:#111">Views</span>
+    <span style="color:#00a8c8">module</span> <span style="color:#111">Home</span>
+      <span style="color:#00a8c8">class</span> <span style="color:#75af00">Index</span>
+        <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Web</span><span style="color:#f92672">::</span><span style="color:#00a8c8">View</span>
+      <span style="color:#00a8c8">end</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>これも空で特別なことはしません。
+その唯一の責任はテンプレートをレンダリングすることであり、これはビューがデフォルトで行うことです。</p>
+
+<p>このテンプレートは、テストに合格するために追加する必要があるものです。
+必要なのは本棚の見出しを追加するだけです。</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb"># apps/web/templates/home/index.html.erb
+&lt;h1&gt;Bookshelf&lt;/h1&gt;</code></pre></div>
+<p>それではもう一度テストスイートを実行しましょう。</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> rake
+
+Finished in <span style="color:#ae81ff">0</span>.01394 seconds <span style="color:#f92672">(</span>files took <span style="color:#ae81ff">1</span>.03 seconds to load<span style="color:#f92672">)</span>
+<span style="color:#ae81ff">2</span> examples, <span style="color:#ae81ff">0</span> failures</code></pre></div>
+<p>これはすべてのテストが成功したことを意味します！</p>
+
+<h2 id="新しいアクションを生成する">新しいアクションを生成する</h2>
+
+<p>Hanamiの <strong>routes</strong>, <strong>actions</strong>, <strong>views</strong>, <strong>templates</strong> についての新しい知識を活用しましょう。</p>
+
+<p>サンプルのBookshelfプロジェクトの目的は書籍を管理することです。</p>
+
+<p>書籍をデータベースに保存し、ユーザーが私たちのプロジェクトを使ってユーザーがそれを管理できるようにします。</p>
+
+<p>私たちの最初のステップは私たちが知ってるすべての書籍をリストすることです。</p>
+
+<p>達成したいことを説明する新しい機能テストを書きましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/web/features/list_books_spec.rb</span>
+<span style="color:#111">require</span> <span style="color:#d88200">&#39;features_helper&#39;</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#d88200">&#39;List books&#39;</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;displays each book on the page&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">visit</span> <span style="color:#d88200">&#39;/books&#39;</span>
+
+    <span style="color:#111">within</span> <span style="color:#d88200">&#39;#books&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">page</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">have_css</span><span style="color:#111">(</span><span style="color:#d88200">&#39;.book&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">count</span><span style="color:#111">:</span> <span style="color:#ae81ff">2</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>このテストは、<a href="http://localhost:2300/books">/books</a>に行くと、
+<code>book</code>クラスを持つ2つのHTML要素があり、
+どちらも<code>books</code>というIDを持つHTML要素の中にあることを意味します。</p>
+
+<p>私たちのテストスイートは<code>&quot;#books&quot; を見つけられません</code>。</p>
+
+<p>その要素が欠けているだけでなく、
+その要素を載せるページもありません！</p>
+
+<p>それを修正するための新しいアクションを作成しましょう。</p>
+
+<h3 id="hanamiジェネレータ">Hanamiジェネレータ</h3>
+
+<p>Hanamiには、いくつかの<strong>ジェネレータ</strong>が付属しています。これらは、あなたのためにコードを作成するためのツールです。</p>
+
+<p>ターミナルで実行しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> hanami generate action web books#index</code></pre></div>
+<p class="notice">
+  ZSHを使用していてそれが機能しない場合
+  (<tt>zsh: no matches found: books#index</tt>のようなエラーで)、
+  Hanamiは代わりにこのように書けます: <tt>hanami generate action web books/index</tt>
+</p>
+
+<p>これは私たちのために多くのことを行います:</p>
+
+<ul>
+<li><code>apps/web/controllers/books/index.rb</code>アクション(とそのspec)を作成し、</li>
+<li><code>apps/web/views/books/index.rb</code>ビュー(とそのspec)を作成し、</li>
+<li><code>apps/web/templates/books/index.html.erb</code>テンプレートを作成します。</li>
+</ul>
+
+<p>(&lsquo;action&rsquo; と &lsquo;controller&rsquo; に混乱しているなら: Hanamiには<code>action</code>クラスしかないので、コントローラは関連するいくつかのアクションをまとめたモジュールです。)</p>
+
+<p>これらのファイルはすべてほとんど空です。
+そこにいくつかの基本的なコードを持っているので、Hanamiはクラスの使い方を知っています。
+ありがたいことに、これらの5つのファイルを手動で作成する必要はありません。
+その中にその特定のコードがあります。</p>
+
+<p>ジェネレータはまた、<code>web</code>アプリケーションのルートファイル(<code>apps/web/config/routes.rb</code>)に新しいルートを追加します。</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">get</span> <span style="color:#d88200">&#39;/books&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">to</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;books#index&#39;</span></code></pre></div>
+<p>テストを成功させるには、新しく生成されたテンプレートファイル <code>apps/web/templates/books/index.html.erb</code> を編集する必要があります:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#111">&lt;</span><span style="color:#f92672">h1</span><span style="color:#111">&gt;</span>Bookshelf<span style="color:#111">&lt;/</span><span style="color:#f92672">h1</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;</span><span style="color:#f92672">h2</span><span style="color:#111">&gt;</span>All books<span style="color:#111">&lt;/</span><span style="color:#f92672">h2</span><span style="color:#111">&gt;</span>
+
+<span style="color:#111">&lt;</span><span style="color:#f92672">div</span> <span style="color:#75af00">id</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;books&#34;</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;</span><span style="color:#f92672">div</span> <span style="color:#75af00">class</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;book&#34;</span><span style="color:#111">&gt;</span>
+    <span style="color:#111">&lt;</span><span style="color:#f92672">h3</span><span style="color:#111">&gt;</span>Patterns of Enterprise Application Architecture<span style="color:#111">&lt;/</span><span style="color:#f92672">h3</span><span style="color:#111">&gt;</span>
+    <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>by <span style="color:#111">&lt;</span><span style="color:#f92672">strong</span><span style="color:#111">&gt;</span>Martin Fowler<span style="color:#111">&lt;/</span><span style="color:#f92672">strong</span><span style="color:#111">&gt;&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;/</span><span style="color:#f92672">div</span><span style="color:#111">&gt;</span>
+
+  <span style="color:#111">&lt;</span><span style="color:#f92672">div</span> <span style="color:#75af00">class</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;book&#34;</span><span style="color:#111">&gt;</span>
+    <span style="color:#111">&lt;</span><span style="color:#f92672">h3</span><span style="color:#111">&gt;</span>Test Driven Development<span style="color:#111">&lt;/</span><span style="color:#f92672">h3</span><span style="color:#111">&gt;</span>
+    <span style="color:#111">&lt;</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>by <span style="color:#111">&lt;</span><span style="color:#f92672">strong</span><span style="color:#111">&gt;</span>Kent Beck<span style="color:#111">&lt;/</span><span style="color:#f92672">strong</span><span style="color:#111">&gt;&lt;/</span><span style="color:#f92672">p</span><span style="color:#111">&gt;</span>
+  <span style="color:#111">&lt;/</span><span style="color:#f92672">div</span><span style="color:#111">&gt;</span>
+<span style="color:#111">&lt;/</span><span style="color:#f92672">div</span><span style="color:#111">&gt;</span></code></pre></div>
+<p>これでテストは成功しました！</p>
+
+<p>アプリケーションで新しいエンドポイント(ページ)を作成するためにジェネレータを使用しました。</p>
+
+<p>しかし、私たちは自分自身を繰り返し始めました。</p>
+
+<p><code>books/index.html.erb</code>テンプレートと上記の<code>homes/index.html.erb</code>テンプレートの両方に<code>&lt;h1&gt;Bookshelf&lt;/h1&gt;</code>を持っています。</p>
+
+<p>これは大したことではありませんが、実際のアプリケーションでは、
+<code>app</code>内のすべてのページでロゴまたは共通のナビゲーションが共有される可能性があります。</p>
+
+<p>それがどのように機能するかを示すために、その繰り返しを修正しましょう。</p>
+
+<h3 id="レイアウト">レイアウト</h3>
+
+<p>ひとつひとつのテンプレートで自分自身を繰り返さないようにするために、レイアウトテンプレートを修正することができます。
+<code>apps/web/templates/application.html.erb</code>を次のように編集しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rhtml" data-lang="rhtml">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Web&lt;/title&gt;
+    &lt;%= favicon %&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Bookshelf&lt;/h1&gt;
+    &lt;%= yield %&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<p>また、重複している行は他のテンプレートから削除します。それらは今重複されたためです。</p>
+
+<p><strong>レイアウトテンプレート</strong>は他のテンプレートと同じですが、通常のテンプレートをラップするために使用されます。
+<code>yield</code>行は、通常のテンプレートの内容に置き換えられます。
+繰り返しのヘッダーとフッターを配置するのに最適な場所です。</p>
+
+<h2 id="エンティティでデータをモデル化する">エンティティでデータをモデル化する</h2>
+
+<p>私たちのテンプレートでハードコーディングされた書籍は、明らかにインチキです。
+動的データをアプリケーションに追加しましょう！</p>
+
+<p>書籍をデータベースに保存して、ページに表示します。
+そのためには、データベースを読み書きする方法が必要です。
+これに使用するオブジェクトは2種類あります。</p>
+
+<ul>
+<li><strong>エンティティ</strong>は、その識別子によって一意に識別されるドメインオブジェクト(<code>Book</code>)です。</li>
+<li><strong>リポジトリ</strong>は、エンティティのデータを永続化、取得、削除するために、永続性レイヤーで使用します。</li>
+</ul>
+
+<p>エンティティはデータベースをまったく認識していません。
+これにより、<strong>軽量</strong>で<strong>テストが容易</strong>になります。</p>
+
+<p>エンティティはデータベースから完全に分離されているので、
+<code>Book</code>背後にあるデータを永続化するためにリポジトリを使用します。</p>
+
+<p>(データベースからのデータを<code>Book</code>に戻したり、そのデータを削除するためにもリポジトリを使用します。)</p>
+
+<p><a href="/models/overview">モデルガイド</a>でエンティティとリポジトリの詳細を読んでください 。</p>
+
+<p>Hanamiはモデル用のジェネレータを同梱しているので、<code>Book</code>エンティティとそれに対応するリポジトリを作成するためにそれを使用しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> hanami generate model book
+create  lib/bookshelf/entities/book.rb
+create  lib/bookshelf/repositories/book_repository.rb
+create  db/migrations/20181024110038_create_books.rb
+create  spec/bookshelf/entities/book_spec.rb
+create  spec/bookshelf/repositories/book_repository_spec.rb</code></pre></div>
+<p>ジェネレータはエンティティ、リポジトリ、そしてそれらに関連するテストファイルを提供してくれます。</p>
+
+<p>データベースのマイグレーションも可能です。</p>
+
+<h3 id="データベーススキーマを変更するためのマイグレーション">データベーススキーマを変更するためのマイグレーション</h3>
+
+<p>生成されたマイグレーションを変更して、<code>title</code>と<code>author</code>フィールドを含めます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># db/migrations/20181024110038_create_books.rb</span>
+
+<span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Model</span><span style="color:#f92672">.</span><span style="color:#111">migration</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">change</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">create_table</span> <span style="color:#d88200">:books</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">primary_key</span> <span style="color:#d88200">:id</span>
+
+      <span style="color:#111">column</span> <span style="color:#d88200">:title</span><span style="color:#111">,</span>  <span style="color:#111">String</span><span style="color:#111">,</span> <span style="color:#d88200">null</span><span style="color:#111">:</span> <span style="color:#00a8c8">false</span>
+      <span style="color:#111">column</span> <span style="color:#d88200">:author</span><span style="color:#111">,</span> <span style="color:#111">String</span><span style="color:#111">,</span> <span style="color:#d88200">null</span><span style="color:#111">:</span> <span style="color:#00a8c8">false</span>
+
+      <span style="color:#111">column</span> <span style="color:#d88200">:created_at</span><span style="color:#111">,</span> <span style="color:#00a8c8">DateTime</span><span style="color:#111">,</span> <span style="color:#d88200">null</span><span style="color:#111">:</span> <span style="color:#00a8c8">false</span>
+      <span style="color:#111">column</span> <span style="color:#d88200">:updated_at</span><span style="color:#111">,</span> <span style="color:#00a8c8">DateTime</span><span style="color:#111">,</span> <span style="color:#d88200">null</span><span style="color:#111">:</span> <span style="color:#00a8c8">false</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>Hanamiは私達のデータベーススキーマへの変更を記述するためのDSLを提供します。
+マイグレーションがどのように機能するかについて詳しくは、<a href="/migrations/overview">マイグレーションのガイド</a>を参照してください 。</p>
+
+<p>今回は、エンティティの属性ごとに列を持つ新しいテーブルを定義します。
+開発環境とテスト環境用にデータベースを準備しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> hanami db prepare
+$ <span style="color:#111">HANAMI_ENV</span><span style="color:#f92672">=</span><span style="color:#111">test</span> bundle <span style="color:#111">exec</span> hanami db prepare</code></pre></div>
+<h3 id="エンティティとの連携">エンティティとの連携</h3>
+
+<p>エンティティは、普通のRubyオブジェクトに非常に近いものです。
+私たちはそれから欲しい振る舞いとそれを保存する方法に焦点を当てるべきです。</p>
+
+<p>今のところ、簡単なエンティティクラスを作成する必要があります:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># lib/bookshelf/entities/book.rb</span>
+<span style="color:#00a8c8">class</span> <span style="color:#75af00">Book</span> <span style="color:#f92672">&lt;</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Entity</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>このクラスは、パラメータを初期化するために渡す各属性に対してゲッターとセッターを生成します。
+ユニットテストで、すべて正常に機能することを確認できます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/bookshelf/entities/book_spec.rb</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#00a8c8">Book</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;can be initialized with attributes&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">book</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">Book</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Refactoring&#39;</span><span style="color:#111">)</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">book</span><span style="color:#f92672">.</span><span style="color:#111">title</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#39;Refactoring&#39;</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<h3 id="リポジトリの使用">リポジトリの使用</h3>
+
+<p>これで私たちのリポジトリで遊ぶ準備が整いました。
+Hanamiの<code>console</code>コマンドを使用して、アプリケーションをプリロードした状態で<code>irb</code>を起動することができるので、オブジェクトを使用できます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> hanami console
+&gt;&gt; <span style="color:#111">repository</span> <span style="color:#f92672">=</span> BookRepository.new
+<span style="color:#f92672">=</span>&gt; <span style="color:#75715e">#&lt;BookRepository relations=[:books]&gt;</span>
+&gt;&gt; repository.all
+<span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[]</span>
+&gt;&gt; <span style="color:#111">book</span> <span style="color:#f92672">=</span> repository.create<span style="color:#f92672">(</span>title: <span style="color:#d88200">&#39;TDD&#39;</span>, author: <span style="color:#d88200">&#39;Kent Beck&#39;</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">=</span>&gt; <span style="color:#75715e">#&lt;Book:0x007f9ab61c23b8 @attributes={:id=&gt;1, :title=&gt;&#34;TDD&#34;, :author=&gt;&#34;Kent Beck&#34;, :created_at=&gt;2018-10-24 11:11:38 UTC, :updated_at=&gt;2018-10-24 11:11:38 UTC}&gt;</span>
+&gt;&gt; repository.find<span style="color:#f92672">(</span>book.id<span style="color:#f92672">)</span>
+<span style="color:#f92672">=</span>&gt; <span style="color:#75715e">#&lt;Book:0x007f9ab6181610 @attributes={:id=&gt;1, :title=&gt;&#34;TDD&#34;, :author=&gt;&#34;Kent Beck&#34;, :created_at=&gt;2018-10-24 11:11:38 UTC, :updated_at=&gt;2018-10-24 11:11:38 UTC}&gt;</span></code></pre></div>
+<p>Hanamiリポジトリには、データベースから1つ以上のエンティティをロードし、既存のレコードを作成および更新するためのメソッドがあります。
+リポジトリは、カスタムクエリを実装するための新しいメソッドを定義する場所でもあります。</p>
+
+<p>要約すると、Hanamiがデータをモデル化するためにエンティティとリポジトリをどのように使用するかを説明しました。
+エンティティは私たちの振る舞いを表しますが、リポジトリはマッピングを使って私たちのエンティティを私たちのデータストアに変換します。
+データベーススキーマに変更を適用するためにマイグレーションを使用できます。</p>
+
+<h3 id="動的データの表示">動的データの表示</h3>
+
+<p>データをモデル化した新しい体験により、書籍リストページに動的データを表示して作業を始めることができます。
+先ほど作成した機能テストを調整しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/web/features/list_books_spec.rb</span>
+<span style="color:#111">require</span> <span style="color:#d88200">&#39;features_helper&#39;</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#d88200">&#39;List books&#39;</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:repository</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">BookRepository</span><span style="color:#f92672">.</span><span style="color:#111">new</span> <span style="color:#111">}</span>
+  <span style="color:#111">before</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">repository</span><span style="color:#f92672">.</span><span style="color:#111">clear</span>
+
+    <span style="color:#111">repository</span><span style="color:#f92672">.</span><span style="color:#111">create</span><span style="color:#111">(</span><span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;PoEAA&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">author</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Martin Fowler&#39;</span><span style="color:#111">)</span>
+    <span style="color:#111">repository</span><span style="color:#f92672">.</span><span style="color:#111">create</span><span style="color:#111">(</span><span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;TDD&#39;</span><span style="color:#111">,</span>   <span style="color:#d88200">author</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Kent Beck&#39;</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;displays each book on the page&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">visit</span> <span style="color:#d88200">&#39;/books&#39;</span>
+
+    <span style="color:#111">within</span> <span style="color:#d88200">&#39;#books&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">page</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">have_selector</span><span style="color:#111">(</span><span style="color:#d88200">&#39;.book&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">count</span><span style="color:#111">:</span> <span style="color:#ae81ff">2</span><span style="color:#111">),</span> <span style="color:#d88200">&#39;Expected to find 2 books&#39;</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>テストで必要なレコードを作成してから、ページに正しい数の書籍クラスをアサートします。
+このテストを実行すると、成功するはずです。 成功しない場合は、テストデータベースがマイグレーションされなかったことが考えられます。</p>
+
+<p>これでテンプレートを変更して静的HTMLを削除できます。
+私たちのビューは、すべての有効なレコードをループしてレンダリングする必要があります。
+私たちのビューでこの変更を強制するためのテストを書きましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/web/views/books/index_spec.rb</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#00a8c8">Web</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Views</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Books</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Index</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:exposures</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">[</span><span style="color:#d88200">books</span><span style="color:#111">:</span> <span style="color:#f92672">[]]</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:template</span><span style="color:#111">)</span>  <span style="color:#111">{</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">View</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Template</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#d88200">&#39;apps/web/templates/books/index.html.erb&#39;</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:view</span><span style="color:#111">)</span>      <span style="color:#111">{</span> <span style="color:#111">described_class</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#111">template</span><span style="color:#111">,</span> <span style="color:#111">exposures</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:rendered</span><span style="color:#111">)</span>  <span style="color:#111">{</span> <span style="color:#111">view</span><span style="color:#f92672">.</span><span style="color:#111">render</span> <span style="color:#111">}</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;exposes #books&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">view</span><span style="color:#f92672">.</span><span style="color:#111">books</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#111">exposures</span><span style="color:#f92672">.</span><span style="color:#111">fetch</span><span style="color:#111">(</span><span style="color:#d88200">:books</span><span style="color:#111">))</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">context</span> <span style="color:#d88200">&#39;when there are no books&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">it</span> <span style="color:#d88200">&#39;shows a placeholder message&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">rendered</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#00a8c8">include</span><span style="color:#111">(</span><span style="color:#d88200">&#39;&lt;p class=&#34;placeholder&#34;&gt;There are no books yet.&lt;/p&gt;&#39;</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">context</span> <span style="color:#d88200">&#39;when there are books&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:book1</span><span style="color:#111">)</span>     <span style="color:#111">{</span> <span style="color:#00a8c8">Book</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Refactoring&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">author</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Martin Fowler&#39;</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+    <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:book2</span><span style="color:#111">)</span>     <span style="color:#111">{</span> <span style="color:#00a8c8">Book</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Domain Driven Design&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">author</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Eric Evans&#39;</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+    <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:exposures</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">[</span><span style="color:#d88200">books</span><span style="color:#111">:</span> <span style="color:#f92672">[</span><span style="color:#111">book1</span><span style="color:#111">,</span> <span style="color:#111">book2</span><span style="color:#f92672">]]</span> <span style="color:#111">}</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#39;lists them all&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">rendered</span><span style="color:#f92672">.</span><span style="color:#111">scan</span><span style="color:#111">(</span><span style="color:#d88200">/class=&#34;book&#34;/</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">length</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#ae81ff">2</span><span style="color:#111">)</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">rendered</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#00a8c8">include</span><span style="color:#111">(</span><span style="color:#d88200">&#39;Refactoring&#39;</span><span style="color:#111">)</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">rendered</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#00a8c8">include</span><span style="color:#111">(</span><span style="color:#d88200">&#39;Domain Driven Design&#39;</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#39;hides the placeholder message&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">rendered</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to_not</span> <span style="color:#00a8c8">include</span><span style="color:#111">(</span><span style="color:#d88200">&#39;&lt;p class=&#34;placeholder&#34;&gt;There are no books yet.&lt;/p&gt;&#39;</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>表示する書籍がない場合は、インデックスページに簡単なプレースホルダメッセージが表示されるように指定します。
+書籍がある場合は、それらすべてを一覧表示します。
+いくつかのデータを使ってビューをレンダリングするのは比較的簡単です。
+Hanamiは、独立してテストするのは簡単で、それでもうまく機能する、最小限のインターフェースを持つ単純なオブジェクトを中心に設計されています。</p>
+
+<p>これらの要件を実装するためにテンプレートを書き換えましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb"># apps/web/templates/books/index.html.erb
+&lt;h2&gt;All books&lt;/h2&gt;
+
+&lt;% if books.any? %&gt;
+  &lt;div id=&#34;books&#34;&gt;
+    &lt;% books.each do |book| %&gt;
+      &lt;div class=&#34;book&#34;&gt;
+        &lt;h2&gt;&lt;%= book.title %&gt;&lt;/h2&gt;
+        &lt;p&gt;&lt;%= book.author %&gt;&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;% end %&gt;
+  &lt;/div&gt;
+&lt;% else %&gt;
+  &lt;p class=&#34;placeholder&#34;&gt;There are no books yet.&lt;/p&gt;
+&lt;% end %&gt;</code></pre></div>
+<p>今すぐ機能テストを実行すると、失敗することになります。
+コントローラのアクションによって書籍がビューに<a href="/actions/exposures"><em>表示</em></a>されないためです。
+その変更に対するテストを書くことができます。:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/web/controllers/books/index_spec.rb</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#00a8c8">Web</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Controllers</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Books</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Index</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:action</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">described_class</span><span style="color:#f92672">.</span><span style="color:#111">new</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:params</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">[]</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:repository</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">BookRepository</span><span style="color:#f92672">.</span><span style="color:#111">new</span> <span style="color:#111">}</span>
+
+  <span style="color:#111">before</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">repository</span><span style="color:#f92672">.</span><span style="color:#111">clear</span>
+
+    <span style="color:#111">@book</span> <span style="color:#f92672">=</span> <span style="color:#111">repository</span><span style="color:#f92672">.</span><span style="color:#111">create</span><span style="color:#111">(</span><span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;TDD&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">author</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Kent Beck&#39;</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;is successful&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">response</span> <span style="color:#f92672">=</span> <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">response</span><span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#ae81ff">200</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;exposes all books&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">exposures</span><span style="color:#f92672">[</span><span style="color:#d88200">:books</span><span style="color:#f92672">]</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#f92672">[</span><span style="color:#111">@book</span><span style="color:#f92672">]</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>コントローラアクションのテストを書くことは基本的に2つの部分から成ります: レスポンスのオブジェクト(Rack互換のステータス、ヘッダ、コンテンツの配列)に対するアサート、そしてアクションそれ自身(これには呼び出し後のexposuresが含まれます)。
+これで、アクションが<code>:books</code>をexposeするように記述したので、アクションを実装できます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># apps/web/controllers/books/index.rb</span>
+<span style="color:#00a8c8">module</span> <span style="color:#111">Web</span>
+  <span style="color:#00a8c8">module</span> <span style="color:#111">Controllers</span>
+    <span style="color:#00a8c8">module</span> <span style="color:#111">Books</span>
+      <span style="color:#00a8c8">class</span> <span style="color:#75af00">Index</span>
+        <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Web</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Action</span>
+
+        <span style="color:#111">expose</span> <span style="color:#d88200">:books</span>
+
+        <span style="color:#00a8c8">def</span> <span style="color:#75af00">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+          <span style="color:#111">@books</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">BookRepository</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#f92672">.</span><span style="color:#111">all</span>
+        <span style="color:#00a8c8">end</span>
+      <span style="color:#00a8c8">end</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>アクションクラスで<code>expose</code>メソッドを使用することで、<code>@books</code>インスタンス変数の内容を外部に公開し、Hanamiがそれをビューに渡すことができるようにします。
+すべてのテストに再び合格するのに十分です！</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> rake
+Run options: --seed <span style="color:#ae81ff">59133</span>
+
+<span style="color:#75715e"># Running:</span>
+
+.........
+
+Finished in <span style="color:#ae81ff">0</span>.042065s, <span style="color:#ae81ff">213</span>.9543 runs/s, <span style="color:#ae81ff">380</span>.3633 assertions/s.
+
+<span style="color:#ae81ff">6</span> runs, <span style="color:#ae81ff">7</span> assertions, <span style="color:#ae81ff">0</span> failures, <span style="color:#ae81ff">0</span> errors, <span style="color:#ae81ff">0</span> skips</code></pre></div>
+<h2 id="レコードを作成するためのフォームの構築">レコードを作成するためのフォームの構築</h2>
+
+<p>最後の残りのステップの1つはシステムに新しい書籍を追加することを可能にすることです。
+計画は簡単です: 詳細を入力するフォームを使ってページを作成します。</p>
+
+<p>ユーザーがフォームを送信すると、新しいエンティティを作成して保存し、ユーザーを書籍の一覧にリダイレクトします。
+これがテストで表現されたストーリーです:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/web/features/add_book_spec.rb</span>
+<span style="color:#111">require</span> <span style="color:#d88200">&#39;features_helper&#39;</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#d88200">&#39;Add a book&#39;</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">after</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#00a8c8">BookRepository</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#f92672">.</span><span style="color:#111">clear</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;can create a new book&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">visit</span> <span style="color:#d88200">&#39;/books/new&#39;</span>
+
+    <span style="color:#111">within</span> <span style="color:#d88200">&#39;form#book-form&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">fill_in</span> <span style="color:#d88200">&#39;Title&#39;</span><span style="color:#111">,</span>  <span style="color:#d88200">with</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;New book&#39;</span>
+      <span style="color:#111">fill_in</span> <span style="color:#d88200">&#39;Author&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">with</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Some author&#39;</span>
+
+      <span style="color:#111">click_button</span> <span style="color:#d88200">&#39;Create&#39;</span>
+    <span style="color:#00a8c8">end</span>
+
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">page</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">have_current_path</span><span style="color:#111">(</span><span style="color:#d88200">&#39;/books&#39;</span><span style="color:#111">)</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">page</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">have_content</span><span style="color:#111">(</span><span style="color:#d88200">&#39;New book&#39;</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<h3 id="フォームの基礎を築く">フォームの基礎を築く</h3>
+
+<p>ここまでで、アクション、ビュー、およびテンプレートの動作に精通しているはずです。</p>
+
+<p>私たちは物事を少しスピードアップするので、すぐに良い部分にたどり着くことができます。
+まず、「New Book」ページに新しいアクションを作成します:</p>
+
+<pre><code>$ bundle exec hanami generate action web books#new
+</code></pre>
+
+<p>これは我々のアプリに新しいルートを追加します:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># apps/web/config/routes.rb</span>
+<span style="color:#111">get</span> <span style="color:#d88200">&#39;/books/new&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">to</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;books#new&#39;</span></code></pre></div>
+<p>興味深いのは新しいテンプレートです。私たちの<code>Book</code>エンティティの周りにHTMLフォームを構築するためにHanamiのフォームビルダーを使用するからです。</p>
+
+<h3 id="フォームヘルパーを使う">フォームヘルパーを使う</h3>
+
+<p>このフォームを<code>apps/web/templates/books/new.html.erb</code>に作成するために、<a href="/helpers/forms">フォームヘルパー</a>を使用しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb"># apps/web/templates/books/new.html.erb
+&lt;h2&gt;Add book&lt;/h2&gt;
+
+&lt;%=
+  form_for :book, &#39;/books&#39; do
+    div class: &#39;input&#39; do
+      label      :title
+      text_field :title
+    end
+
+    div class: &#39;input&#39; do
+      label      :author
+      text_field :author
+    end
+
+    div class: &#39;controls&#39; do
+      submit &#39;Create Book&#39;
+    end
+  end
+%&gt;</code></pre></div>
+<p>フォームフィールドに<code>&lt;label&gt;</code>タグを追加し、Hanamiの<a href="/helpers/html5">HTMLビルダーヘルパー</a>を使用して各フィールドをコンテナー<code>&lt;div&gt;</code>にラップしました。</p>
+
+<h3 id="フォームを送信する">フォームを送信する</h3>
+
+<p>フォームを送信するには、さらに別のアクションが必要です。
+<code>Books::Create</code>アクションを作成しましょう:</p>
+
+<pre><code>$ bundle exec hanami generate action web books#create
+</code></pre>
+
+<p>これは我々のアプリに新しいルートを追加します:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># apps/web/config/routes.rb</span>
+<span style="color:#111">post</span> <span style="color:#d88200">&#39;/books&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">to</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;books#create&#39;</span></code></pre></div>
+<h3 id="createアクションの実装">Createアクションの実装</h3>
+
+<p>私たちの<code>books#create</code>アクションは、2つのことをする必要があります。
+それらをユニットテストとして表現しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/web/controllers/books/create_spec.rb</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#00a8c8">Web</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Controllers</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Books</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Create</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:action</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">described_class</span><span style="color:#f92672">.</span><span style="color:#111">new</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:params</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">[</span><span style="color:#d88200">book</span><span style="color:#111">:</span> <span style="color:#111">{</span> <span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Confident Ruby&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">author</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Avdi Grimm&#39;</span> <span style="color:#111">}</span><span style="color:#f92672">]</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:repository</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">BookRepository</span><span style="color:#f92672">.</span><span style="color:#111">new</span> <span style="color:#111">}</span>
+
+  <span style="color:#111">before</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">repository</span><span style="color:#f92672">.</span><span style="color:#111">clear</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;creates a new book&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+    <span style="color:#111">book</span> <span style="color:#f92672">=</span> <span style="color:#111">repository</span><span style="color:#f92672">.</span><span style="color:#111">last</span>
+
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">book</span><span style="color:#f92672">.</span><span style="color:#111">id</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to_not</span> <span style="color:#111">be_nil</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;redirects the user to the books listing&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">response</span> <span style="color:#f92672">=</span> <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">response</span><span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#ae81ff">302</span><span style="color:#111">)</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">response</span><span style="color:#f92672">[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">][</span><span style="color:#d88200">&#39;Location&#39;</span><span style="color:#f92672">]</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#39;/books&#39;</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>これらのテストに成功することは十分に簡単です。
+データベースにエンティティを書き込む方法をすでに説明したので、<code>redirect_to</code>を使用してリダイレクションを実装できます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># apps/web/controllers/books/create.rb</span>
+<span style="color:#00a8c8">module</span> <span style="color:#111">Web</span>
+  <span style="color:#00a8c8">module</span> <span style="color:#111">Controllers</span>
+    <span style="color:#00a8c8">module</span> <span style="color:#111">Books</span>
+      <span style="color:#00a8c8">class</span> <span style="color:#75af00">Create</span>
+        <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Web</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Action</span>
+
+        <span style="color:#00a8c8">def</span> <span style="color:#75af00">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+          <span style="color:#00a8c8">BookRepository</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#f92672">.</span><span style="color:#111">create</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#f92672">[</span><span style="color:#d88200">:book</span><span style="color:#f92672">]</span><span style="color:#111">)</span>
+
+          <span style="color:#111">redirect_to</span> <span style="color:#d88200">&#39;/books&#39;</span>
+        <span style="color:#00a8c8">end</span>
+      <span style="color:#00a8c8">end</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>この最小限の実装で、テストに合格することができます。</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> rake
+Run options: --seed <span style="color:#ae81ff">63592</span>
+
+<span style="color:#75715e"># Running:</span>
+
+...............
+
+Finished in <span style="color:#ae81ff">0</span>.081961s, <span style="color:#ae81ff">183</span>.0142 runs/s, <span style="color:#ae81ff">305</span>.0236 assertions/s.
+
+<span style="color:#ae81ff">12</span> runs, <span style="color:#ae81ff">14</span> assertions, <span style="color:#ae81ff">0</span> failures, <span style="color:#ae81ff">0</span> errors, <span style="color:#ae81ff">2</span> skips</code></pre></div>
+<p>おめでとう！</p>
+
+<h3 id="バリデーションによるフォームの保護">バリデーションによるフォームの保護</h3>
+
+<p>ちょっと待って！ 本当に堅牢なフォームを構築するためには、いくつかの追加対策が必要です。
+ユーザーが値を入力せずにフォームを送信するとどうなるでしょうか？</p>
+
+<p>データベースに不正なデータを埋め込むか、データ整合性違反の例外が発生する可能性があります。
+システムから不正なデータを排除する方法が明らかに必要です！</p>
+
+<p>テスト内でバリデーションを表現するために、疑問に思うべきです: 検証に失敗した場合どうなるのでしょうか？
+1つ目の選択肢は<code>books#new</code>フォームを再レンダリングすることです。そのため、正しく完成させたときに、もう一度ショットを表示させることができます。
+この動作を単体テストとして指定しましょう。</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/web/controllers/books/create_spec.rb</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#00a8c8">Web</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Controllers</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Books</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Create</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:action</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">described_class</span><span style="color:#f92672">.</span><span style="color:#111">new</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:repository</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">BookRepository</span><span style="color:#f92672">.</span><span style="color:#111">new</span> <span style="color:#111">}</span>
+
+  <span style="color:#111">before</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">repository</span><span style="color:#f92672">.</span><span style="color:#111">clear</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">context</span> <span style="color:#d88200">&#39;with valid params&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:params</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">[</span><span style="color:#d88200">book</span><span style="color:#111">:</span> <span style="color:#111">{</span> <span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Confident Ruby&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">author</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;Avdi Grimm&#39;</span> <span style="color:#111">}</span><span style="color:#f92672">]</span> <span style="color:#111">}</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#39;creates a new book&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+      <span style="color:#111">book</span> <span style="color:#f92672">=</span> <span style="color:#111">repository</span><span style="color:#f92672">.</span><span style="color:#111">last</span>
+
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">book</span><span style="color:#f92672">.</span><span style="color:#111">id</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to_not</span> <span style="color:#111">be_nil</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">book</span><span style="color:#f92672">.</span><span style="color:#111">title</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#f92672">.</span><span style="color:#111">dig</span><span style="color:#111">(</span><span style="color:#d88200">:book</span><span style="color:#111">,</span> <span style="color:#d88200">:title</span><span style="color:#111">))</span>
+    <span style="color:#00a8c8">end</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#39;redirects the user to the books listing&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">response</span> <span style="color:#f92672">=</span> <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">response</span><span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#ae81ff">302</span><span style="color:#111">)</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">response</span><span style="color:#f92672">[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">][</span><span style="color:#d88200">&#39;Location&#39;</span><span style="color:#f92672">]</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#39;/books&#39;</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">context</span> <span style="color:#d88200">&#39;with invalid params&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:params</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">[</span><span style="color:#d88200">book</span><span style="color:#111">:</span> <span style="color:#111">{}</span><span style="color:#f92672">]</span> <span style="color:#111">}</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#39;returns HTTP client error&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">response</span> <span style="color:#f92672">=</span> <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">response</span><span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#ae81ff">422</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#39;dumps errors in params&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+      <span style="color:#111">errors</span> <span style="color:#f92672">=</span> <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">params</span><span style="color:#f92672">.</span><span style="color:#111">errors</span>
+
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">errors</span><span style="color:#f92672">.</span><span style="color:#111">dig</span><span style="color:#111">(</span><span style="color:#d88200">:book</span><span style="color:#111">,</span> <span style="color:#d88200">:title</span><span style="color:#111">))</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#f92672">[</span><span style="color:#d88200">&#39;is missing&#39;</span><span style="color:#f92672">]</span><span style="color:#111">)</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">errors</span><span style="color:#f92672">.</span><span style="color:#111">dig</span><span style="color:#111">(</span><span style="color:#d88200">:book</span><span style="color:#111">,</span> <span style="color:#d88200">:author</span><span style="color:#111">))</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#f92672">[</span><span style="color:#d88200">&#39;is missing&#39;</span><span style="color:#f92672">]</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>今回のテストでは、2つの代替シナリオ、つまり元のハッピーパスとバリデーションが失敗する新しいシナリオを指定します。
+テストに成功するためには、バリデーションを実装する必要があります。</p>
+
+<p>バリデーション規則をエンティティに追加することはできますが、Hanamiでは入力規則のソース、つまりアクションにできるだけ近いバリデーション規則を定義することもできます。
+Hanamiコントローラのアクションは、許容可能な入力パラメータを定義するために<code>params</code>クラスメソッドを使用できます。</p>
+
+<p>このアプローチはどのパラメータが使用されるかをホワイトリスト化し(信頼できないユーザ入力による大量割り当ての脆弱性を防ぐために他のものは破棄されます)、許容できる値を定義するルールを追加します。今回の場合は書籍のタイトルと著者がネストされた属性が存在するように指定しました。</p>
+
+<p>バリデーションが整ったら、エンティティの作成とリダイレクトを、入力パラメータが有効な場合に限定することができます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># apps/web/controllers/books/create.rb</span>
+<span style="color:#00a8c8">module</span> <span style="color:#111">Web</span>
+  <span style="color:#00a8c8">module</span> <span style="color:#111">Controllers</span>
+    <span style="color:#00a8c8">module</span> <span style="color:#111">Books</span>
+      <span style="color:#00a8c8">class</span> <span style="color:#75af00">Create</span>
+        <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Web</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Action</span>
+
+        <span style="color:#111">expose</span> <span style="color:#d88200">:book</span>
+
+        <span style="color:#111">params</span> <span style="color:#00a8c8">do</span>
+          <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:book</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">schema</span> <span style="color:#00a8c8">do</span>
+            <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:title</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:str?</span><span style="color:#111">)</span>
+            <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:author</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:str?</span><span style="color:#111">)</span>
+          <span style="color:#00a8c8">end</span>
+        <span style="color:#00a8c8">end</span>
+
+        <span style="color:#00a8c8">def</span> <span style="color:#75af00">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+          <span style="color:#00a8c8">if</span> <span style="color:#111">params</span><span style="color:#f92672">.</span><span style="color:#111">valid?</span>
+            <span style="color:#111">@book</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">BookRepository</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#f92672">.</span><span style="color:#111">create</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#f92672">[</span><span style="color:#d88200">:book</span><span style="color:#f92672">]</span><span style="color:#111">)</span>
+
+            <span style="color:#111">redirect_to</span> <span style="color:#d88200">&#39;/books&#39;</span>
+          <span style="color:#00a8c8">else</span>
+            <span style="color:#111">self</span><span style="color:#f92672">.</span><span style="color:#111">status</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">422</span>
+          <span style="color:#00a8c8">end</span>
+        <span style="color:#00a8c8">end</span>
+      <span style="color:#00a8c8">end</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>パラメータが有効になると、Bookが作成され、アクションによって別のURLにリダイレクトされます。
+しかし、パラメータが無効な場合はどうなりますか？</p>
+
+<p>まず、HTTPステータスコードが<a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#422">422 (Unprocessable Entity)</a>に設定されます。
+その後、コントロールは対応するビューに移動します。ビューはどのテンプレートをレンダリングするかを知る必要があります。
+この場合、<code>apps/web/templates/books/new.html.erb</code>を使用してフォームを再度レンダリングします。</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># apps/web/views/books/create.rb</span>
+<span style="color:#00a8c8">module</span> <span style="color:#111">Web</span>
+  <span style="color:#00a8c8">module</span> <span style="color:#111">Views</span>
+    <span style="color:#00a8c8">module</span> <span style="color:#111">Books</span>
+      <span style="color:#00a8c8">class</span> <span style="color:#75af00">Create</span>
+        <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Web</span><span style="color:#f92672">::</span><span style="color:#00a8c8">View</span>
+        <span style="color:#111">template</span> <span style="color:#d88200">&#39;books/new&#39;</span>
+      <span style="color:#00a8c8">end</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>このアプローチはうまく機能します。Hanamiのフォームビルダーは、このアクションで<code>params</code>を調べて、パラメーターに見つかった値をフォームフィールドに入力するのに十分スマートだからです。
+送信する前にユーザーが1つのフィールドにのみ入力すると、元の入力が表示されるので、もう一度入力する手間が省けます。</p>
+
+<p>テストをもう一度実行して、テストがすべて成功していることを確認してください！</p>
+
+<h3 id="バリデーションエラーの表示">バリデーションエラーの表示</h3>
+
+<p>何かがうまくいかなかったときにただユーザーをフォームに押し込むのではなく、私たちは彼らに彼らに何が期待されているかのヒントを与えるべきです。不正なフィールドに関する通知を表示するようにフォームを調整しましょう。</p>
+
+<p>まず、<code>params</code>にエラーが含まれている場合、エラーのリストがページに含まれるようにします:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/web/views/books/new_spec.rb</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#00a8c8">Web</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Views</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Books</span><span style="color:#f92672">::</span><span style="color:#00a8c8">New</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:params</span><span style="color:#111">)</span>    <span style="color:#111">{</span> <span style="color:#00a8c8">OpenStruct</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#111">valid?</span><span style="color:#111">:</span> <span style="color:#00a8c8">false</span><span style="color:#111">,</span> <span style="color:#d88200">error_messages</span><span style="color:#111">:</span> <span style="color:#f92672">[</span><span style="color:#d88200">&#39;Title must be filled&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;Author must be filled&#39;</span><span style="color:#f92672">]</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:exposures</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">[</span><span style="color:#d88200">params</span><span style="color:#111">:</span> <span style="color:#111">params</span><span style="color:#f92672">]</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:template</span><span style="color:#111">)</span>  <span style="color:#111">{</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">View</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Template</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#d88200">&#39;apps/web/templates/books/new.html.erb&#39;</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:view</span><span style="color:#111">)</span>      <span style="color:#111">{</span> <span style="color:#111">described_class</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#111">template</span><span style="color:#111">,</span> <span style="color:#111">exposures</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:rendered</span><span style="color:#111">)</span>  <span style="color:#111">{</span> <span style="color:#111">view</span><span style="color:#f92672">.</span><span style="color:#111">render</span> <span style="color:#111">}</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;displays list of errors when params contains errors&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">rendered</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#00a8c8">include</span><span style="color:#111">(</span><span style="color:#d88200">&#39;There was a problem with your submission&#39;</span><span style="color:#111">)</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">rendered</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#00a8c8">include</span><span style="color:#111">(</span><span style="color:#d88200">&#39;Title must be filled&#39;</span><span style="color:#111">)</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">rendered</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#00a8c8">include</span><span style="color:#111">(</span><span style="color:#d88200">&#39;Author must be filled&#39;</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>また、この新しい動作を反映するように機能仕様を更新する必要があります:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/web/features/add_book_spec.rb</span>
+<span style="color:#111">require</span> <span style="color:#d88200">&#39;features_helper&#39;</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#d88200">&#39;Add a book&#39;</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#75715e"># Spec written earlier omitted for brevity</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;displays list of errors when params contains errors&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">visit</span> <span style="color:#d88200">&#39;/books/new&#39;</span>
+
+    <span style="color:#111">within</span> <span style="color:#d88200">&#39;form#book-form&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">click_button</span> <span style="color:#d88200">&#39;Create&#39;</span>
+    <span style="color:#00a8c8">end</span>
+
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">current_path</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#39;/books&#39;</span><span style="color:#111">)</span>
+
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">page</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">have_content</span><span style="color:#111">(</span><span style="color:#d88200">&#39;There was a problem with your submission&#39;</span><span style="color:#111">)</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">page</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">have_content</span><span style="color:#111">(</span><span style="color:#d88200">&#39;Title must be filled&#39;</span><span style="color:#111">)</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">page</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">have_content</span><span style="color:#111">(</span><span style="color:#d88200">&#39;Author must be filled&#39;</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>私たちのテンプレートでは、<code>params.errors</code>をループし(もしあれば)、友好的なメッセージを表示することができます。
+<code>apps/web/templates/books/new.html.erb</code>を開きます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;% unless params.valid? %&gt;
+  &lt;div class=&#34;errors&#34;&gt;
+    &lt;h3&gt;There was a problem with your submission&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;% params.error_messages.each do |message| %&gt;
+        &lt;li&gt;&lt;%= message %&gt;&lt;/li&gt;
+      &lt;% end %&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;% end %&gt;</code></pre></div>
+<p>テストをもう一度実行して、テストがすべて成功していることを確認してください！</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> rake
+Run options: --seed <span style="color:#ae81ff">59940</span>
+
+<span style="color:#75715e"># Running:</span>
+
+..................
+
+Finished in <span style="color:#ae81ff">0</span>.078112s, <span style="color:#ae81ff">230</span>.4372 runs/s, <span style="color:#ae81ff">473</span>.6765 assertions/s.
+
+<span style="color:#ae81ff">15</span> runs, <span style="color:#ae81ff">27</span> assertions, <span style="color:#ae81ff">0</span> failures, <span style="color:#ae81ff">0</span> errors, <span style="color:#ae81ff">1</span> skips</code></pre></div>
+<h3 id="ルーターの使用を改善する">ルーターの使用を改善する</h3>
+
+<p>私達がしようとしている最後の改善は私達のルーターの使用です。
+「web」アプリケーションのroutesファイルを開きます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># apps/web/config/routes.rb</span>
+<span style="color:#111">post</span> <span style="color:#d88200">&#39;/books&#39;</span><span style="color:#111">,</span>    <span style="color:#d88200">to</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;books#create&#39;</span>
+<span style="color:#111">get</span> <span style="color:#d88200">&#39;/books/new&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">to</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;books#new&#39;</span>
+<span style="color:#111">get</span> <span style="color:#d88200">&#39;/books&#39;</span><span style="color:#111">,</span>     <span style="color:#d88200">to</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;books#index&#39;</span>
+<span style="color:#111">root</span>              <span style="color:#d88200">to</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;home#index&#39;</span></code></pre></div>
+<p>Hanamiは、これらのRESTスタイルのルートを構築するための便利なヘルパーメソッドを提供しています。これを使用すると、ルータを少し簡単にすることができます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">root</span> <span style="color:#d88200">to</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;home#index&#39;</span>
+<span style="color:#111">resources</span> <span style="color:#d88200">:books</span><span style="color:#111">,</span> <span style="color:#d88200">only</span><span style="color:#111">:</span> <span style="color:#f92672">[</span><span style="color:#d88200">:index</span><span style="color:#111">,</span> <span style="color:#d88200">:new</span><span style="color:#111">,</span> <span style="color:#d88200">:create</span><span style="color:#f92672">]</span></code></pre></div>
+<p>どのルートが定義されているかを理解するために、この変更を加えました。特別なコマンドラインタスク<code>routes</code>を使用して最終結果を調べることができます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> hanami routes
+     Name Method     Path                           Action
+
+     root GET, HEAD  /                              Web::Controllers::Home::Index
+    books GET, HEAD  /books                         Web::Controllers::Books::Index
+ new_book GET, HEAD  /books/new                     Web::Controllers::Books::New
+    books POST       /books                         Web::Controllers::Books::Create</code></pre></div>
+<p><code>hanami routes</code>の出力は、定義されたヘルパーメソッドの名前(あなたは<code>_path</code>または<code>_url</code>で接尾辞を付けて<code>routes</code>ヘルパーでそれを呼び出すことができます)、許可されたHTTPメソッド、パスそして最後にリクエストを処理するために使用されるコントローラアクションを示します。</p>
+
+<p>これで、<code>resources</code>ヘルパーメソッドを適用しました。名前付きルートメソッドの利点を得ることができます。
+<code>form_for</code>を使用してフォームを作成した方法を覚えていますか？</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb"># apps/web/templates/books/new.html.erb
+&lt;h2&gt;Add book&lt;/h2&gt;
+
+&lt;%=
+  form_for :book, &#39;/books&#39; do
+    # ...
+  end
+%&gt;</code></pre></div>
+<p>私たちのルーターがすでにどのルートを指し示すべきかを完全に認識しているときは、ハードコーディングされたパスを私たちのテンプレートに含めるのは愚かです。
+ビューとアクションで利用可能な<code>routes</code>ヘルパーメソッドを使用して、ルート固有のヘルパーメソッドにアクセスできます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb"># apps/web/templates/books/new.html.erb
+&lt;h2&gt;Add book&lt;/h2&gt;
+
+&lt;%=
+  form_for :book, routes.books_path do
+    # ...
+  end
+%&gt;</code></pre></div>
+<p><code>apps/web/controllers/books/create.rb</code> にも同様の変更を加えることができます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">redirect_to</span> <span style="color:#111">routes</span><span style="color:#f92672">.</span><span style="color:#111">books_path</span></code></pre></div>
+<h2 id="まとめ">まとめ</h2>
+
+<p><strong>最初のHanamiプロジェクトの完成おめでとう！</strong></p>
+
+<p>私たちが行ったことを見てみましょう: 私たちはHanamiの主要なフレームワークを通してそれらがどのように関連しているかを理解するためにリクエストをトレースしました。エンティティとリポジトリを使用してドメインをモデル化する方法を説明しました。フォームを構築し、データベーススキーマを維持し、ユーザー入力を検証するためのソリューションを見てきました。</p>
+
+<p>私たちは長い道のりを歩んできましたが、探求するべきことがまだたくさんあります。
+<a href="/">他のガイド</a>、<a href="https://docs.hanamirb.org">Hanami APIドキュメント</a>を調べ、<a href="https://github.com/hanami">ソースコード</a>を読み、<a href="http://hanamirb.org/blog">ブログ</a>をたどってください。</p>
+
+<p><strong>何よりも、素晴らしいものを作ることを楽しもう！</strong></p>
+<hr>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              
+            </div>
+            <div class="col text-align-right">
+              
+              <a href="/hanami-guides/architecture/overview/">
+                <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
+                  <span class="btn-inner--text">Architecture: 概要</span>
+                  <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
+                </button>
+              </a>
+              
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  
+  <script src="/hanami-guides/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/popper/popper.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/headroom/headroom.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/clipboard/clipboard.min.js"></script>
+  
+  <script src="/hanami-guides/assets/js/argon.js?v=1.0.1"></script>
+  <script src="/hanami-guides/assets/js/theme.js"></script>
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script type="text/javascript"> docsearch({
+    apiKey: '69274449268769eb3878f6a13dd112f9',
+    indexName: 'hanamirb_guides',
+    inputSelector: '#search-input',
+    debug: false 
+  });
+  </script>
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-41951932-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+  </body>
+</html>

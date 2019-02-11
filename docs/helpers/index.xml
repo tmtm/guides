@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Helpers on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/helpers/</link>
+    <description>Recent content in Helpers on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/helpers/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Assets</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/assets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/assets/</guid>
+      <description>Helpers These helpers are HTML5 generators that target specific assets features.
+They are following the settings of the application that uses them. For instance, if we have a project with two applications Web and Admin mounted at / and /admin, respectively, all the asset URLs will respect these prefixes.
+They also respect Fingerprint mode and CDN mode for each application.
+The following helpers are available for views and templates:</description>
+    </item>
+    
+    <item>
+      <title>Custom Helpers</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/custom-helpers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/custom-helpers/</guid>
+      <description>In the overview section, we introduced the design for helpers. They are modules that enrich views behaviors. Because they are just Ruby modules, we can create our own helpers.
+Example Imagine we need (for some reason) a helper that shuffles the characters of a string and we want it to be available in our views.
+As first thing, let&amp;rsquo;s define the module.
+# app/web/helpers/shuffler.rb module Web module Helpers module Shuffler private SEPARATOR = &amp;#39;&amp;#39;.</description>
+    </item>
+    
+    <item>
+      <title>Forms</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/forms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/forms/</guid>
+      <description>Features From helpers provide a powerful Ruby API to describe HTML5 forms, to be used both with views and templates. It they allow to:
+ Support for complex markup without the need of concatenation Auto closing HTML5 tags Support for view local variables Method override support (PUT/PATCH/DELETE HTTP verbs aren&amp;rsquo;t understood by browsers) Automatic generation of HTML attributes for inputs: id, name, value Allow to override automatic HTML attributes Read values from request params and/or given entities, to autofill value attributes Automatic selection of current value for radio button and select inputs CSRF Protection Infinite nested fields ORM Agnostic  Technical notes This feature has a similar syntax to other Ruby gems with the same purpose, but it has a different usage if compared with Rails or Padrino.</description>
+    </item>
+    
+    <item>
+      <title>HTML5</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/html5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/html5/</guid>
+      <description>This helper makes available an HTML5 generator that is template engine independent. It&amp;rsquo;s a private method for views and layouts called #html.
+Usage This is how it will look used with a layout:
+module Web module Views class ApplicationLayout include Web::Layout def sidebar html.aside(id: &amp;#39;sidebar&amp;#39;) do div &amp;#39;hello&amp;#39; end end end end end&amp;lt;%= sidebar %&amp;gt; It generates:
+&amp;lt;aside id=&amp;#34;sidebar&amp;#34;&amp;gt; &amp;lt;div&amp;gt;hello&amp;lt;/div&amp;gt; &amp;lt;/aside&amp;gt; Features  It knows how to close tags according to HTML5 spec (1) It accepts content as first argument (2) It accepts builder as first argument (3) It accepts content as block which returns a string (4) It accepts content as a block with nested markup builders (5) It builds attributes from given hash (6) it combines attributes and block (7)  # 1 html.</description>
+    </item>
+    
+    <item>
+      <title>Links</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/links/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/links/</guid>
+      <description>It provides a concise API to generate links. It&amp;rsquo;s a public method called #link_to, that can be used both in views and templates.
+Usage It accepts two mandatory and one optional arguments. The first is the content of the tag, the second is the path, an the third is a Hash that represents a set of HTML attributes that we may want to specify.
+&amp;lt;%= link_to &amp;#39;Home&amp;#39;, &amp;#39;/&amp;#39; %&amp;gt; &amp;lt;%= link_to &amp;#39;Profile&amp;#39;, routes.</description>
+    </item>
+    
+    <item>
+      <title>Markup Escape</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/escape/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/escape/</guid>
+      <description>Views escape automatically the output of their methods. There are complex situations that views can&amp;rsquo;t cover properly and that require an extra attention from us.
+Hanami makes available a set of escape helpers, to increase the security of our web applications. They are public methods that are available both in views and templates.
+Escape HTML Contents It&amp;rsquo;s a method called #escape_html (aliased as #h), that escapes the input.
+&amp;lt;p&amp;gt;&amp;lt;%= h &amp;#34;&amp;lt;script&amp;gt;alert(&amp;#39;xss&amp;#39;)&amp;lt;/script&amp;gt;&amp;#34; %&amp;gt;&amp;lt;/p&amp;gt; Returns</description>
+    </item>
+    
+    <item>
+      <title>Numbers</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/numbers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/numbers/</guid>
+      <description>Hanami offers a helpful way to present numbers via #format_number, a private method available only in views.
+Usage module Web module Views module Books class Show include Web::View def download_count format_number book.download_count end end end end end&amp;lt;span&amp;gt;&amp;lt;%= download_count %&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;1,000,000&amp;lt;/span&amp;gt; Precision The default precision is of 2, but we can specify a different value with the homonym option.
+format_number(Math::PI) # =&amp;gt; &amp;#34;3.14&amp;#34; format_number(Math::PI, precision: 6) # =&amp;gt; &amp;#34;3.141592&amp;#34; Delimiter The default thousands delimiter is ,.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/overview/</guid>
+      <description>Principles A Hanami view is an object that defines presentational logic. Helpers are modules designed to enrich views with a collection of useful features.
+This concept is probably familiar, if you know some Ruby basics.
+module Printable def print puts &amp;#34;...&amp;#34; end end class Person include Printable end Person.new.print The same simple design is applied to views and helpers.
+Hanami ships with default helpers, but we can also define custom helper modules.</description>
+    </item>
+    
+    <item>
+      <title>Routing</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/routing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/routing/</guid>
+      <description>Routing helpers are made of one public method (#routes), available for actions, views and templates. It&amp;rsquo;s a factory to generate relative or absolute URLs, starting from named routes.
+For a given route named :home, we can use home_path or home_url to generate relative or absolute URLs, respectively. Usage Imagine we have the following routes for our application:
+# apps/web/config/routes.rb root to: &amp;#39;home#index&amp;#39; get &amp;#39;/foo&amp;#39;, to: &amp;#39;foo#index&amp;#39; resources :books Relative URLs We can do:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Validations: Advanced Usage | Hanami Guides" />
+
+    <meta property="og:url"          content="https://tmtm.github.io/hanami-guides/validations/advanced-usage/" />
+    <meta property="og:type"         content="article" />
+    <meta property="og:locale"       content="en_US" />
+    <meta property="og:site_name"    content="Hanami Guides" />
+    <meta property="og:title"        content="Validations: Advanced Usage | Hanami Guides" />
+    <meta property="og:description"  content="Validations: Advanced Usage | Hanami Guides" />
+    <meta property="og:image"        content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
+    <meta property="og:image:type"   content="image/png" />
+    <meta property="og:image:width"  content="2968" />
+    <meta property="og:image:height" content="2968" />
+    <meta property="og:image:alt"    content="" />
+
+    <meta name="twitter:card"        content="summary" />
+    <meta name="twitter:site"        content="@hanamirb" />
+    <meta name="twitter:creator"     content="@hanamirb" />
+    <meta name="twitter:title"       content="Validations: Advanced Usage | Hanami Guides" />
+    <meta name="twitter:description" content="Validations: Advanced Usage | Hanami Guides" />
+    <meta name="twitter:image"       content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
+
+    <title>Validations: Advanced Usage | Hanami Guides</title>
+
+    <meta name="author" content="Hanami team">
+    <meta name="keywords" content="hanami,hanamirb,hanami guides,documentation,lotus,lotusrb,web,framework,ruby,open source,oss,os,software,free,free software,architecture,fast,lightweight,testing,tdd,bdd,test driven development,behaviour driven development,full stack,mvc,model view object,pattern,patterns,design patterns,oop,object oriented programming,testability,http,https,routing,router,http router,restful,resource,resources,convention,controller,models,repository,query,sql,interactors,two-step view,view,template,presenters,render,rendering,helpers,erb,haml,tilt,json,xml,yaml,yml,framwork,framewrok,riby,free sowftare" />
+    
+    <link rel="shortcut icon" href="/hanami-guides/assets/img/brand/favicon.ico">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    
+    <link href="/hanami-guides/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+    <link href="/hanami-guides/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link type="text/css" href="/hanami-guides/assets/css/argon.css?v=1.0.1" rel="stylesheet">
+    
+    <link type="text/css" href="/hanami-guides/assets/css/docs.min.css" rel="stylesheet">
+    
+    <link type="text/css" href="/hanami-guides/assets/css/theme.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+  </head>
+  <body data-spy="scroll" data-target="#secondary-navigation" data-offset="50">
+    <header class="navbar navbar-expand navbar-dark flex-row align-items-md-center ct-navbar">
+      <a class="navbar-brand mr-0 mr-md-2" href="/hanami-guides/" aria-label="Bootstrap">
+      <img src="/hanami-guides/assets/img/brand/white.png" alt="Hanami guides logo">
+    </a>
+    <ul class="navbar-nav flex-row mr-auto ml-4 d-none d-md-flex">
+      <li class="nav-item">
+        <form>
+          <input type="text" placeholder="Search" class="form-control" id="search-input" />
+        </form>
+      </li>
+    </ul>
+    <div class="d-none d-sm-block ml-auto">
+      <ul class="navbar-nav ct-navbar-nav flex-row align-items-center">
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="http://hanamirb.org" target="_blank" title="Hanami website">
+            <i class="ni ni-world"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://github.com/hanami/guides/edit//content/validations/advanced-usage.md" target="_blank" title="Edit this page">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://github.com/hanami/hanami" target="_blank" title="Star Hanami on GitHub">
+            <i class="fa fa-github"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://twitter.com/hanamirb" target="_blank" title="Follow Hanami on Twitter">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://www.facebook.com/hanamirb" target="_blank" title="Like Hanami on Facebook">
+            <i class="fa fa-facebook-square"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://www.instagram.com/hanamirb" target="_blank" title="Follow Hanami on Instagram">
+            <i class="fa fa-instagram"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="http://chat.hanamirb.org/" target="_blank" title="Hanami chat">
+            <i class="ni ni-chat-round"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://github.com/hanami/guides/releases" target="_blank" title="Download Hanami Guides for offline usage">
+            <i class="fa fa-cloud-download"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <span class="badge badge-pill badge-primary">v1.3.1</span>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+      <div class="col-12 col-md-3 col-xl-2 ct-sidebar">
+        <nav class="collapse ct-links" id="ct-docs-nav">
+          
+          <div class="ct-toc-item active">
+          
+          
+            <span class="ct-toc-link">Introduction</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/introduction/getting-started/">はじめに</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Architecture</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/architecture/overview/">概要</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/architecture/interactors/">インタラクター</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Projects</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/code-reloading/">Code Reloading</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/rake/">Rake Tasks</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/logging/">Logging</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/initializers/">Initializers</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/rack-middleware/">Rack Middleware</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/security/">Project Security</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/http2-early-hints/">HTTP/2 Early Hints</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/selectively-boot-apps/">Selectively boot apps</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Routing</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/restful-resources/">RESTful Resource(s)</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Actions</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/parameters/">Parameters</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/request-and-response/">Request &amp; Response</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/exposures/">Exposures</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/rack-integration/">Rack Integration</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/mime-types/">MIME Types</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/cookies/">Cookies</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/sessions/">Sessions</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/exception-handling/">Exception Handling</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/control-flow/">Control Flow</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/http-caching/">HTTP Caching</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/share-code/">Share Code</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Views</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/templates/">Templates</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/mime-types/">MIME Types</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/layouts/">Layouts</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/custom-error-pages/">Custom Error Pages</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/share-code/">Share Code</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Models</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/models/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/models/database-configuration/">Database Configuration</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/models/use-your-own-orm/">Use Your Own ORM</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Repositories</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/repositories/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/repositories/sql-queries/">SQL Queries</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/repositories/postgresql/">PostgreSQL</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Entities</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/entities/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/entities/custom-schema/">Custom Schema</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/entities/data-types/">Data Types</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Associations</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/has-many/">Has Many</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/belongs-to/">Belongs To</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/has-one/">Has One</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/has-many-through/">Has Many Through</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Migrations</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/migrations/overview/">Migrations</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/migrations/create-table/">Create Table</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/migrations/alter-table/">Alter Table</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Validations</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/boolean-logic/">Boolean Logic</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/custom-predicates/">Custom Predicates</a>
+              </li>
+            
+              
+              <li class="active ct-sidenav-active">
+              
+                <a href="/hanami-guides/validations/advanced-usage/">Advanced Usage</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Helpers</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/html5/">HTML5</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/forms/">Forms</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/routing/">Routing</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/assets/">Assets</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/links/">Links</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/escape/">Markup Escape</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/numbers/">Numbers</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/custom-helpers/">Custom Helpers</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Mailers</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/templates/">Templates</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/delivery/">Delivery</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/share-code/">Share Code</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Assets</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/preprocessors/">Preprocessors</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/compressors/">Compressors</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/content-delivery-network/">Content Delivery Network (CDN)</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/use-your-own-assets-management-tool/">Use Your Own Assets Management</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Command Line</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/project/">Project</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/generators/">Generators</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/destroy/">Destroy</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/database/">Database</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/assets/">Assets</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/routes/">Routes</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/version/">Version</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/plugins/">Plugins</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Upgrade Notes</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v060/">v0.6.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v070/">v0.7.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v080/">v0.8.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v090/">v0.9.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v100/">v1.0.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v110/">v1.1.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v120/">v1.2.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v130/">v1.3.0</a>
+              </li>
+            
+            </ul>
+          
+          </div>
+        </nav>
+      </div>
+      <div class="d-none d-xl-block col-xl-2 ct-toc">
+        <ul class="section-nav" id="secondary-navigation">
+        
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#required-and-optional-keys" class="nav-link">Required and Optional keys</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#type-safety" class="nav-link">Type Safety</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#macros" class="nav-link">Macros</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#forms" class="nav-link">Forms</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#rules" class="nav-link">Rules</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#nested-input-data" class="nav-link">Nested Input Data</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#composition" class="nav-link">Composition</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#whitelisting" class="nav-link">Whitelisting</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#result" class="nav-link">Result</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#error-messages" class="nav-link">Error Messages</a>
+          </li>
+        
+        </ul>
+      </div>
+      <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 ct-content">
+        <div class="ct-page-title">
+          <h1 class="ct-title" id="content">Validations: Advanced Usage</h1>
+          <div class="avatar-group mt-3">
+          </div>
+        </div>
+        <hr>
+        
+
+<h2 id="required-and-optional-keys">Required and Optional keys</h2>
+
+<p>HTML forms can have required or optional fields. We can express this concept with two methods in our validations: <code>required</code> (which we already met in previous examples), and <code>optional</code>.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">require</span> <span style="color:#d88200">&#39;hanami/validations&#39;</span>
+
+<span style="color:#00a8c8">class</span> <span style="color:#75af00">Signup</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Validations</span>
+
+  <span style="color:#111">validations</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:email</span><span style="color:#111">)</span>    <span style="color:#111">{</span> <span style="color:#f92672">...</span> <span style="color:#111">}</span>
+    <span style="color:#111">optional</span><span style="color:#111">(</span><span style="color:#d88200">:referral</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#f92672">...</span> <span style="color:#111">}</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<h2 id="type-safety">Type Safety</h2>
+
+<p>At this point, we need to explicitly tell something really important about built-in predicates. Each of them have expectations about the methods that an input is able to respond to.</p>
+
+<p>Why this is so important? Because if we try to invoke a method on the input we’ll get a <code>NoMethodError</code> if the input doesn’t respond to it. Which isn’t nice, right?</p>
+
+<p>Before to use a predicate, we want to ensure that the input is an instance of the expected type. Let’s introduce another new predicate for our need: <code>#type?</code>.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:age</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">type?</span><span style="color:#111">(</span><span style="color:#111">Integer</span><span style="color:#111">)</span> <span style="color:#f92672">&amp;</span> <span style="color:#111">gteq?</span><span style="color:#111">(</span><span style="color:#ae81ff">18</span><span style="color:#111">)</span> <span style="color:#111">}</span></code></pre></div>
+<p>It takes the input and tries to coerce it. If it fails, the execution stops. If it succeed, the subsequent predicates can trust <code>#type?</code> and be sure that the input is an integer.</p>
+
+<p><strong>We suggest to use <code>#type?</code> at the beginning of the validations block. This <em>type safety</em> policy is crucial to prevent runtime errors.</strong></p>
+
+<p><code>Hanami::Validations</code> supports the most common Ruby types:</p>
+
+<ul>
+<li><code>Array</code> (aliased as <code>array?</code>)</li>
+<li><code>BigDecimal</code> (aliased as <code>decimal?</code>)</li>
+<li><code>Boolean</code> (aliased as <code>bool?</code>)</li>
+<li><code>Date</code> (aliased as <code>date?</code>)</li>
+<li><code>DateTime</code> (aliased as <code>date_time?</code>)</li>
+<li><code>Float</code> (aliased as <code>float?</code>)</li>
+<li><code>Hash</code> (aliased as <code>hash?</code>)</li>
+<li><code>Integer</code> (aliased as <code>int?</code>)</li>
+<li><code>String</code> (aliased as <code>str?</code>)</li>
+<li><code>Time</code> (aliased as <code>time?</code>)</li>
+</ul>
+
+<p>For each supported type, there a convenient predicate that acts as an alias. For instance, the two lines of code below are <strong>equivalent</strong>.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:age</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">type?</span><span style="color:#111">(</span><span style="color:#111">Integer</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+<span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:age</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">int?</span> <span style="color:#111">}</span></code></pre></div>
+<h2 id="macros">Macros</h2>
+
+<p>Rule composition with blocks is powerful, but it can become verbose.
+To reduce verbosity, <code>Hanami::Validations</code> offers convenient <em>macros</em> that are internally <em>expanded</em> (aka interpreted) to an equivalent <em>block expression</em></p>
+
+<h3 id="filled">Filled</h3>
+
+<p>To use when we expect a value to be filled:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># expands to</span>
+<span style="color:#75715e"># required(:age) { filled? }</span>
+
+<span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:age</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># expands to</span>
+<span style="color:#75715e"># required(:age) { filled? &amp; type?(Integer) }</span>
+
+<span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:age</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:int?</span><span style="color:#111">)</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># expands to</span>
+<span style="color:#75715e"># required(:age) { filled? &amp; type?(Integer) &amp; gt?(18) }</span>
+
+<span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:age</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:int?</span><span style="color:#111">,</span> <span style="color:#111">gt?</span><span style="color:#111">:</span> <span style="color:#ae81ff">18</span><span style="color:#111">)</span></code></pre></div>
+<p>In the examples above <code>age</code> is <strong>always required</strong> as value.</p>
+
+<h3 id="maybe">Maybe</h3>
+
+<p>To use when a value can be nil:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># expands to</span>
+<span style="color:#75715e"># required(:age) { none? | int? }</span>
+
+<span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:age</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">maybe</span><span style="color:#111">(</span><span style="color:#d88200">:int?</span><span style="color:#111">)</span></code></pre></div>
+<p>In the example above <code>age</code> can be <code>nil</code>, but if we send the value, it <strong>must</strong> be an integer.</p>
+
+<h3 id="each">Each</h3>
+
+<p>To use when we want to apply the same validation rules to all the elements of an array:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># expands to</span>
+<span style="color:#75715e"># required(:tags) { array? { each { str? } } }</span>
+
+<span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:tags</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">each</span><span style="color:#111">(</span><span style="color:#d88200">:str?</span><span style="color:#111">)</span></code></pre></div>
+<p>In the example above <code>tags</code> <strong>must</strong> be an array of strings.</p>
+
+<h3 id="confirmation">Confirmation</h3>
+
+<p>This is designed to check if pairs of web form fields have the same value. One wildly popular example is <em>password confirmation</em>.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:password</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#f92672">.</span><span style="color:#111">confirmation</span></code></pre></div>
+<p>It is valid if the input has <code>password</code> and <code>password_confirmation</code> keys with the same exact value.</p>
+
+<p class="convention">
+For a given key <code>password</code>, the <em>confirmation</em> predicate expects another key <code>password_confirmation</code>.
+Easy to tell, it’s the concatenation of the original key with the <code>_confirmation</code> suffix. Their values must be equal.
+</p>
+
+<h2 id="forms">Forms</h2>
+
+<p>An important precondition to check before to implement a validator is about the expected input.
+When we use validators for already preprocessed data it&rsquo;s safe to use basic validations from <code>Hanami::Validations</code> mixin.</p>
+
+<p>If the data is coming directly from user input via a HTTP form, it&rsquo;s advisable to use <code>Hanami::Validations::Form</code> instead.
+<strong>The two mixins have the same API, but the latter is able to do low level input preprocessing specific for forms</strong>. For instance, blank inputs are casted to <code>nil</code> in order to avoid blank strings in the database.</p>
+
+<h2 id="rules">Rules</h2>
+
+<p>Predicates and macros are tools to code validations that concern a single key like <code>first_name</code> or <code>email</code>.
+If the outcome of a validation depends on two or more attributes we can use <em>rules</em>.</p>
+
+<p>Here&rsquo;s a practical example: a job board.
+We want to validate the form of the job creation with some mandatory fields: <code>type</code> (full time, part-time, contract), <code>title</code> (eg. Developer), <code>description</code>, <code>company</code> (just the name) and a <code>website</code> (which is optional).
+An user must specify the location: on-site or remote. If it&rsquo;s on site, they must specify the <code>location</code>, otherwise they have to tick the checkbox for <code>remote</code>.</p>
+
+<p>Here&rsquo;s the code:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#00a8c8">class</span> <span style="color:#75af00">CreateJob</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Validations</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Form</span>
+
+  <span style="color:#111">validations</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:type</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:int?</span><span style="color:#111">,</span> <span style="color:#111">included_in?</span><span style="color:#111">:</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">1</span><span style="color:#111">,</span> <span style="color:#ae81ff">2</span><span style="color:#111">,</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">]</span><span style="color:#111">)</span>
+
+    <span style="color:#111">optional</span><span style="color:#111">(</span><span style="color:#d88200">:location</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">maybe</span><span style="color:#111">(</span><span style="color:#d88200">:str?</span><span style="color:#111">)</span>
+    <span style="color:#111">optional</span><span style="color:#111">(</span><span style="color:#d88200">:remote</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">maybe</span><span style="color:#111">(</span><span style="color:#d88200">:bool?</span><span style="color:#111">)</span>
+
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:title</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:str?</span><span style="color:#111">)</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:description</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:str?</span><span style="color:#111">)</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:company</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:str?</span><span style="color:#111">)</span>
+
+    <span style="color:#111">optional</span><span style="color:#111">(</span><span style="color:#d88200">:website</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:str?</span><span style="color:#111">,</span> <span style="color:#111">format</span><span style="color:#d88200">?:</span> <span style="color:#00a8c8">URI</span><span style="color:#f92672">.</span><span style="color:#111">regexp</span><span style="color:#111">(</span><span style="color:#d88200">%w(http https)</span><span style="color:#111">))</span>
+
+    <span style="color:#111">rule</span><span style="color:#111">(</span><span style="color:#d88200">location_presence</span><span style="color:#111">:</span> <span style="color:#f92672">[</span><span style="color:#d88200">:location</span><span style="color:#111">,</span> <span style="color:#d88200">:remote</span><span style="color:#f92672">]</span><span style="color:#111">)</span> <span style="color:#00a8c8">do</span> <span style="color:#f92672">|</span><span style="color:#111">location</span><span style="color:#111">,</span> <span style="color:#111">remote</span><span style="color:#f92672">|</span>
+      <span style="color:#111">(</span><span style="color:#111">remote</span><span style="color:#f92672">.</span><span style="color:#111">none?</span> <span style="color:#f92672">|</span> <span style="color:#111">remote</span><span style="color:#f92672">.</span><span style="color:#111">false?</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">then</span><span style="color:#111">(</span><span style="color:#111">location</span><span style="color:#f92672">.</span><span style="color:#111">filled?</span><span style="color:#111">)</span> <span style="color:#f92672">&amp;</span>
+        <span style="color:#111">remote</span><span style="color:#f92672">.</span><span style="color:#111">true?</span><span style="color:#f92672">.</span><span style="color:#111">then</span><span style="color:#111">(</span><span style="color:#111">location</span><span style="color:#f92672">.</span><span style="color:#111">none?</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>We specify a rule with <code>rule</code> method, which takes an arbitrary name and an array of preconditions.
+Only if <code>:location</code> and <code>:remote</code> are valid according to their validations described above, the <code>rule</code> block is evaluated.</p>
+
+<p>The block yields the same exact keys that we put in the precondintions.
+So for <code>[:location, :remote]</code> it will yield the corresponding values, bound to the <code>location</code> and <code>remote</code> variables.</p>
+
+<p>We can use these variables to define the rule. We covered a few cases:</p>
+
+<ul>
+<li>If <code>remote</code> is missing or false, then <code>location</code> must be filled</li>
+<li>If <code>remote</code> is true, then <code>location</code> must be omitted</li>
+</ul>
+
+<h2 id="nested-input-data">Nested Input Data</h2>
+
+<p>While we’re building complex web forms, we may find comfortable to organise data in a hierarchy of cohesive input fields. For instance, all the fields related to a customer, may have the <code>customer</code> prefix. To reflect this arrangement on the server side, we can group keys.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">validations</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:customer</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">schema</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:email</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#111">}</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:name</span><span style="color:#111">)</span>  <span style="color:#111">{</span> <span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#111">}</span>
+    <span style="color:#75715e"># other validations …</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>Groups can be <strong>deeply nested</strong>, without any limitation.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">validations</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:customer</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">schema</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#75715e"># other validations …</span>
+
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:address</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">schema</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:street</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#111">}</span>
+      <span style="color:#75715e"># other address validations …</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<h2 id="composition">Composition</h2>
+
+<p>Until now, we have seen only small snippets to show specific features. That really close view prevents us to see the big picture of complex real world projects.</p>
+
+<p>As the code base grows, it’s a good practice to DRY validation rules.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#00a8c8">class</span> <span style="color:#75af00">AddressValidator</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Validations</span>
+
+  <span style="color:#111">validations</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:street</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#111">}</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>This validator can be reused by other validators.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#00a8c8">class</span> <span style="color:#75af00">CustomerValidator</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Validations</span>
+
+  <span style="color:#111">validations</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:email</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#111">}</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:address</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">schema</span><span style="color:#111">(</span><span style="color:#00a8c8">AddressValidator</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>Again, there is no limit to the nesting levels.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#00a8c8">class</span> <span style="color:#75af00">OrderValidator</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Validations</span>
+
+  <span style="color:#111">validations</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:number</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#111">}</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:customer</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">schema</span><span style="color:#111">(</span><span style="color:#00a8c8">CustomerValidator</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>In the end, <code>OrderValidator</code> is able to validate a complex data structure like this:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">{</span>
+  <span style="color:#d88200">number</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;123&#34;</span><span style="color:#111">,</span>
+  <span style="color:#d88200">customer</span><span style="color:#111">:</span> <span style="color:#111">{</span>
+    <span style="color:#d88200">email</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;user@example.com&#34;</span><span style="color:#111">,</span>
+    <span style="color:#d88200">address</span><span style="color:#111">:</span> <span style="color:#111">{</span>
+      <span style="color:#d88200">city</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;Rome&#34;</span>
+    <span style="color:#111">}</span>
+  <span style="color:#111">}</span>
+<span style="color:#111">}</span></code></pre></div>
+<h2 id="whitelisting">Whitelisting</h2>
+
+<p>Another fundamental role that validators plays in the architecture of our projects is input whitelisting.
+For security reasons, we want to allow known keys to come in and reject everything else.</p>
+
+<p>This process happens when we invoke <code>#validate</code>.
+Allowed keys are the ones defined with <code>.required</code>.</p>
+
+<p><strong>Please note that whitelisting is only available for <code>Hanami::Validations::Form</code> mixin.</strong></p>
+
+<h2 id="result">Result</h2>
+
+<p>When we trigger the validation process with <code>#validate</code>, we get a result object in return. It’s able to tell if it’s successful, which rules the input data has violated and an output data bag.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">result</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">OrderValidator</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">({})</span><span style="color:#f92672">.</span><span style="color:#111">validate</span>
+<span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">success?</span> <span style="color:#75715e"># =&gt; false</span></code></pre></div>
+<h3 id="messages">Messages</h3>
+
+<p><code>result.messages</code> returns a nested set of validation error messages.</p>
+
+<p>Each error carries on informations about a single rule violation.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">messages</span><span style="color:#f92672">.</span><span style="color:#111">fetch</span><span style="color:#111">(</span><span style="color:#d88200">:number</span><span style="color:#111">)</span>   <span style="color:#75715e"># =&gt; [&#34;is missing&#34;]</span>
+<span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">messages</span><span style="color:#f92672">.</span><span style="color:#111">fetch</span><span style="color:#111">(</span><span style="color:#d88200">:customer</span><span style="color:#111">)</span> <span style="color:#75715e"># =&gt; [&#34;is missing&#34;]</span></code></pre></div>
+<h3 id="output">Output</h3>
+
+<p><code>result.output</code> is a <code>Hash</code> which is the result of whitelisting and coercions. It’s useful to pass it do other components that may want to persist that data.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">{</span>
+  <span style="color:#d88200">&#34;number&#34;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#d88200">&#34;123&#34;</span><span style="color:#111">,</span>
+  <span style="color:#d88200">&#34;unknown&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#d88200">&#34;foo&#34;</span>
+<span style="color:#111">}</span></code></pre></div>
+<p>If we receive the input above, <code>output</code> will look like this.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">output</span>
+  <span style="color:#75715e"># =&gt; { :number =&gt; 123 }</span></code></pre></div>
+<p>We can observe that:</p>
+
+<ul>
+<li>Keys are <em>symbolized</em></li>
+<li>Only whitelisted keys are included</li>
+<li>Data is coerced</li>
+</ul>
+
+<h2 id="error-messages">Error Messages</h2>
+
+<p>To pick the right error message is crucial for user experience.
+As usual <code>Hanami::Validations</code> comes to the rescue for most common cases and it leaves space to customization of behaviors.</p>
+
+<p>We have seen that builtin predicates have default messages, while <a href="#inline-custom-predicates">inline predicates</a> allow to specify a custom message via the <code>:message</code> option.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#00a8c8">class</span> <span style="color:#75af00">SignupValidator</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Validations</span>
+
+  <span style="color:#111">predicate</span> <span style="color:#d88200">:email?</span><span style="color:#111">,</span> <span style="color:#d88200">message</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;must be an email&#39;</span> <span style="color:#00a8c8">do</span> <span style="color:#f92672">|</span><span style="color:#111">current</span><span style="color:#f92672">|</span>
+    <span style="color:#75715e"># ...</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">validations</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:email</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:str?</span><span style="color:#111">,</span> <span style="color:#d88200">:email?</span><span style="color:#111">)</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:age</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:int?</span><span style="color:#111">,</span> <span style="color:#111">gt?</span><span style="color:#111">:</span> <span style="color:#ae81ff">18</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span>
+
+<span style="color:#111">result</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">SignupValidator</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#d88200">email</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;foo&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">age</span><span style="color:#111">:</span> <span style="color:#ae81ff">1</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">validate</span>
+
+<span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">success?</span>               <span style="color:#75715e"># =&gt; false</span>
+<span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">messages</span><span style="color:#f92672">.</span><span style="color:#111">fetch</span><span style="color:#111">(</span><span style="color:#d88200">:email</span><span style="color:#111">)</span> <span style="color:#75715e"># =&gt; [&#39;must be an email&#39;]</span>
+<span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">messages</span><span style="color:#f92672">.</span><span style="color:#111">fetch</span><span style="color:#111">(</span><span style="color:#d88200">:age</span><span style="color:#111">)</span>   <span style="color:#75715e"># =&gt; [&#39;must be greater than 18&#39;]</span></code></pre></div>
+<h3 id="configurable-error-messages">Configurable Error Messages</h3>
+
+<p>Inline error messages are ideal for quick and dirty development, but we suggest to use an external YAML file to configure these messages:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># config/messages.yml</span>
+en<span style="color:#111">:</span>
+  errors<span style="color:#111">:</span>
+    email<span style="color:#111">?:</span> <span style="color:#d88200">&#34;must be an email&#34;</span></code></pre></div>
+<p>To be used like this:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#00a8c8">class</span> <span style="color:#75af00">SignupValidator</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Validations</span>
+  <span style="color:#111">messages_path</span> <span style="color:#d88200">&#39;config/messages.yml&#39;</span>
+
+  <span style="color:#111">predicate</span> <span style="color:#d88200">:email?</span> <span style="color:#00a8c8">do</span> <span style="color:#f92672">|</span><span style="color:#111">current</span><span style="color:#f92672">|</span>
+    <span style="color:#75715e"># ...</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">validations</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:email</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:str?</span><span style="color:#111">,</span> <span style="color:#d88200">:email?</span><span style="color:#111">)</span>
+    <span style="color:#111">required</span><span style="color:#111">(</span><span style="color:#d88200">:age</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">filled</span><span style="color:#111">(</span><span style="color:#d88200">:int?</span><span style="color:#111">,</span> <span style="color:#111">gt?</span><span style="color:#111">:</span> <span style="color:#ae81ff">18</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<h3 id="custom-error-messages">Custom Error Messages</h3>
+
+<p>In the example above, the failure message for age is fine: <code>&quot;must be greater than 18&quot;</code>, but how to tweak it? What if we need to change into something diffent? Again, we can use the YAML configuration file for our purpose.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># config/messages.yml</span>
+en<span style="color:#111">:</span>
+  errors<span style="color:#111">:</span>
+    email<span style="color:#111">?:</span> <span style="color:#d88200">&#34;must be an email&#34;</span>
+
+    rules<span style="color:#111">:</span>
+      signup<span style="color:#111">:</span>
+        age<span style="color:#111">:</span>
+          gt<span style="color:#111">?:</span> <span style="color:#d88200">&#34;must be an adult&#34;</span></code></pre></div>
+<p>Now our validator is able to look at the right error message.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">result</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">SignupValidator</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#d88200">email</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;foo&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">age</span><span style="color:#111">:</span> <span style="color:#ae81ff">1</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">validate</span>
+
+<span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">success?</span>             <span style="color:#75715e"># =&gt; false</span>
+<span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">messages</span><span style="color:#f92672">.</span><span style="color:#111">fetch</span><span style="color:#111">(</span><span style="color:#d88200">:age</span><span style="color:#111">)</span> <span style="color:#75715e"># =&gt; [&#39;must be an adult&#39;]</span></code></pre></div>
+<h4 id="custom-namespace">Custom namespace</h4>
+
+<p class="convention">
+For a given validator named <code>SignupValidator</code>, the framework will look for <code>signup</code> translation key.
+</p>
+
+<p>If for some reason that doesn&rsquo;t work for us, we can customize the namespace:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#00a8c8">class</span> <span style="color:#75af00">SignupValidator</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Validations</span>
+
+  <span style="color:#111">messages_path</span> <span style="color:#d88200">&#39;config/messages.yml&#39;</span>
+  <span style="color:#111">namespace</span>     <span style="color:#d88200">:my_signup</span>
+
+  <span style="color:#75715e"># ...</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>The new namespace should be used in the YAML file too.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># config/messages.yml</span>
+en<span style="color:#111">:</span>
+  <span style="color:#75715e"># ...</span>
+    rules<span style="color:#111">:</span>
+      my_signup<span style="color:#111">:</span>
+        age<span style="color:#111">:</span>
+          gt<span style="color:#111">?:</span> <span style="color:#d88200">&#34;must be an adult&#34;</span></code></pre></div>
+<h3 id="internationalization-i18n">Internationalization (I18n)</h3>
+
+<p>If your project already depends on <code>i18n</code> gem, <code>Hanami::Validations</code> is able to look at the translations defined for that gem and to use them.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#00a8c8">class</span> <span style="color:#75af00">SignupValidator</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Validations</span>
+
+  <span style="color:#111">messages</span> <span style="color:#d88200">:i18n</span>
+
+  <span style="color:#75715e"># ...</span>
+<span style="color:#00a8c8">end</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># config/locales/en.yml</span>
+en<span style="color:#111">:</span>
+  errors<span style="color:#111">:</span>
+    signup<span style="color:#111">:</span>
+      <span style="color:#75715e"># ...</span></code></pre></div><hr>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              
+              <a href="/hanami-guides/validations/custom-predicates/">
+                <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
+                  <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+                  <span class="btn-inner--text">Validations: Custom Predicates</span>
+                </button>
+              </a>
+              
+            </div>
+            <div class="col text-align-right">
+              
+              <a href="/hanami-guides/helpers/overview/">
+                <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
+                  <span class="btn-inner--text">Helpers: Overview</span>
+                  <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
+                </button>
+              </a>
+              
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  
+  <script src="/hanami-guides/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/popper/popper.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/headroom/headroom.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/clipboard/clipboard.min.js"></script>
+  
+  <script src="/hanami-guides/assets/js/argon.js?v=1.0.1"></script>
+  <script src="/hanami-guides/assets/js/theme.js"></script>
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script type="text/javascript"> docsearch({
+    apiKey: '69274449268769eb3878f6a13dd112f9',
+    indexName: 'hanamirb_guides',
+    inputSelector: '#search-input',
+    debug: false 
+  });
+  </script>
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-41951932-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Routings on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/routing/</link>
+    <description>Recent content in Routings on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/routing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic Usage</title>
+      <link>https://tmtm.github.io/hanami-guides/routing/basic-usage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/routing/basic-usage/</guid>
+      <description>Path matching In our initial example we have introduced a really basic relative URI: /hello. This is what we call fixed path matching. It is called this because the segment is responsible for responding only to an exact match. If we visit /hello, we get a response. If we hit /foo, a 404 (Not Found) is returned.
+Fixed Matching # apps/web/config/routes.rb get &amp;#39;/dashboard&amp;#39;, to: &amp;#34;dashboard#index&amp;#34; Variables When we have dynamic content to serve, we want our URI to be dynamic as well.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/routing/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/routing/overview/</guid>
+      <description>Hanami applications use Hanami::Router for routing: a Rack compatible, lightweight and fast HTTP router for Ruby.
+The first route With your favorite editor open apps/web/config/routes.rb and add the following line.
+get &amp;#39;/hello&amp;#39;, to: -&amp;gt;(env) { [200, {}, [&amp;#39;Hello from Hanami!&amp;#39;]] } Then start the server with bundle exec hanami server and visit http://localhost:2300/hello. You should see Hello from Hanami! in your browser.
+Let&amp;rsquo;s explain what we just did. We created a route; an application can have many routes.</description>
+    </item>
+    
+    <item>
+      <title>RESTful Resource(s)</title>
+      <link>https://tmtm.github.io/hanami-guides/routing/restful-resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/routing/restful-resources/</guid>
+      <description>Hanami has native REST support.
+At the routing level, there are two methods that can be used to declare them: resources and resource. The former is for plural resources, the latter for singular ones.
+Declaring a resource means to generate several default routes with just one line of code.
+RESTful Resources Default Routes # apps/web/config/routes.rb resources :books It generates:
+ Verb Path Action Name Named Route   GET /books Books::Index :index :books   GET /books/:id Books::Show :show :book   GET /books/new Books::New :new :new_book   POST /books Books::Create :create :books   GET /books/:id/edit Books::Edit :edit :edit_book   PATCH /books/:id Books::Update :update :book   DELETE /books/:id Books::Destroy :destroy :book   Remove Routes In case we don&amp;rsquo;t need all the default routes we can use :only and pass one or more action names.</description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://tmtm.github.io/hanami-guides/routing/testing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/routing/testing/</guid>
+      <description>Hanami has builtin facilities for routing unit tests.
+Path Generation We can assert the generated routes, to do so, we&amp;rsquo;re gonna create a spec file for the purpose. Web.routes is the class that holds all the routes for the application named Web.
+It exposes a method to generate a path, which takes the name of a route as a symbol. Here&amp;rsquo;s how to test it.
+# spec/web/routes_spec.rb RSpec.describe Web.routes do it &amp;#39;generates &amp;#34;/&amp;#34;&amp;#39; do actual = described_class.</description>
+    </item>
+    
+  </channel>
+</rss>

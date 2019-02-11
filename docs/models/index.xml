@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Models on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/models/</link>
+    <description>Recent content in Models on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/models/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Database Configuration</title>
+      <link>https://tmtm.github.io/hanami-guides/models/database-configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/models/database-configuration/</guid>
+      <description>Environment variables Before starting your server, you need to configure the database link in .env* files.
+Open this file for each environment and update DATABASE_URL for your database.
+Setup database variable for the development environment:
+# .env.development DATABASE_URL=&amp;#34;database_type://username:password@localhost/bookshelf_development&amp;#34; Setup database variable for the test environment:
+# .env.test DATABASE_URL=&amp;#34;database_type://username:password@localhost/bookshelf_test&amp;#34; For jdbc urls you can&amp;rsquo;t set username and password to the left of @ you have to set them as parameters in the url:</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/models/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/models/overview/</guid>
+      <description>Hanami&amp;rsquo;s model domain is implemented in a way that separates the behavior that we want to express (entities) from the persistence layer (repositories and database). This design helps keep the interface of our objects small and therefore keeps them fast and reusable.
+Basic Usage To explain the basic usage, we use a PostgreSQL database.
+As first step, we generate the model:
+$ bundle exec hanami generate model book create lib/bookshelf/entities/book.</description>
+    </item>
+    
+    <item>
+      <title>Use Your Own ORM</title>
+      <link>https://tmtm.github.io/hanami-guides/models/use-your-own-orm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/models/use-your-own-orm/</guid>
+      <description>Hanami components are decoupled from each other. This level of separation allows you to use the ORM (data layer) of your choice.
+Here&amp;rsquo;s how to do it:
+ Edit your Gemfile:  Remove hanami-model. Add the gem(s) for your ORM.  Run bundle install. Remove folders that are no longer needed:  Remove lib/project_name/entities/ and lib/projectname/repositories/ Remove spec/project_name/entities/ and spec/project_name/repositories/.  Edit config/environment.rb:  Remove require &#39;hanami/model&#39; Remove require_relative &#39;../lib/projectname&#39; Remove model block in Hanami.</description>
+    </item>
+    
+  </channel>
+</rss>

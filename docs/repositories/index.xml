@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Repositories on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/repositories/</link>
+    <description>Recent content in Repositories on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/repositories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/repositories/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/repositories/overview/</guid>
+      <description>An object that mediates between entities and the persistence layer. It offers a standardized API to query and execute commands on a database.
+A repository is storage independent, all the queries and commands are delegated to the current adapter.
+This architecture has several advantages:
+ Applications depend on a standard API, instead of low level details (Dependency Inversion principle)
+ Applications depend on a stable API, that doesn&amp;rsquo;t change if the storage changes</description>
+    </item>
+    
+    <item>
+      <title>PostgreSQL</title>
+      <link>https://tmtm.github.io/hanami-guides/repositories/postgresql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/repositories/postgresql/</guid>
+      <description>Hanami natively supports PostgreSQL data types.
+Please check your PostgreSQL version for the available features.
+UUID Here&amp;rsquo;s how to use UUID for a column:
+# db/migrations/20161113184557_create_projects.rb Hanami::Model.migration do up do execute &amp;#39;CREATE EXTENSION IF NOT EXISTS &amp;#34;uuid-ossp&amp;#34;&amp;#39; create_table :projects do primary_key :id column :name, String column :token, &amp;#39;uuid&amp;#39; end end down do drop_table :projects execute &amp;#39;DROP EXTENSION IF EXISTS &amp;#34;uuid-ossp&amp;#34;&amp;#39; end endrequire &amp;#34;securerandom&amp;#34; ProjectRepository.new.create(name: &amp;#34;Hanami&amp;#34;, token: SecureRandom.uuid) # =&amp;gt; #&amp;lt;Project:0x007fbbc78f0a40 @attributes={:id=&amp;gt;1, :name=&amp;gt;&amp;#34;Hanami&amp;#34;, :token=&amp;gt;&amp;#34;0aa7ecff-15e4-4aa4-8c00-0e699e2c66f0&amp;#34;}&amp;gt; UUID as Primary Key Hanami::Model.</description>
+    </item>
+    
+    <item>
+      <title>SQL Queries</title>
+      <link>https://tmtm.github.io/hanami-guides/repositories/sql-queries/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/repositories/sql-queries/</guid>
+      <description>Select You can select a subset of columns to be fetched from the database:
+class UserRepository &amp;lt; Hanami::Repository def all_with_name users.select(:id, :name) end end Raw SQL You can perform queries with raw SQL:
+class UserRepository &amp;lt; Hanami::Repository def all_by_sql users.read(&amp;#34;SELECT * FROM users&amp;#34;) end end Sort You can sort records using #order:
+class UserRepository &amp;lt; Hanami::Repository def from_first_to_last users.order { created_at.asc } end def from_last_to_first users.order { created_at.desc } end def alphabetical users.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/</link>
+    <description>Recent content on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Advanced Usage</title>
+      <link>https://tmtm.github.io/hanami-guides/validations/advanced-usage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/validations/advanced-usage/</guid>
+      <description>Required and Optional keys HTML forms can have required or optional fields. We can express this concept with two methods in our validations: required (which we already met in previous examples), and optional.
+require &amp;#39;hanami/validations&amp;#39; class Signup include Hanami::Validations validations do required(:email) { ... } optional(:referral) { ... } end end Type Safety At this point, we need to explicitly tell something really important about built-in predicates. Each of them have expectations about the methods that an input is able to respond to.</description>
+    </item>
+    
+    <item>
+      <title>Alter Table</title>
+      <link>https://tmtm.github.io/hanami-guides/migrations/alter-table/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/migrations/alter-table/</guid>
+      <description>Methods The following methods are available for table alterations:
+ #add_column (see #column for usage) #drop_column #rename_column (the first argument is the old name, while the second is the new name) #add_index (see #index for usage) #drop_index #add_primary_key (see #primary_key for usage) #add_foreign_key (see #foreign_key for usage) #add_constraint (see #constraint for usage) #drop_constraint (accepts the name of the constraint as argument) #add_unique_constraint #set_column_default (accepts the name of the column and the default value as comma separated args) #set_column_type (accepts the name of the column and the new type as comma separated args) #set_column_allow_null (accepts the name of the column) #set_column_not_null (accepts the name of the column)  Hanami::Model.</description>
+    </item>
+    
+    <item>
+      <title>Assets</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/assets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/assets/</guid>
+      <description>We can manage assets via the command line.
+Precompile This command is useful for deployment purposes.
+$ bundle exec hanami assets precompile The first step it precompiles and copies all the assets from all the applications and third party gems under public/assets/ directory.
+Then it compress all the javascripts and stylesheets, in order to save browsers bandwidth.
+As last thing, it generates a copy of each asset, by appending its checksum to the file name.</description>
+    </item>
+    
+    <item>
+      <title>Assets</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/assets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/assets/</guid>
+      <description>Helpers These helpers are HTML5 generators that target specific assets features.
+They are following the settings of the application that uses them. For instance, if we have a project with two applications Web and Admin mounted at / and /admin, respectively, all the asset URLs will respect these prefixes.
+They also respect Fingerprint mode and CDN mode for each application.
+The following helpers are available for views and templates:</description>
+    </item>
+    
+    <item>
+      <title>Basic Usage</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/basic-usage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/basic-usage/</guid>
+      <description>Requests Handling In the previous section, we generated an action. Now let&amp;rsquo;s use it.
+First, we check our routes:
+# apps/web/config/routes.rb get &amp;#39;/dashboard&amp;#39;, to: &amp;#39;dashboard#index&amp;#39; View Rendering Then we edit the corresponding template:
+# apps/web/templates/dashboard/index.html.erb &amp;lt;h1&amp;gt;Dashboard&amp;lt;/h1&amp;gt; Here is how Hanami handles an incoming request:
+ The router creates a new instance of Web::Controllers::Dashboard::Index and invokes #call. The application creates a new instance of Web::Views::Dashboard::Index and invokes #render. The application returns the response to the browser.</description>
+    </item>
+    
+    <item>
+      <title>Basic Usage</title>
+      <link>https://tmtm.github.io/hanami-guides/mailers/basic-usage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/mailers/basic-usage/</guid>
+      <description>In the previous section, we generated a mailer, let&amp;rsquo;s use it.
+Sender &amp;amp; Recipient Firstly, we need to specify sender and recipient(s) and the subject of the email. For this purpose a mailer exposes three mandatory methods: .from, .to, .subject and two optional: .cc, .bcc.
+They all accept a string, but .to can also accept an array of strings in order to set multiple recipients.
+module Mailers class Welcome include Hanami::Mailer from &amp;#39;noreply@bookshelf.</description>
+    </item>
+    
+    <item>
+      <title>Basic Usage</title>
+      <link>https://tmtm.github.io/hanami-guides/routing/basic-usage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/routing/basic-usage/</guid>
+      <description>Path matching In our initial example we have introduced a really basic relative URI: /hello. This is what we call fixed path matching. It is called this because the segment is responsible for responding only to an exact match. If we visit /hello, we get a response. If we hit /foo, a 404 (Not Found) is returned.
+Fixed Matching # apps/web/config/routes.rb get &amp;#39;/dashboard&amp;#39;, to: &amp;#34;dashboard#index&amp;#34; Variables When we have dynamic content to serve, we want our URI to be dynamic as well.</description>
+    </item>
+    
+    <item>
+      <title>Basic Usage</title>
+      <link>https://tmtm.github.io/hanami-guides/views/basic-usage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/views/basic-usage/</guid>
+      <description>In the previous section we generated a view. Let&amp;rsquo;s use it.
+Default Rendering First, we edit the corresponding template:
+# apps/web/templates/dashboard/index.html.erb &amp;lt;h1&amp;gt;Dashboard&amp;lt;/h1&amp;gt; By visiting /dashboard, we should see &amp;lt;h1&amp;gt;Dashboard&amp;lt;/h1&amp;gt; in our browser.
+Again we should look at the naming convention. Our view is Web::Views::Dashboard::Index, while the file name of the template is web/templates/dashboard/index.
+For a given view Web::Views::Dashboard::Index, the corresponding template MUST be available at apps/web/templates/dashboard/index.html.erb. Context While rendering a template, variable lookups requested by the template go to a view context.</description>
+    </item>
+    
+    <item>
+      <title>Belongs To</title>
+      <link>https://tmtm.github.io/hanami-guides/associations/belongs-to/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/associations/belongs-to/</guid>
+      <description>Also known as many-to-one, is an association between a one of the entities (Book) associated to one parent entity (Author).
+Setup $ bundle exec hanami generate model author create lib/bookshelf/entities/author.rb create lib/bookshelf/repositories/author_repository.rb create db/migrations/20171024081558_create_authors.rb create spec/bookshelf/entities/author_spec.rb create spec/bookshelf/repositories/author_repository_spec.rb $ bundle exec hanami generate model book create lib/bookshelf/entities/book.rb create lib/bookshelf/repositories/book_repository.rb create db/migrations/20171024081617_create_books.rb create spec/bookshelf/entities/book_spec.rb create spec/bookshelf/repositories/book_repository_spec.rb Edit the migrations:
+# db/migrations/20171024081558_create_authors.rb Hanami::Model.migration do change do create_table :authors do primary_key :id column :name, String, null: false column :created_at, DateTime, null: false column :updated_at, DateTime, null: false end end end# db/migrations/20171024081617_create_books.</description>
+    </item>
+    
+    <item>
+      <title>Boolean Logic</title>
+      <link>https://tmtm.github.io/hanami-guides/validations/boolean-logic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/validations/boolean-logic/</guid>
+      <description>When we check data, we expect only two outcomes: an input can be valid or not. No grey areas, nor fuzzy results. It’s white or black, 1 or 0, true or false and boolean logic is the perfect tool to express these two states. Indeed, a Ruby boolean expression can only return true or false.
+To better recognise the pattern, let’s get back to the example above. This time we will map the natural language rules with programming language rules.</description>
+    </item>
+    
+    <item>
+      <title>Code Reloading</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/code-reloading/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/code-reloading/</guid>
+      <description>Code reloading allows us to edit code and see the changes with a browser refresh, without needing to stop and restart the server.
+Development Environment This is a development-only feature. Hanami uses shotgun Ruby gem to reload the code as-needed. New generated projects have this entry in their Gemfile:
+group :development do # Code reloading # See: http://hanamirb.org/guides/1.2/projects/code-reloading gem &amp;#39;shotgun&amp;#39; end Unfortunately, shotgun requires that the current environment supports fork(2).</description>
+    </item>
+    
+    <item>
+      <title>Compressors</title>
+      <link>https://tmtm.github.io/hanami-guides/assets/compressors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/assets/compressors/</guid>
+      <description>Compressors Assets compression (aka minification) is a process to shrink the file size of a file in order to reduce the time that a browser needs to download it. Usually, it&amp;rsquo;s applied to javascripts and stylesheets.
+In order to set one of the following engines, we need to open apps/web/application.rb and write:
+# apps/web/application.rb module Web class Application &amp;lt; Hanami::Application configure do assets do javascript_compressor :builtin stylesheet_compressor :builtin # .</description>
+    </item>
+    
+    <item>
+      <title>Content Delivery Network (CDN)</title>
+      <link>https://tmtm.github.io/hanami-guides/assets/content-delivery-network/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/assets/content-delivery-network/</guid>
+      <description>Content Delivery Network (CDN) A Hanami application can serve assets from a Content Delivery Network (CDN). This feature is useful in production environment, where we want to speed up static assets serving.
+In order to take advantage of this feature, we need to specify CDN settings.
+# apps/web/application.rb module Web class Application &amp;lt; Hanami::Application # ... configure :production do scheme &amp;#39;https&amp;#39; host &amp;#39;bookshelf.org&amp;#39; port 443 assets do # ... fingerprint true # CDN settings scheme &amp;#39;https&amp;#39; host &amp;#39;123.</description>
+    </item>
+    
+    <item>
+      <title>Control Flow</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/control-flow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/control-flow/</guid>
+      <description>Callbacks If we want to execute some logic before and/or after #call is executed, we can use a callback. Callbacks are useful to declutter code for common tasks like checking if a user is signed in, set a record, handle 404 responses or tidy up the response.
+The corresponding DSL methods are before and after. These methods each accept a symbol that is the name of the method that we want to call, or an anonymous proc.</description>
+    </item>
+    
+    <item>
+      <title>Cookies</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/cookies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/cookies/</guid>
+      <description>Enable Cookies Hanami applies &amp;ldquo;batteries included, but not installed&amp;rdquo; philosophy. Cookies are a feature that is present but needs to be activated.
+In our application settings there is a line to uncomment.
+# apps/web/application.rb module Web class Application &amp;lt; Hanami::Application configure do # ... cookies true end end end From now on, cookies are automatically sent for each response.
+Settings With that configuration we can specify options that will be set for all cookies we send from our application.</description>
+    </item>
+    
+    <item>
+      <title>Create Table</title>
+      <link>https://tmtm.github.io/hanami-guides/migrations/create-table/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/migrations/create-table/</guid>
+      <description>Create Table A table is defined via #create_table. This method accepts two arguments: the name and a block that expresses the design.
+Safe operation can be performed via #create_table?. It only creates the table if it doesn&amp;rsquo;t exist. Force operation can be performed via #create_table!. It drops the existing table and creates a new one from scratch. These operations shouldn&amp;rsquo;t be used in migrations.
+Column Definition To define a column we use #column, followed by the name, the type and options.</description>
+    </item>
+    
+    <item>
+      <title>Custom Error Pages</title>
+      <link>https://tmtm.github.io/hanami-guides/views/custom-error-pages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/views/custom-error-pages/</guid>
+      <description>When an unsuccessful request is returned, there are some special pages that a Hanami application presents to users. These pages have a generic graphic and some basic information like the HTTP status code and the message.
+Hanami allows us to customize them on a per-application basis. We just need to create a template with the corresponding HTTP code as the filename (e.g. apps/web/templates/500.html.erb). From then on, all 500 errors (Internal Server Error) will be presented using that template (like for an exception that is not rescued).</description>
+    </item>
+    
+    <item>
+      <title>Custom Helpers</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/custom-helpers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/custom-helpers/</guid>
+      <description>In the overview section, we introduced the design for helpers. They are modules that enrich views behaviors. Because they are just Ruby modules, we can create our own helpers.
+Example Imagine we need (for some reason) a helper that shuffles the characters of a string and we want it to be available in our views.
+As first thing, let&amp;rsquo;s define the module.
+# app/web/helpers/shuffler.rb module Web module Helpers module Shuffler private SEPARATOR = &amp;#39;&amp;#39;.</description>
+    </item>
+    
+    <item>
+      <title>Custom Predicates</title>
+      <link>https://tmtm.github.io/hanami-guides/validations/custom-predicates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/validations/custom-predicates/</guid>
+      <description>We have seen that built-in predicates as an expressive tool to get our job done with common use cases.
+But what if our case is not common? We can define our own custom predicates.
+Inline Custom Predicates If we are facing a really unique validation that don&amp;rsquo;t need to be reused across our code, we can opt for an inline custom predicate:
+require &amp;#39;hanami/validations&amp;#39; class Signup include Hanami::Validations predicate :url?</description>
+    </item>
+    
+    <item>
+      <title>Custom Schema</title>
+      <link>https://tmtm.github.io/hanami-guides/entities/custom-schema/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/entities/custom-schema/</guid>
+      <description>We can take data integrity a step further: we can optionally define our own entity internal schema.
+Custom schema is optional for SQL databases, while it&#39;s mandatory for entities without a database table, or while using with a non-SQL database. Custom schema takes precedence over automatic schema. If we use custom schema, we need to manually add all the new columns from the corresponding SQL database table. Default mode # lib/bookshelf/entities/user.</description>
+    </item>
+    
+    <item>
+      <title>Data Types</title>
+      <link>https://tmtm.github.io/hanami-guides/entities/data-types/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/entities/data-types/</guid>
+      <description>Data types are available for custom entities schema, which are completely optional.
+We have 5 data types:
+ Definition - base type definition Strict - strict type with primitive type check Coercible - type with constructor that applies a coercion to given input Form - type with constructor that applies a non-strict coercion, specific to HTTP params JSON - type with constructor that applies a non-strict coercion, specific to JSON  Definition  Types::Nil Types::String Types::Symbol Types::Int Types::Float Types::Decimal Types::Class Types::Bool Types::True Types::False Types::Date Types::DateTime Types::Time Types::Array Types::Hash  Strict  Types::Strict::Nil Types::Strict::String Types::Strict::Symbol Types::Strict::Int Types::Strict::Float Types::Strict::Decimal Types::Strict::Class Types::Strict::Bool Types::Strict::True Types::Strict::False Types::Strict::Date Types::Strict::DateTime Types::Strict::Time Types::Strict::Array Types::Strict::Hash  Coercible  Types::Coercible::String Types::Coercible::Int Types::Coercible::Float Types::Coercible::Decimal Types::Coercible::Array Types::Coercible::Hash  Form  Types::Form::Nil Types::Form::Int Types::Form::Float Types::Form::Decimal Types::Form::Bool Types::Form::True Types::Form::False Types::Form::Date Types::Form::DateTime Types::Form::Time Types::Form::Array Types::Form::Hash  JSON  Types::Json::Nil Types::Json::Decimal Types::Json::Date Types::Json::DateTime Types::Json::Time Types::Json::Array Types::Json::Hash  Hanami model data types are based on dry-types gem.</description>
+    </item>
+    
+    <item>
+      <title>Database</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/database/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/database/</guid>
+      <description>We can manage our database via the command line.
+The following commands can be only used with the SQL adapter and with the following databases: PostgreSQL, MySQL, SQLite3. The adapter is set in config/environment.rb. It uses an environment variable, defined in the .env.* files at the root of the project.
+Create With db create we can create the database for the current environment.
+$ bundle exec hanami db create To be able to run tests, test database has to be explicitly created</description>
+    </item>
+    
+    <item>
+      <title>Database Configuration</title>
+      <link>https://tmtm.github.io/hanami-guides/models/database-configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/models/database-configuration/</guid>
+      <description>Environment variables Before starting your server, you need to configure the database link in .env* files.
+Open this file for each environment and update DATABASE_URL for your database.
+Setup database variable for the development environment:
+# .env.development DATABASE_URL=&amp;#34;database_type://username:password@localhost/bookshelf_development&amp;#34; Setup database variable for the test environment:
+# .env.test DATABASE_URL=&amp;#34;database_type://username:password@localhost/bookshelf_test&amp;#34; For jdbc urls you can&amp;rsquo;t set username and password to the left of @ you have to set them as parameters in the url:</description>
+    </item>
+    
+    <item>
+      <title>Delivery</title>
+      <link>https://tmtm.github.io/hanami-guides/mailers/delivery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/mailers/delivery/</guid>
+      <description>Multipart Delivery By default a mailer delivers a multipart email, that has a HTML and a text part. This is the reason why the generator creates two templates.
+To render both the templates and deliver them as a multipart message, we simply do:
+Mailers::Welcome.deliver Hanami mailers are flexible enough to adapt to several scenarios.
+Single Part Delivery Let&amp;rsquo;s say in our application users can opt for HTML or textual emails.</description>
+    </item>
+    
+    <item>
+      <title>Destroy</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/destroy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/destroy/</guid>
+      <description>Hanami has convenient code generators to speed up our development process. If we commit a mistake, we can destroy what we just generated via hanami destroy command.
+Applications With the Container architecture, we can have multiple Hanami applications running under apps/. We can generate new applications for different components that we want to add to our project.
+To destroy one of them:
+$ bundle exec hanami destroy app admin This removes an application named Admin under apps/admin.</description>
+    </item>
+    
+    <item>
+      <title>Exception Handling</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/exception-handling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/exception-handling/</guid>
+      <description>Actions have an elegant API for exception handling. The behavior changes according to the current Hanami environment and the custom settings in our configuration.
+Default Behavior # apps/web/controllers/dashboard/index.rb module Web module Controllers module Dashboard class Index include Web::Action def call(params) raise &amp;#39;boom&amp;#39; end end end end end Exceptions are automatically caught when in production mode, but not in development. In production, for our example, the application returns a 500 (Internal Server Error); in development, we&amp;rsquo;ll see the stack trace and all the information to debug the code.</description>
+    </item>
+    
+    <item>
+      <title>Exposures</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/exposures/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/exposures/</guid>
+      <description>For complex use cases we may want to pass data to views in order to present it to our users. Hanami puts emphasis on explicitness: data isn&amp;rsquo;t shared between the controller action and the view unless we tell it to do so.
+We use a simple and powerful mechanism to achieve our goal: exposures. Each exposure first looks for a method matching the given name. If no method is found, a getter is created with #attr_reader.</description>
+    </item>
+    
+    <item>
+      <title>Forms</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/forms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/forms/</guid>
+      <description>Features From helpers provide a powerful Ruby API to describe HTML5 forms, to be used both with views and templates. It they allow to:
+ Support for complex markup without the need of concatenation Auto closing HTML5 tags Support for view local variables Method override support (PUT/PATCH/DELETE HTTP verbs aren&amp;rsquo;t understood by browsers) Automatic generation of HTML attributes for inputs: id, name, value Allow to override automatic HTML attributes Read values from request params and/or given entities, to autofill value attributes Automatic selection of current value for radio button and select inputs CSRF Protection Infinite nested fields ORM Agnostic  Technical notes This feature has a similar syntax to other Ruby gems with the same purpose, but it has a different usage if compared with Rails or Padrino.</description>
+    </item>
+    
+    <item>
+      <title>Generators</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/generators/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/generators/</guid>
+      <description>Hanami has convenient code generators to speed up our development process.
+Applications With Hanami architecture, we can have multiple Hanami applications running under apps/. The default application is called Web and lives under apps/web.
+We can generate new applications for different components that we want to add to our project.
+$ bundle exec hanami generate app admin This generates an application named Admin under apps/admin.
+Actions Generate an action along with the corresponding view, template, route and test code with one command.</description>
+    </item>
+    
+    <item>
+      <title>HTML5</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/html5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/html5/</guid>
+      <description>This helper makes available an HTML5 generator that is template engine independent. It&amp;rsquo;s a private method for views and layouts called #html.
+Usage This is how it will look used with a layout:
+module Web module Views class ApplicationLayout include Web::Layout def sidebar html.aside(id: &amp;#39;sidebar&amp;#39;) do div &amp;#39;hello&amp;#39; end end end end end&amp;lt;%= sidebar %&amp;gt; It generates:
+&amp;lt;aside id=&amp;#34;sidebar&amp;#34;&amp;gt; &amp;lt;div&amp;gt;hello&amp;lt;/div&amp;gt; &amp;lt;/aside&amp;gt; Features  It knows how to close tags according to HTML5 spec (1) It accepts content as first argument (2) It accepts builder as first argument (3) It accepts content as block which returns a string (4) It accepts content as a block with nested markup builders (5) It builds attributes from given hash (6) it combines attributes and block (7)  # 1 html.</description>
+    </item>
+    
+    <item>
+      <title>HTTP Caching</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/http-caching/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/http-caching/</guid>
+      <description>We refer to HTTP caching as the set of techniques for HTTP/1.1 and implemented by browser vendors in order to make faster interactions with the server. There are a few headers that, if sent, will enable these HTTP caching mechanisms.
+Cache Control Actions offer a DSL to set a special header Cache-Control. The first argument is a cache response directive like :public or &amp;quot;must-revalidate&amp;quot;, while the second argument is a set of options like :max_age.</description>
+    </item>
+    
+    <item>
+      <title>HTTP/2 Early Hints</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/http2-early-hints/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/http2-early-hints/</guid>
+      <description>A web page may link to external resources such as stylesheets, or images (assets). With HTTP/1.1 the browser parses the HTML and for each link, it downloads the asset and eventually take an action on it: renders an image or evaluate JavaScript code. With HTTP/2 introduced an enhancement: the server can proactively &amp;ldquo;push&amp;rdquo; in parallel both the HTML payload and the some assets to the browser. This workflow is allowed due to the HTTP/2 TCP connections are multiplexed.</description>
+    </item>
+    
+    <item>
+      <title>Has Many</title>
+      <link>https://tmtm.github.io/hanami-guides/associations/has-many/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/associations/has-many/</guid>
+      <description>Also known as one-to-many, is an association between a single entity (Author) and a collection of many other linked entities (Book).
+Setup $ bundle exec hanami generate model author create lib/bookshelf/entities/author.rb create lib/bookshelf/repositories/author_repository.rb create db/migrations/20171024081558_create_authors.rb create spec/bookshelf/entities/author_spec.rb create spec/bookshelf/repositories/author_repository_spec.rb $ bundle exec hanami generate model book create lib/bookshelf/entities/book.rb create lib/bookshelf/repositories/book_repository.rb create db/migrations/20171024081617_create_books.rb create spec/bookshelf/entities/book_spec.rb create spec/bookshelf/repositories/book_repository_spec.rb Edit the migrations:
+# db/migrations/20171024081558_create_authors.rb Hanami::Model.migration do change do create_table :authors do primary_key :id column :name, String, null: false column :created_at, DateTime, null: false column :updated_at, DateTime, null: false end end end# db/migrations/20171024081617_create_books.</description>
+    </item>
+    
+    <item>
+      <title>Has Many Through</title>
+      <link>https://tmtm.github.io/hanami-guides/associations/has-many-through/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/associations/has-many-through/</guid>
+      <description>Also known as many-to-many, is an association between an entity (Story) and a collection of many entities (User), passing via an intermediate entity (Comment).
+Setup $ bundle exec hanami generate model user create lib/bookshelf/entities/user.rb create lib/bookshelf/repositories/user_repository.rb create db/migrations/20171024083639_create_users.rb create spec/bookshelf/entities/user_spec.rb create spec/bookshelf/repositories/user_repository_spec.rb $ bundle exec hanami generate model story create lib/bookshelf/entities/story.rb create lib/bookshelf/repositories/story_repository.rb create db/migrations/20171024085712_create_stories.rb create spec/bookshelf/entities/story_spec.rb create spec/bookshelf/repositories/story_repository_spec.rb $ bundle exec hanami generate model comment create lib/bookshelf/entities/comment.rb create lib/bookshelf/repositories/comment_repository.</description>
+    </item>
+    
+    <item>
+      <title>Has One</title>
+      <link>https://tmtm.github.io/hanami-guides/associations/has-one/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/associations/has-one/</guid>
+      <description>Also known as one-to-one, is an association between an entity (User) associated to one child entity (Avatar).
+Setup $ bundle exec hanami generate model user create lib/bookshelf/entities/user.rb create lib/bookshelf/repositories/user_repository.rb create db/migrations/20171024083639_create_users.rb create spec/bookshelf/entities/user_spec.rb create spec/bookshelf/repositories/user_repository_spec.rb $ bundle exec hanami generate model avatar create lib/bookshelf/entities/avatar.rb create lib/bookshelf/repositories/avatar_repository.rb create db/migrations/20171024083725_create_avatars.rb create spec/bookshelf/entities/avatar_spec.rb create spec/bookshelf/repositories/avatar_repository_spec.rb Edit the migrations:
+# db/migrations/20171024083639_create_users.rb Hanami::Model.migration do change do create_table :users do primary_key :id column :name, String, null: false column :created_at, DateTime, null: false column :updated_at, DateTime, null: false end end end# db/migrations/20171024083725_create_avatars.</description>
+    </item>
+    
+    <item>
+      <title>Initializers</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/initializers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/initializers/</guid>
+      <description>A project can optionally have one or more custom initializers.
+Initializers are optional An initializer is a Ruby file used to setup third-party libraries or some other aspect of the code.
+They are run as the last thing after the dependencies, the framework and the project code are loaded, but before the server or the console is started.
+For instance, if we want to setup Bugsnag for our project we can do:</description>
+    </item>
+    
+    <item>
+      <title>Layouts</title>
+      <link>https://tmtm.github.io/hanami-guides/views/layouts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/views/layouts/</guid>
+      <description>Layouts are special views, that render the &amp;ldquo;fixed&amp;rdquo; part of the HTML markup. This is the part that doesn&amp;rsquo;t change from page to page (perhaps navigation, sidebar, header, footer, etc.)
+When we generate a new application, there is a default layout called Web::Views::ApplicationLayout with a apps/web/templates/application.html.erb template. It comes with a very basic HTML5 wireframe.
+&amp;lt;!DOCTYPE HTML&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;Web&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;%= yield %&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; The most interesting part is &amp;lt;%= yield %&amp;gt;.</description>
+    </item>
+    
+    <item>
+      <title>Links</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/links/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/links/</guid>
+      <description>It provides a concise API to generate links. It&amp;rsquo;s a public method called #link_to, that can be used both in views and templates.
+Usage It accepts two mandatory and one optional arguments. The first is the content of the tag, the second is the path, an the third is a Hash that represents a set of HTML attributes that we may want to specify.
+&amp;lt;%= link_to &amp;#39;Home&amp;#39;, &amp;#39;/&amp;#39; %&amp;gt; &amp;lt;%= link_to &amp;#39;Profile&amp;#39;, routes.</description>
+    </item>
+    
+    <item>
+      <title>Logging</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/logging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/logging/</guid>
+      <description>Each project has a global logger available at Hanami.logger that can be used like this: Hanami.logger.debug &amp;quot;Hello&amp;quot;
+It can be configured in config/environment.rb
+# config/environment.rb # ... Hanami.configure do # ... environment :development do logger level: :info end environment :production do logger level: :info, formatter: :json # ... end end By default it uses standard output because it&amp;rsquo;s a best practice that most hosting SaaS companies suggest using.
+If you want to use a file, pass stream: &#39;path/to/file.</description>
+    </item>
+    
+    <item>
+      <title>MIME Types</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/mime-types/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/mime-types/</guid>
+      <description>Actions have advanced features for MIME Type detection, automatic headers, whitelisting etc..
+Request Introspection In order to understand what the requested MIME Type is, an action looks at the Accept request header and exposes a high level API: #format and #accept?.
+The first returns a symbol representation of the MIME Type (eg. :html, :json, :xml etc..), while the second is a query method that accepts a MIME type string and checks if it&amp;rsquo;s accepted by the current browser.</description>
+    </item>
+    
+    <item>
+      <title>MIME Types</title>
+      <link>https://tmtm.github.io/hanami-guides/views/mime-types/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/views/mime-types/</guid>
+      <description>A view can handle several MIME Types. Before diving into this subject, please consider to read how actions handle MIME Types.
+It&amp;rsquo;s important to highlight the correlation between the format and template name. For a given MIME Type, Rack (and then Hanami) associate a format for it. XML is mapped from application/xml to :xml, HTML is text/html and becomes :html for us.
+Format MUST be the first extension of the template file name.</description>
+    </item>
+    
+    <item>
+      <title>Markup Escape</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/escape/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/escape/</guid>
+      <description>Views escape automatically the output of their methods. There are complex situations that views can&amp;rsquo;t cover properly and that require an extra attention from us.
+Hanami makes available a set of escape helpers, to increase the security of our web applications. They are public methods that are available both in views and templates.
+Escape HTML Contents It&amp;rsquo;s a method called #escape_html (aliased as #h), that escapes the input.
+&amp;lt;p&amp;gt;&amp;lt;%= h &amp;#34;&amp;lt;script&amp;gt;alert(&amp;#39;xss&amp;#39;)&amp;lt;/script&amp;gt;&amp;#34; %&amp;gt;&amp;lt;/p&amp;gt; Returns</description>
+    </item>
+    
+    <item>
+      <title>Migrations</title>
+      <link>https://tmtm.github.io/hanami-guides/migrations/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/migrations/overview/</guid>
+      <description>Migrations are a feature that allows to manage database schema via Ruby. They come with some command line facilities that allow to perform database operations or to generate migrations.
+Migrations are only available if our application uses the SQL adapter.
+Anatomy Of A Migration Migrations are Ruby files stored by default under db/migrations. Their name is composed by a UTC timestamp and a snake case name (eg db/migrations/20150621165604_create_books.rb).
+Hanami::Model.migration do change do create_table :books do primary_key :id foreign_key :author_id, :authors, on_delete: :cascade, null: false column :code, String, null: false, unique: true, size: 128 column :title, String, null: false column :price, Integer, null: false, default: 100 # cents check { price &amp;gt; 0 } end end end We use a create_table block to define the schema of that table.</description>
+    </item>
+    
+    <item>
+      <title>Numbers</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/numbers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/numbers/</guid>
+      <description>Hanami offers a helpful way to present numbers via #format_number, a private method available only in views.
+Usage module Web module Views module Books class Show include Web::View def download_count format_number book.download_count end end end end end&amp;lt;span&amp;gt;&amp;lt;%= download_count %&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;1,000,000&amp;lt;/span&amp;gt; Precision The default precision is of 2, but we can specify a different value with the homonym option.
+format_number(Math::PI) # =&amp;gt; &amp;#34;3.14&amp;#34; format_number(Math::PI, precision: 6) # =&amp;gt; &amp;#34;3.141592&amp;#34; Delimiter The default thousands delimiter is ,.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/overview/</guid>
+      <description>An action is an endpoint that handles incoming HTTP requests for a specific route. In a Hanami application, an action is an object, while a controller is a Ruby module that groups them.
+This design provides self contained actions that don&amp;rsquo;t share their context accidentally with other actions. It also prevents gigantic controllers. It has several advantages in terms of testability and control of an action.
+A Simple Action Hanami ships with a generator for actions.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/assets/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/assets/overview/</guid>
+      <description>Hanami supports powerful features for web assets.
+Each application can have its own separated assets settings in application configuration.
+Compile Mode Toggle this value, to determine if the application must preprocess or copy assets from sources to public directory. It&amp;rsquo;s turned on by default in development and test environments, but turned off for production.
+# apps/web/application.rb module Web class Application &amp;lt; Hanami::Application configure do # ... assets do # compile true, enabled by default end end configure :production do assets do compile false end end end end Fingerprint Mode In order to force browsers to cache the right copy of an asset, during the deploy, Hanami creates a copy of each file by appending its checksum to the file name.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/associations/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/associations/overview/</guid>
+      <description>An association is a logical relationship between two entities.
+As of the current version, Hanami supports associations as an experimental feature only for the SQL adapter. Because the association is made of data linked together in a database, we define associations in repositories.
+Explicit Interface When we declare an association, that repository does NOT get any extra method to its public interface. This because Hanami wants to prevent to bloat in repositories by adding methods that are often never used.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/entities/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/entities/overview/</guid>
+      <description>An entity is domain object that is defined by its identity.
+See &amp;ldquo;Domain Driven Design&amp;rdquo; by Eric Evans.
+An entity is at the core of an application, where the part of the domain logic is implemented. It&amp;rsquo;s a small, cohesive object that expresses coherent and meaningful behaviors.
+It deals with one and only one responsibility that is pertinent to the domain of the application, without caring about details such as persistence or validations.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/overview/</guid>
+      <description>Principles A Hanami view is an object that defines presentational logic. Helpers are modules designed to enrich views with a collection of useful features.
+This concept is probably familiar, if you know some Ruby basics.
+module Printable def print puts &amp;#34;...&amp;#34; end end class Person include Printable end Person.new.print The same simple design is applied to views and helpers.
+Hanami ships with default helpers, but we can also define custom helper modules.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/mailers/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/mailers/overview/</guid>
+      <description>A mailer is an object that&amp;rsquo;s responsible to deliver a mail message, by rendering one or more templates.
+For simplicity, each mailer can handle only one use case (feature). If in our application we need to send emails for several features like: &amp;ldquo;confirm your email address&amp;rdquo; or &amp;ldquo;forgot password&amp;rdquo;, we will have Mailers::ConfirmEmailAddress and Mailers::ForgotPassword instead of a generic UserMailer that manages all these use cases.
+Example Hanami ships a generator that creates a mailer, two templates and the test code.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/models/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/models/overview/</guid>
+      <description>Hanami&amp;rsquo;s model domain is implemented in a way that separates the behavior that we want to express (entities) from the persistence layer (repositories and database). This design helps keep the interface of our objects small and therefore keeps them fast and reusable.
+Basic Usage To explain the basic usage, we use a PostgreSQL database.
+As first step, we generate the model:
+$ bundle exec hanami generate model book create lib/bookshelf/entities/book.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/repositories/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/repositories/overview/</guid>
+      <description>An object that mediates between entities and the persistence layer. It offers a standardized API to query and execute commands on a database.
+A repository is storage independent, all the queries and commands are delegated to the current adapter.
+This architecture has several advantages:
+ Applications depend on a standard API, instead of low level details (Dependency Inversion principle)
+ Applications depend on a stable API, that doesn&amp;rsquo;t change if the storage changes</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/routing/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/routing/overview/</guid>
+      <description>Hanami applications use Hanami::Router for routing: a Rack compatible, lightweight and fast HTTP router for Ruby.
+The first route With your favorite editor open apps/web/config/routes.rb and add the following line.
+get &amp;#39;/hello&amp;#39;, to: -&amp;gt;(env) { [200, {}, [&amp;#39;Hello from Hanami!&amp;#39;]] } Then start the server with bundle exec hanami server and visit http://localhost:2300/hello. You should see Hello from Hanami! in your browser.
+Let&amp;rsquo;s explain what we just did. We created a route; an application can have many routes.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/validations/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/validations/overview/</guid>
+      <description>Hanami::Validations is a mixin that, once included by an object, adds lightweight set of validations to it.
+It works with input hashes and lets us to define a set of validation rules for each key/value pair. These rules are wrapped by lambdas (or special DSL) that check the input for a specific key to determine if it&amp;rsquo;s valid or not. To do that, we translate business requirements into predicates that are chained together with Ruby faux boolean logic operators (eg.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/views/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/views/overview/</guid>
+      <description>A view is an object that&amp;rsquo;s responsible for rendering a template.
+In a full stack Hanami application, an incoming HTTP request goes through the router, it instantiates and calls an action, which sets the status code and the headers for the response. The last bit is the body, which is set by the corresponding view&amp;rsquo;s output.
+A Simple View Hanami ships a generator for actions that creates a view and a template.</description>
+    </item>
+    
+    <item>
+      <title>Parameters</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/parameters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/parameters/</guid>
+      <description>Parameters are taken from the Rack env and passed as an argument to #call. They are similar to a Ruby Hash, but they offer an expanded set of features.
+Sources Params can come from:
+ Router variables (eg. /books/:id) Query string (eg. /books?title=Hanami) Request body (eg. a POST request to /books)  Access To access the value of a param, we can use the subscriber operator #[].
+# apps/web/controllers/dashboard/index.rb module Web module Controllers module Dashboard class Index include Web::Action def call(params) self.</description>
+    </item>
+    
+    <item>
+      <title>Plugins</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/plugins/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/plugins/</guid>
+      <description>Hanami has a convenient way to load commands from third party gems, so if you want to add a Hanami compatible gem, you only have to add it inside your project&amp;rsquo;s Gemfile in the :plugins group.
+# Gemfile group :plugins do gem &amp;#34;hanami-reloader&amp;#34; end Add a command Imagine you want to build a fictional gem called hanami-webpack with a CLI command: hanami webpack setup.
+# lib/hanami/webpack.rb module Hanami module Webpack module CLI class Setup &amp;lt; Hanami::CLI::Command def call(*) # setup code goes here.</description>
+    </item>
+    
+    <item>
+      <title>PostgreSQL</title>
+      <link>https://tmtm.github.io/hanami-guides/repositories/postgresql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/repositories/postgresql/</guid>
+      <description>Hanami natively supports PostgreSQL data types.
+Please check your PostgreSQL version for the available features.
+UUID Here&amp;rsquo;s how to use UUID for a column:
+# db/migrations/20161113184557_create_projects.rb Hanami::Model.migration do up do execute &amp;#39;CREATE EXTENSION IF NOT EXISTS &amp;#34;uuid-ossp&amp;#34;&amp;#39; create_table :projects do primary_key :id column :name, String column :token, &amp;#39;uuid&amp;#39; end end down do drop_table :projects execute &amp;#39;DROP EXTENSION IF EXISTS &amp;#34;uuid-ossp&amp;#34;&amp;#39; end endrequire &amp;#34;securerandom&amp;#34; ProjectRepository.new.create(name: &amp;#34;Hanami&amp;#34;, token: SecureRandom.uuid) # =&amp;gt; #&amp;lt;Project:0x007fbbc78f0a40 @attributes={:id=&amp;gt;1, :name=&amp;gt;&amp;#34;Hanami&amp;#34;, :token=&amp;gt;&amp;#34;0aa7ecff-15e4-4aa4-8c00-0e699e2c66f0&amp;#34;}&amp;gt; UUID as Primary Key Hanami::Model.</description>
+    </item>
+    
+    <item>
+      <title>Preprocessors</title>
+      <link>https://tmtm.github.io/hanami-guides/assets/preprocessors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/assets/preprocessors/</guid>
+      <description>Preprocessors Hanami is able to run assets preprocessors and lazily compile them under public/assets.
+Imagine to have application.css.scss in apps/web/assets/stylesheets and reset.css under apps/web/vendor/stylesheets.
+The extensions structure is important. The first one is mandatory and it&amp;rsquo;s used to understand which asset type we are handling: .css for stylesheets. The second one is optional and it&amp;rsquo;s for a preprocessor: .scss for Sass.
+For a given asset application.css.scss, the last extension (.</description>
+    </item>
+    
+    <item>
+      <title>Project</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/project/</guid>
+      <description>Project We can generate a new project via hanami new, followed by the name that we want to use.
+$ hanami new bookshelf Database The default database engine is SQLite.
+We can use the --database argument to let Hanami to generate code for a specific database.
+It supports:
+ postgres postgresql sqlite (default) sqlite3 mysql mysql2  Testing Framework The default testing framework is Minitest.
+We can use the --test argument to specify a different framework, from the list below:</description>
+    </item>
+    
+    <item>
+      <title>Project Security</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/security/</guid>
+      <description>Modern web development has many challenges, and of those security is both very important and often under-emphasized.
+Hanami provides ways to secure from most common vulnerabilities. Security options can be configured in application.rb.
+X-Frame-Options X-Frame-Options is a HTTP header supported by modern browsers. It determines if a web page can or cannot be included via &amp;lt;frame&amp;gt; and &amp;lt;iframe&amp;gt; tags by untrusted domains.
+Web applications can send this header to prevent Clickjacking attacks:</description>
+    </item>
+    
+    <item>
+      <title>RESTful Resource(s)</title>
+      <link>https://tmtm.github.io/hanami-guides/routing/restful-resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/routing/restful-resources/</guid>
+      <description>Hanami has native REST support.
+At the routing level, there are two methods that can be used to declare them: resources and resource. The former is for plural resources, the latter for singular ones.
+Declaring a resource means to generate several default routes with just one line of code.
+RESTful Resources Default Routes # apps/web/config/routes.rb resources :books It generates:
+ Verb Path Action Name Named Route   GET /books Books::Index :index :books   GET /books/:id Books::Show :show :book   GET /books/new Books::New :new :new_book   POST /books Books::Create :create :books   GET /books/:id/edit Books::Edit :edit :edit_book   PATCH /books/:id Books::Update :update :book   DELETE /books/:id Books::Destroy :destroy :book   Remove Routes In case we don&amp;rsquo;t need all the default routes we can use :only and pass one or more action names.</description>
+    </item>
+    
+    <item>
+      <title>Rack Integration</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/rack-integration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/rack-integration/</guid>
+      <description>Rack Environment Actions offer a high level API built on top of Rack. If we need to access raw data from Rack environment we can use params.env.
+Rack Middleware Hanami mounts a very thin default middleware stack. Additional components can be mounted globally, at the application level, or locally.
+Global Middleware If we need a component that wraps all the applications (under apps/), we can edit config.ru at the root of the project.</description>
+    </item>
+    
+    <item>
+      <title>Rack Middleware</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/rack-middleware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/rack-middleware/</guid>
+      <description>Hanami exposes a project level Rack middleware stack to be configured like this:
+# config/environment.rb Hanami.configure do middleware.use MyRackMiddleware end It&amp;rsquo;s worth noticing that this is equivalent to add a middleware in config.ru file. The only difference is that third-party plugins can hook into Hanami.configure to inject their own middleware.</description>
+    </item>
+    
+    <item>
+      <title>Rake Tasks</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/rake/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/rake/</guid>
+      <description>Hanami ships with default Rake tasks that can be used as prerequisites by developers to build their own tasks.
+$ bundle exec rake -T rake environment # Load the full project rake test # Run tests (for Minitest) rake spec # Run tests (for RSpec) Environment Use this as a Rake task prerequisite when we need to access project code (eg. entities, actions, views, etc..)
+Example Imagine we want to build a Rake task that is able to access project code (eg.</description>
+    </item>
+    
+    <item>
+      <title>Request &amp; Response</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/request-and-response/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/request-and-response/</guid>
+      <description>Request In order to access the metadata coming from a HTTP request, an action has a private object request that derives from Rack::Request. Here an example of some information that we can introspect.
+# apps/web/controllers/dashboard/index.rb module Web module Controllers module Dashboard class Index include Web::Action def call(params) puts request.path_info # =&amp;gt; &amp;#34;/dashboard&amp;#34; puts request.request_method # =&amp;gt; &amp;#34;GET&amp;#34; puts request.get? # =&amp;gt; true puts request.post? # =&amp;gt; false puts request.xhr? # =&amp;gt; false puts request.</description>
+    </item>
+    
+    <item>
+      <title>Routes</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/routes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/routes/</guid>
+      <description> Routes In order to print the routes defined by all the applications, use:
+$ bundle exec hanami routes GET, HEAD / Web::Controllers::Home::Index books GET, HEAD /books Web::Controllers::Books::Index new_books GET, HEAD /books/new Web::Controllers::Books::New books POST /books Web::Controllers::Books::Create books GET, HEAD /books/:id Web::Controllers::Books::Show edit_books GET, HEAD /books/:id/edit Web::Controllers::Books::Edit books PATCH /books/:id Web::Controllers::Books::Update books DELETE /books/:id Web::Controllers::Books::Destroy new_account GET, HEAD /account/new Web::Controllers::Account::New account POST /account Web::Controllers::Account::Create account GET, HEAD /account Web::Controllers::Account::Show edit_account GET, HEAD /account/edit Web::Controllers::Account::Edit account PATCH /account Web::Controllers::Account::Update account DELETE /account Web::Controllers::Account::Destroy</description>
+    </item>
+    
+    <item>
+      <title>Routing</title>
+      <link>https://tmtm.github.io/hanami-guides/helpers/routing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/helpers/routing/</guid>
+      <description>Routing helpers are made of one public method (#routes), available for actions, views and templates. It&amp;rsquo;s a factory to generate relative or absolute URLs, starting from named routes.
+For a given route named :home, we can use home_path or home_url to generate relative or absolute URLs, respectively. Usage Imagine we have the following routes for our application:
+# apps/web/config/routes.rb root to: &amp;#39;home#index&amp;#39; get &amp;#39;/foo&amp;#39;, to: &amp;#39;foo#index&amp;#39; resources :books Relative URLs We can do:</description>
+    </item>
+    
+    <item>
+      <title>SQL Queries</title>
+      <link>https://tmtm.github.io/hanami-guides/repositories/sql-queries/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/repositories/sql-queries/</guid>
+      <description>Select You can select a subset of columns to be fetched from the database:
+class UserRepository &amp;lt; Hanami::Repository def all_with_name users.select(:id, :name) end end Raw SQL You can perform queries with raw SQL:
+class UserRepository &amp;lt; Hanami::Repository def all_by_sql users.read(&amp;#34;SELECT * FROM users&amp;#34;) end end Sort You can sort records using #order:
+class UserRepository &amp;lt; Hanami::Repository def from_first_to_last users.order { created_at.asc } end def from_last_to_first users.order { created_at.desc } end def alphabetical users.</description>
+    </item>
+    
+    <item>
+      <title>Selectively boot apps</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/selectively-boot-apps/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/selectively-boot-apps/</guid>
+      <description>With Hanami you can build your project by following the Monolith-First principle. As you add more code to the project, you can grow it organically, by splitting the project into several Hanami apps.
+A real world Hanami project could have dozens of Hanami apps in the same project (for example, web for the front-end, admin for the administration, api for a JSON API, etc&amp;hellip;) You might want to deploy them to different servers, even though they&amp;rsquo;re all a part of the same project.</description>
+    </item>
+    
+    <item>
+      <title>Sessions</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/sessions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/sessions/</guid>
+      <description>Enable Sessions Sessions are available in Hanami applications, but not enabled by default. If we want to turn on this feature, we just need to uncomment a line of code.
+# apps/web/application.rb module Web class Application &amp;lt; Hanami::Application configure do # ... sessions :cookie, secret: ENV[&amp;#39;WEB_SESSIONS_SECRET&amp;#39;] end end end The first argument is the name of the adapter for the session storage. The default value is :cookie, that uses Rack::Session::Cookie.</description>
+    </item>
+    
+    <item>
+      <title>Share Code</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/share-code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/share-code/</guid>
+      <description>Actions as objects have a lot of advantages but they make code sharing less intuitive. This section shares a few techniques to make this possible.
+Prepare In our settings (apps/web/application.rb), there is a code block that allows us to share the code for all the actions of our application. When an action includes the Web::Action module, that block code is yielded within the context of that class. This is heavily inspired by Ruby Module and its included hook.</description>
+    </item>
+    
+    <item>
+      <title>Share Code</title>
+      <link>https://tmtm.github.io/hanami-guides/mailers/share-code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/mailers/share-code/</guid>
+      <description>Prepare In our settings (lib/bookshelf.rb), there is code block that allows to share the code for all the mailers of our application. When a mailer includes the Hanami::Mailer module, that block code is yielded within the context of that class. This is heavily inspired by Ruby Module and its included hook.
+Imagine we want to set a default sender for all the mailers. Instead of specifying it for each mailer, we can use a DRY approach.</description>
+    </item>
+    
+    <item>
+      <title>Share Code</title>
+      <link>https://tmtm.github.io/hanami-guides/views/share-code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/views/share-code/</guid>
+      <description>Prepare In our settings (apps/web/application.rb), there is a code block that allows to share the code for all the views of our application. When a view includes the Web::View module, that block code is yielded within the context of that class. This is heavily inspired by Ruby Module and its included hook.
+Imagine we have an application that only renders JSON. For each view we should specify the handled format.</description>
+    </item>
+    
+    <item>
+      <title>Templates</title>
+      <link>https://tmtm.github.io/hanami-guides/mailers/templates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/mailers/templates/</guid>
+      <description>Templates A template is a file that contains a body for a specific format of a multipart email. For instance, welcome.html.erb describes the markup of the HTML part of the message, while welcome.txt.erb is for the textual part.
+It is rendered by bounding the context of a mailer and using a template engine.
+Naming For convenience, there is a correlation between the view mailer name and the template file name.</description>
+    </item>
+    
+    <item>
+      <title>Templates</title>
+      <link>https://tmtm.github.io/hanami-guides/views/templates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/views/templates/</guid>
+      <description>A template is a file that describes the body of a response. It is rendered by bounding the context of a view and using a template engine.
+Naming For simplicity sake, there is a correlation between the view class name and the template file name. It&amp;rsquo;s the translation of the name into a path: from Dashboard::Index to dashboard/index.
+The remaining part is made of multiple file extensions. The first is relative to the format and the latter is for the template engine.</description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/testing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/testing/</guid>
+      <description>Hanami pays a lot of attention to code testability and it offers advanced features to make our lives easier. The framework supports RSpec (default) and Minitest.
+Unit Tests First of all, actions can be unit tested. That means we can instantiate, exercise and verify expectations directly on actions instances.
+# spec/web/controllers/dashboard/index_spec.rb require_relative &amp;#39;../../../../apps/web/controllers/dashboard/index&amp;#39; RSpec.describe Web::Controllers::Dashboard::Index do let(:action) { Web::Controllers::Dashboard::Index.new } let(:params) { Hash[] } it &amp;#34;is successful&amp;#34; do response = action.</description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://tmtm.github.io/hanami-guides/mailers/testing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/mailers/testing/</guid>
+      <description>During development and testing we don&amp;rsquo;t want to accidentally send emails to the real world. The delivery method for these two envs is set to :test.
+In order to assert that a mailer sent a message, we can look at Hanami::Mailer.deliveries. It&amp;rsquo;s an array of messages that the framework pretended to deliver during a test. Please make sure to clear them in testing setup.
+# spec/bookshelf/mailers/welcome_spec.rb RSpec.describe Mailers::Welcome do before { Hanami::Mailer.</description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://tmtm.github.io/hanami-guides/routing/testing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/routing/testing/</guid>
+      <description>Hanami has builtin facilities for routing unit tests.
+Path Generation We can assert the generated routes, to do so, we&amp;rsquo;re gonna create a spec file for the purpose. Web.routes is the class that holds all the routes for the application named Web.
+It exposes a method to generate a path, which takes the name of a route as a symbol. Here&amp;rsquo;s how to test it.
+# spec/web/routes_spec.rb RSpec.describe Web.routes do it &amp;#39;generates &amp;#34;/&amp;#34;&amp;#39; do actual = described_class.</description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://tmtm.github.io/hanami-guides/views/testing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/views/testing/</guid>
+      <description>One of the advantages of views as objects is that we can unit test them. We can both understand if a specific presentational logic behaves correctly and/or assert the contents of the rendered markup.
+For the following example we&amp;rsquo;re gonna use RSpec for the concise syntax for test doubles.
+# spec/web/views/books/show_spec.rb require_relative &amp;#39;../../../../apps/web/views/books/show&amp;#39; RSpec.describe Web::Views::Books::Show do let(:exposures) { Hash[book: double(&amp;#39;book&amp;#39;, price: 1.00), current_user: user, params: {}] } let(:template) { Hanami::View::Template.new(&amp;#39;apps/web/templates/books/show.html.erb&amp;#39;) } let(:view) { Web::Views::Home::Another.</description>
+    </item>
+    
+    <item>
+      <title>Use Your Own Assets Management</title>
+      <link>https://tmtm.github.io/hanami-guides/assets/use-your-own-assets-management-tool/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/assets/use-your-own-assets-management-tool/</guid>
+      <description>Hanami tries to cover basic use cases for assets management: (pre)compilation, compression, fingerprinting, Content Delivery Network (CDN) with Subresource Integrity.
+If it still doesn&amp;rsquo;t fit your needs, you can use your own assets management tool such as Webpack.
+Deployment To do so, please organize the assets according to your assets management tool and don&amp;rsquo;t run bundle exec hanami assets precompile when deploying your project, but follow the instructions of your assets management software.</description>
+    </item>
+    
+    <item>
+      <title>Use Your Own ORM</title>
+      <link>https://tmtm.github.io/hanami-guides/models/use-your-own-orm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/models/use-your-own-orm/</guid>
+      <description>Hanami components are decoupled from each other. This level of separation allows you to use the ORM (data layer) of your choice.
+Here&amp;rsquo;s how to do it:
+ Edit your Gemfile:  Remove hanami-model. Add the gem(s) for your ORM.  Run bundle install. Remove folders that are no longer needed:  Remove lib/project_name/entities/ and lib/projectname/repositories/ Remove spec/project_name/entities/ and spec/project_name/repositories/.  Edit config/environment.rb:  Remove require &#39;hanami/model&#39; Remove require_relative &#39;../lib/projectname&#39; Remove model block in Hanami.</description>
+    </item>
+    
+    <item>
+      <title>Version</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/version/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/version/</guid>
+      <description>Version By running hanami version we can see the current version of the framework that we are using.
+$ bundle exec hanami version v1.3.0 There are also --version and -v aliases.
+$ bundle exec hanami --version v1.3.0 $ bundle exec hanami -v v1.</description>
+    </item>
+    
+    <item>
+      <title>v0.6.0</title>
+      <link>https://tmtm.github.io/hanami-guides/upgrade-notes/v060/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/upgrade-notes/v060/</guid>
+      <description>Add SERVE_STATIC_ASSETS=&amp;quot;true&amp;quot; to .env.development and .env.test in order to serve static assets locally.
+ Add require &#39;hanami/rake_tasks&#39; to Rakefile in order to enable :preload and :environment Rake tasks
+ Rename default_format into default_request_format for all the applications (eg. apps/web/application.rb)
+ Delete all serve_assets occurrences from all the applications (eg. apps/web/application.rb)
+ Create public/ directory at the root of the project (if not already existing)
+ Add public/assets* to .gitignore</description>
+    </item>
+    
+    <item>
+      <title>v0.7.0</title>
+      <link>https://tmtm.github.io/hanami-guides/upgrade-notes/v070/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/upgrade-notes/v070/</guid>
+      <description>Rename all the gems in your Gemfile from lotus to hanami
+ Rename .lotusrc into .hanamirc
+ Find and replace in project: lotus =&amp;gt; hanami
+ Find and replace in project: Lotus =&amp;gt; Hanami
+ Find and replace in project: LOTUS =&amp;gt; HANAMI
+ Rename the environment variable on your server from LOTUS_ENV to HANAMI_ENV
+  If you have any problem, don&amp;rsquo;t hesitate to look for help in chat.</description>
+    </item>
+    
+    <item>
+      <title>v0.8.0</title>
+      <link>https://tmtm.github.io/hanami-guides/upgrade-notes/v080/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/upgrade-notes/v080/</guid>
+      <description>Use Ruby 2.2+
+ Edit your Gemfile, by changing Hanami version: gem &#39;hanami&#39;, &#39;~&amp;gt; 0.8&#39;.
+ Create a group :development in Gemfile and add gem &#39;shotgun&#39;
+ Create a group :development, :test in Gemfile and add gem &#39;dotenv&#39;, &#39;~&amp;gt; 2.0&#39;
+ Edit .hanamirc by adding a new key project. The value must be the snake_case name of the project. Eg. project=active_citizens.
+ Edit .env.* files and change env variables from &amp;lt;PROJECT&amp;gt;_DATABASE_URL to DATABASE_URL.</description>
+    </item>
+    
+    <item>
+      <title>v0.9.0</title>
+      <link>https://tmtm.github.io/hanami-guides/upgrade-notes/v090/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/upgrade-notes/v090/</guid>
+      <description>Use Ruby 2.3+
+ Edit Gemfile, by changing Hanami version: gem &#39;hanami&#39;, &#39;~&amp;gt; 0.9&#39;
+ Edit Gemfile, by changing Hanami Model version: gem &#39;hanami-model&#39;, &#39;~&amp;gt; 0.7&#39;
+ Edit config/environment.rb as shown below
+ Edit lib/bookshelf.rb as shown below
+ Edit spec/spec_helper.rb, by replacing Hanami::Application.preload! with Hanami.boot
+ Edit spec/spec_helper.rb, by adding Hanami::Utils.require!(&amp;quot;spec/support&amp;quot;) (optional)
+ Edit spec/features_helper.rb, by replacing Capybara.app = Hanami::Container.new with Capybara.app = Hanami.app
+ Edit config.ru, by replacing run Hanami::Container.</description>
+    </item>
+    
+    <item>
+      <title>v1.0.0</title>
+      <link>https://tmtm.github.io/hanami-guides/upgrade-notes/v100/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/upgrade-notes/v100/</guid>
+      <description>Edit Gemfile, by changing Hanami version: gem &#39;hanami&#39;, &#39;~&amp;gt; 1.0&#39;
+ Edit Gemfile, by changing Hanami Model version: gem &#39;hanami-model&#39;, &#39;~&amp;gt; 1.0&#39;
+ Edit Gemfile, by removing Bundler: gem &#39;bundler&#39; can be deleted
+ Add config/boot.rb as shown below
+ Edit config/environment.rb as shown below
+ Edit lib/bookshelf.rb as shown below
+ Edit all the applications to remove the logger settings. Eg. apps/web/application.rb
+ Edit the project using Hanami.</description>
+    </item>
+    
+    <item>
+      <title>v1.1.0</title>
+      <link>https://tmtm.github.io/hanami-guides/upgrade-notes/v110/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/upgrade-notes/v110/</guid>
+      <description>Edit Gemfile, by changing Hanami version: gem &#39;hanami&#39;, &#39;~&amp;gt; 1.1&#39;
+ Edit Gemfile, by changing Hanami Model version: gem &#39;hanami-model&#39;, &#39;~&amp;gt; 1.1&#39;
+ Run bundle update hanami hanami-model
+  If you have any problem, don&amp;rsquo;t hesitate to look for help in chat.</description>
+    </item>
+    
+    <item>
+      <title>v1.2.0</title>
+      <link>https://tmtm.github.io/hanami-guides/upgrade-notes/v120/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/upgrade-notes/v120/</guid>
+      <description>Edit Gemfile, by changing Hanami version: gem &#39;hanami&#39;, &#39;~&amp;gt; 1.2&#39;
+ Edit Gemfile, by changing Hanami Model version: gem &#39;hanami-model&#39;, &#39;~&amp;gt; 1.2&#39;
+ Run bundle update hanami hanami-model
+  If you have any problem, don&amp;rsquo;t hesitate to look for help in chat.</description>
+    </item>
+    
+    <item>
+      <title>v1.3.0</title>
+      <link>https://tmtm.github.io/hanami-guides/upgrade-notes/v130/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/upgrade-notes/v130/</guid>
+      <description>Edit Gemfile, by changing Hanami version: gem &#39;hanami&#39;, &#39;~&amp;gt; 1.3&#39;
+ Edit Gemfile, by changing Hanami Model version: gem &#39;hanami-model&#39;, &#39;~&amp;gt; 1.3&#39;
+ [DEPRECATION] Remove force_ssl from apps/*/application.rb in favor of web server rules (e.g. NGINX) or rack-ssl-enforcer.
+  # config/environment.rb require &amp;#34;rack/ssl-enforcer&amp;#34; Hanami.configure do # ... middleware.use Rack::SslEnforcer end  [DEPRECATION] Remove body_parsers from apps/*/application.rb in favor of a new Hanami middleware:  # config/environment.rb require &amp;#34;hanami/middleware/body_parser&amp;#34; Hanami.</description>
+    </item>
+    
+    <item>
+      <title>はじめに</title>
+      <link>https://tmtm.github.io/hanami-guides/introduction/getting-started/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/introduction/getting-started/</guid>
+      <description>こんにちは。あなたがこのページを見ているということはおそらくHanamiについてもっと学びたいということでしょう。 すばらしい。おめでとう！ メンテ可能でセキュアで高速でテスト可能なWebアプリケーションを構築する新しい方法を探しているのであれば大丈夫です。 Hanamiはあなたのような人のために作られています。 あなたが完全な初心者であろうと経験豊富な開発者であろうとこの学習プロセスは難しいことを警告します。 時間が経つにつれて、私たちは物事がどうあるべきかについての期待を築き、それを変えるのは苦痛になる可能性があります。 しかし、変化がなければ、挑戦はありません。そして挑戦がなければ、成長はありません。 機能が正しく見えないことがあっても、それはあなたが正しくないということではありません。 それは、形成された習慣、設計上の誤り、またはバグである可能性があります。 私とコミュニティは、Hanamiを良くするために毎日最善の努力を払っています。 このガイドでは、最初のHanamiプロジェクトをセットアップし、簡単な本棚Webアプリケーションを作成します。 テストによって導かれる、Hanamiフレームワークのすべての主要コンポーネントに触れます。 あなたが孤独を感じている、または欲求不満を感じているなら、あきらめないで、私たちのチャットに飛び乗って助けを求めてください。 あなたと話をすることでより幸せになる人がいるでしょう。 エンジョイ
+Luca Guidi
+Hanami作者 
+
+前提条件 始める前に、離れていくつかの前提条件を見てみましょう。 まず、Webアプリケーション開発の基本的な知識を想定しています。
+またBundler, Rake, 端末の操作, および Model, View, Controllerパラダイムを使用したアプリケーションの作成にも精通している必要があります。
+最後に、このガイドではSQLiteデータベースを使います。 先に進む場合は、Ruby 2.3以降とSQLite 3以降がシステムにインストールされていることを確認してください。
+新しいHanamiプロジェクトの作成 新しいHanamiプロジェクトを作成するには、RubygemsからHanami gemをインストールする必要があります。 それから、新しいhanami実行ファイルを使って新しいプロジェクトを生成することができます:
+$ gem install hanami $ hanami new bookshelf デフォルトでは、プロジェクトはSQLiteデータベースを使用するように設定されます。実際のプロジェクトでは、エンジンを指定できます:  $ hanami new bookshelf --database=postgres  これにより、現在の場所に新しいディレクトリbookshelfが作成されます。 内容を見てみましょう:
+$ cd bookshelf $ tree -L 1 . ├── Gemfile ├── README.md ├── Rakefile ├── apps ├── config ├── config.</description>
+    </item>
+    
+    <item>
+      <title>インタラクター</title>
+      <link>https://tmtm.github.io/hanami-guides/architecture/interactors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/architecture/interactors/</guid>
+      <description>概要 Hanamiはあなたのコードを組織化するためのオプションのツールを提供します。
+これらは インタラクター で、 サービスオブジェクト 、 ユースケース 、 オペレーション とも呼ばれます。
+私たちはそれらが素晴らしくて複雑さを管理するのを助けると思いますが、あなたがそれらなしでHanamiのアプリを作るのは自由です。
+このガイドでは、Hanamiのインタラクターが既存のアプリケーションに小さな機能を追加することによってどのように機能するかを説明します。
+これから作業する既存のアプリケーションは、 入門ガイドのbookshelfアプリケーションです。
+新機能: Eメール通知 私たちの新機能のストーリー: &amp;gt; 管理者として、書籍が追加されたときにEメール通知を受け取りたい
+アプリケーションには認証がないため、だれでも新しい書籍を追加できます。 環境変数で管理者のメールアドレスを提供します。
+これはインタラクターをいつ使うべきか、そして特にHanami::Interactorをどのように使うことができるかを示すほんの一例です。
+この例は、新しい書籍本が投稿される前に管理者による承認を追加したり、 ユーザーが電子メールアドレスを入力してから特別なリンクを介してその書籍を編集することを許可するなど、 他の機能の基礎を提供します。
+実際には、インタラクターを使用してWebから離れて抽象化された 任意のビジネスロジック を実装できます。 コードベースの複雑さを管理するために、一度に複数のことを行いたい場合に特に役立ちます。
+これは重要なビジネスロジックを分離するために使用されています。 これは単一責任原則に従います。
+Webアプリケーションでは、一般的にコントローラのアクションから呼び出されます。 これにより、懸念を分けることができます。 あなたのビジネスロジックオブジェクト、インタラクターは、ウェブについてまったく知りません。
+コールバック？ それは必要ありません！ Eメール通知を実装する簡単な方法は、コールバックを追加することです。
+つまり: データベースに新しいBookレコードが作成された後、Eメールが送信されます。
+設計上、Hanamiはそのようなメカニズムを提供していません。 これは、永続化コールバックをアンチパターンと見なしているためです。 それは単一責任の原則に違反しています。 この場合、それは永続化とEメール通知を不適切に混ぜ合わせます。
+テスト中(そしておそらく他でも)、あなたはそのコールバックをスキップしたくなるでしょう。 これはすぐに混乱します。同じイベントに対する複数のコールバックが特定の順序で発生するためです。 また、ある時点でいくつかのコールバックをスキップしたいと思うかもしれません。 それらはコードを理解しにくく、もろくします。
+代わりに、暗黙的よりも明示的であることをお勧めします。
+インタラクターは特定の ユースケース を表すオブジェクトです。
+それは各クラスに一つの責任を持たせます。 インタラクターの唯一の責任は、特定の結果を達成するためにオブジェクトとメソッド呼び出しを組み合わせることです。
+私たちはHanami::Interactorをモジュールとして提供しているので、 あなたは生の古いRubyオブジェクトから始め、 あなたがその機能のいくつかを必要とするときinclude Hanami::Interactorすることができます。
+コンセプト インタラクターの背後にある中心的な考え方は、機能の分離した部品を新しいクラスに抽出することです。
+2つのパブリックメソッドを書くだけです: #initializeと#call。
+これは、オブジェクトは簡単に推論できることを意味します。 オブジェクトが作成された後に呼び出すことができるメソッドが1つだけだからです。
+動作を単一のオブジェクトにカプセル化することで、テストが簡単になります。 暗黙のうちに表現されるだけで、複雑さを隠すのではなく、コードベースを理解しやすくします。
+準備 Getting Startedのbookshelfアプリケーションがあり、 「追加した書籍のEメール通知」機能を追加したいとしましょう。</description>
+    </item>
+    
+    <item>
+      <title>概要</title>
+      <link>https://tmtm.github.io/hanami-guides/architecture/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/architecture/overview/</guid>
+      <description>Hanami は2つの原則に基づいています: クリーンアーキテクチャ と Monolith First。
+クリーンアーキテクチャ このアーキテクチャの主な目的は、プロダクトのコアと配信メカニズムとの間で懸念を分離することです。 前者は私たちのプロダクトが実装するユースケースのセットで表現され、後者はこれらの機能を外の世界で利用できるようにするためのインターフェースです。
+新しいプロジェクトを生成すると、2つの重要なディレクトリが見つかります: lib/とapps/。 それらは上記の主要部分のホームです。
+アプリケーションコア どのように外部の世界に公開されるのかを心配することなく、一連の機能を実装します。 これが私たちのプロダクトの土台であり、私たちはそれに対する依存関係をどのように管理するかに注意を払いたいのです。
+Hanami::Modelは、私たちのRubyオブジェクトを永続化するためのデフォルトの選択です。 これは_ソフトな依存関係_です。Gemfileから削除して他のものに置き換えることができます。
+Hanami::Modelを使用するbookshelfという名前の新しく作られたプロジェクトに対してlib/ディレクトリがどのように表示されるかを見てみましょう。
+$ tree lib lib ├── bookshelf │ ├── entities │ ├── mailers │ │ └── templates │ └── repositories └── bookshelf.rb 5 directories, 1 file そのアイデアは私たちのアプリケーションをRuby gemのように開発することです。
+lib/bookshelf.rbファイルが私たちのアプリケーションの入り口になっています。このファイルが必要なときは、lib/下にあるすべてのコードを必要とし、初期化します。
+2つの重要なディレクトリがあります:
+ lib/bookshelf/entities lib/bookshelf/repositories  それらは私たちのモデルドメインの中核にあるRubyオブジェクトであるエンティティを含んでいます、そしてそれらはどんな永続化メカニズムも知りません。 この目的のために私たちは別の概念、リポジトリを持っています。それは私たちのエンティティと基礎となるデータベースの間の仲介者です。
+Bookというエンティティごとに、BookRepositoryを持つことができます。
+私たちはユースケースを実装するためにlib/bookshelf/interactorsのように望むだけ多くのディレクトリを追加することができます。
+配送メカニズム HanamiはWebという名前のデフォルトアプリケーションを生成します。これはapps/web下にあります。 このアプリケーションは、エンティティ、リポジトリ、およびそこで定義されている他のすべてのオブジェクトを使用するため、製品のコアに依存します。
+それは私たちの機能のために、Web配信メカニズムとして使用されています。
+$ tree apps/web apps/web ├── application.rb ├── assets │ ├── favicon.</description>
+    </item>
+    
+  </channel>
+</rss>

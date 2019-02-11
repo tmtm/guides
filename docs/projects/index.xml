@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/projects/</link>
+    <description>Recent content in Projects on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/projects/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Code Reloading</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/code-reloading/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/code-reloading/</guid>
+      <description>Code reloading allows us to edit code and see the changes with a browser refresh, without needing to stop and restart the server.
+Development Environment This is a development-only feature. Hanami uses shotgun Ruby gem to reload the code as-needed. New generated projects have this entry in their Gemfile:
+group :development do # Code reloading # See: http://hanamirb.org/guides/1.2/projects/code-reloading gem &amp;#39;shotgun&amp;#39; end Unfortunately, shotgun requires that the current environment supports fork(2).</description>
+    </item>
+    
+    <item>
+      <title>HTTP/2 Early Hints</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/http2-early-hints/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/http2-early-hints/</guid>
+      <description>A web page may link to external resources such as stylesheets, or images (assets). With HTTP/1.1 the browser parses the HTML and for each link, it downloads the asset and eventually take an action on it: renders an image or evaluate JavaScript code. With HTTP/2 introduced an enhancement: the server can proactively &amp;ldquo;push&amp;rdquo; in parallel both the HTML payload and the some assets to the browser. This workflow is allowed due to the HTTP/2 TCP connections are multiplexed.</description>
+    </item>
+    
+    <item>
+      <title>Initializers</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/initializers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/initializers/</guid>
+      <description>A project can optionally have one or more custom initializers.
+Initializers are optional An initializer is a Ruby file used to setup third-party libraries or some other aspect of the code.
+They are run as the last thing after the dependencies, the framework and the project code are loaded, but before the server or the console is started.
+For instance, if we want to setup Bugsnag for our project we can do:</description>
+    </item>
+    
+    <item>
+      <title>Logging</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/logging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/logging/</guid>
+      <description>Each project has a global logger available at Hanami.logger that can be used like this: Hanami.logger.debug &amp;quot;Hello&amp;quot;
+It can be configured in config/environment.rb
+# config/environment.rb # ... Hanami.configure do # ... environment :development do logger level: :info end environment :production do logger level: :info, formatter: :json # ... end end By default it uses standard output because it&amp;rsquo;s a best practice that most hosting SaaS companies suggest using.
+If you want to use a file, pass stream: &#39;path/to/file.</description>
+    </item>
+    
+    <item>
+      <title>Project Security</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/security/</guid>
+      <description>Modern web development has many challenges, and of those security is both very important and often under-emphasized.
+Hanami provides ways to secure from most common vulnerabilities. Security options can be configured in application.rb.
+X-Frame-Options X-Frame-Options is a HTTP header supported by modern browsers. It determines if a web page can or cannot be included via &amp;lt;frame&amp;gt; and &amp;lt;iframe&amp;gt; tags by untrusted domains.
+Web applications can send this header to prevent Clickjacking attacks:</description>
+    </item>
+    
+    <item>
+      <title>Rack Middleware</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/rack-middleware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/rack-middleware/</guid>
+      <description>Hanami exposes a project level Rack middleware stack to be configured like this:
+# config/environment.rb Hanami.configure do middleware.use MyRackMiddleware end It&amp;rsquo;s worth noticing that this is equivalent to add a middleware in config.ru file. The only difference is that third-party plugins can hook into Hanami.configure to inject their own middleware.</description>
+    </item>
+    
+    <item>
+      <title>Rake Tasks</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/rake/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/rake/</guid>
+      <description>Hanami ships with default Rake tasks that can be used as prerequisites by developers to build their own tasks.
+$ bundle exec rake -T rake environment # Load the full project rake test # Run tests (for Minitest) rake spec # Run tests (for RSpec) Environment Use this as a Rake task prerequisite when we need to access project code (eg. entities, actions, views, etc..)
+Example Imagine we want to build a Rake task that is able to access project code (eg.</description>
+    </item>
+    
+    <item>
+      <title>Selectively boot apps</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/selectively-boot-apps/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/selectively-boot-apps/</guid>
+      <description>With Hanami you can build your project by following the Monolith-First principle. As you add more code to the project, you can grow it organically, by splitting the project into several Hanami apps.
+A real world Hanami project could have dozens of Hanami apps in the same project (for example, web for the front-end, admin for the administration, api for a JSON API, etc&amp;hellip;) You might want to deploy them to different servers, even though they&amp;rsquo;re all a part of the same project.</description>
+    </item>
+    
+  </channel>
+</rss>

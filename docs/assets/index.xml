@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Assets on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/assets/</link>
+    <description>Recent content in Assets on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/assets/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Compressors</title>
+      <link>https://tmtm.github.io/hanami-guides/assets/compressors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/assets/compressors/</guid>
+      <description>Compressors Assets compression (aka minification) is a process to shrink the file size of a file in order to reduce the time that a browser needs to download it. Usually, it&amp;rsquo;s applied to javascripts and stylesheets.
+In order to set one of the following engines, we need to open apps/web/application.rb and write:
+# apps/web/application.rb module Web class Application &amp;lt; Hanami::Application configure do assets do javascript_compressor :builtin stylesheet_compressor :builtin # .</description>
+    </item>
+    
+    <item>
+      <title>Content Delivery Network (CDN)</title>
+      <link>https://tmtm.github.io/hanami-guides/assets/content-delivery-network/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/assets/content-delivery-network/</guid>
+      <description>Content Delivery Network (CDN) A Hanami application can serve assets from a Content Delivery Network (CDN). This feature is useful in production environment, where we want to speed up static assets serving.
+In order to take advantage of this feature, we need to specify CDN settings.
+# apps/web/application.rb module Web class Application &amp;lt; Hanami::Application # ... configure :production do scheme &amp;#39;https&amp;#39; host &amp;#39;bookshelf.org&amp;#39; port 443 assets do # ... fingerprint true # CDN settings scheme &amp;#39;https&amp;#39; host &amp;#39;123.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/assets/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/assets/overview/</guid>
+      <description>Hanami supports powerful features for web assets.
+Each application can have its own separated assets settings in application configuration.
+Compile Mode Toggle this value, to determine if the application must preprocess or copy assets from sources to public directory. It&amp;rsquo;s turned on by default in development and test environments, but turned off for production.
+# apps/web/application.rb module Web class Application &amp;lt; Hanami::Application configure do # ... assets do # compile true, enabled by default end end configure :production do assets do compile false end end end end Fingerprint Mode In order to force browsers to cache the right copy of an asset, during the deploy, Hanami creates a copy of each file by appending its checksum to the file name.</description>
+    </item>
+    
+    <item>
+      <title>Preprocessors</title>
+      <link>https://tmtm.github.io/hanami-guides/assets/preprocessors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/assets/preprocessors/</guid>
+      <description>Preprocessors Hanami is able to run assets preprocessors and lazily compile them under public/assets.
+Imagine to have application.css.scss in apps/web/assets/stylesheets and reset.css under apps/web/vendor/stylesheets.
+The extensions structure is important. The first one is mandatory and it&amp;rsquo;s used to understand which asset type we are handling: .css for stylesheets. The second one is optional and it&amp;rsquo;s for a preprocessor: .scss for Sass.
+For a given asset application.css.scss, the last extension (.</description>
+    </item>
+    
+    <item>
+      <title>Use Your Own Assets Management</title>
+      <link>https://tmtm.github.io/hanami-guides/assets/use-your-own-assets-management-tool/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/assets/use-your-own-assets-management-tool/</guid>
+      <description>Hanami tries to cover basic use cases for assets management: (pre)compilation, compression, fingerprinting, Content Delivery Network (CDN) with Subresource Integrity.
+If it still doesn&amp;rsquo;t fit your needs, you can use your own assets management tool such as Webpack.
+Deployment To do so, please organize the assets according to your assets management tool and don&amp;rsquo;t run bundle exec hanami assets precompile when deploying your project, but follow the instructions of your assets management software.</description>
+    </item>
+    
+  </channel>
+</rss>

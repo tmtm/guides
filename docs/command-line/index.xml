@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Command-lines on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/command-line/</link>
+    <description>Recent content in Command-lines on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/command-line/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Assets</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/assets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/assets/</guid>
+      <description>We can manage assets via the command line.
+Precompile This command is useful for deployment purposes.
+$ bundle exec hanami assets precompile The first step it precompiles and copies all the assets from all the applications and third party gems under public/assets/ directory.
+Then it compress all the javascripts and stylesheets, in order to save browsers bandwidth.
+As last thing, it generates a copy of each asset, by appending its checksum to the file name.</description>
+    </item>
+    
+    <item>
+      <title>Database</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/database/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/database/</guid>
+      <description>We can manage our database via the command line.
+The following commands can be only used with the SQL adapter and with the following databases: PostgreSQL, MySQL, SQLite3. The adapter is set in config/environment.rb. It uses an environment variable, defined in the .env.* files at the root of the project.
+Create With db create we can create the database for the current environment.
+$ bundle exec hanami db create To be able to run tests, test database has to be explicitly created</description>
+    </item>
+    
+    <item>
+      <title>Destroy</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/destroy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/destroy/</guid>
+      <description>Hanami has convenient code generators to speed up our development process. If we commit a mistake, we can destroy what we just generated via hanami destroy command.
+Applications With the Container architecture, we can have multiple Hanami applications running under apps/. We can generate new applications for different components that we want to add to our project.
+To destroy one of them:
+$ bundle exec hanami destroy app admin This removes an application named Admin under apps/admin.</description>
+    </item>
+    
+    <item>
+      <title>Generators</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/generators/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/generators/</guid>
+      <description>Hanami has convenient code generators to speed up our development process.
+Applications With Hanami architecture, we can have multiple Hanami applications running under apps/. The default application is called Web and lives under apps/web.
+We can generate new applications for different components that we want to add to our project.
+$ bundle exec hanami generate app admin This generates an application named Admin under apps/admin.
+Actions Generate an action along with the corresponding view, template, route and test code with one command.</description>
+    </item>
+    
+    <item>
+      <title>Plugins</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/plugins/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/plugins/</guid>
+      <description>Hanami has a convenient way to load commands from third party gems, so if you want to add a Hanami compatible gem, you only have to add it inside your project&amp;rsquo;s Gemfile in the :plugins group.
+# Gemfile group :plugins do gem &amp;#34;hanami-reloader&amp;#34; end Add a command Imagine you want to build a fictional gem called hanami-webpack with a CLI command: hanami webpack setup.
+# lib/hanami/webpack.rb module Hanami module Webpack module CLI class Setup &amp;lt; Hanami::CLI::Command def call(*) # setup code goes here.</description>
+    </item>
+    
+    <item>
+      <title>Project</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/project/</guid>
+      <description>Project We can generate a new project via hanami new, followed by the name that we want to use.
+$ hanami new bookshelf Database The default database engine is SQLite.
+We can use the --database argument to let Hanami to generate code for a specific database.
+It supports:
+ postgres postgresql sqlite (default) sqlite3 mysql mysql2  Testing Framework The default testing framework is Minitest.
+We can use the --test argument to specify a different framework, from the list below:</description>
+    </item>
+    
+    <item>
+      <title>Routes</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/routes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/routes/</guid>
+      <description> Routes In order to print the routes defined by all the applications, use:
+$ bundle exec hanami routes GET, HEAD / Web::Controllers::Home::Index books GET, HEAD /books Web::Controllers::Books::Index new_books GET, HEAD /books/new Web::Controllers::Books::New books POST /books Web::Controllers::Books::Create books GET, HEAD /books/:id Web::Controllers::Books::Show edit_books GET, HEAD /books/:id/edit Web::Controllers::Books::Edit books PATCH /books/:id Web::Controllers::Books::Update books DELETE /books/:id Web::Controllers::Books::Destroy new_account GET, HEAD /account/new Web::Controllers::Account::New account POST /account Web::Controllers::Account::Create account GET, HEAD /account Web::Controllers::Account::Show edit_account GET, HEAD /account/edit Web::Controllers::Account::Edit account PATCH /account Web::Controllers::Account::Update account DELETE /account Web::Controllers::Account::Destroy</description>
+    </item>
+    
+    <item>
+      <title>Version</title>
+      <link>https://tmtm.github.io/hanami-guides/command-line/version/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/command-line/version/</guid>
+      <description>Version By running hanami version we can see the current version of the framework that we are using.
+$ bundle exec hanami version v1.3.0 There are also --version and -v aliases.
+$ bundle exec hanami --version v1.3.0 $ bundle exec hanami -v v1.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Actions on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/actions/</link>
+    <description>Recent content in Actions on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/actions/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic Usage</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/basic-usage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/basic-usage/</guid>
+      <description>Requests Handling In the previous section, we generated an action. Now let&amp;rsquo;s use it.
+First, we check our routes:
+# apps/web/config/routes.rb get &amp;#39;/dashboard&amp;#39;, to: &amp;#39;dashboard#index&amp;#39; View Rendering Then we edit the corresponding template:
+# apps/web/templates/dashboard/index.html.erb &amp;lt;h1&amp;gt;Dashboard&amp;lt;/h1&amp;gt; Here is how Hanami handles an incoming request:
+ The router creates a new instance of Web::Controllers::Dashboard::Index and invokes #call. The application creates a new instance of Web::Views::Dashboard::Index and invokes #render. The application returns the response to the browser.</description>
+    </item>
+    
+    <item>
+      <title>Control Flow</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/control-flow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/control-flow/</guid>
+      <description>Callbacks If we want to execute some logic before and/or after #call is executed, we can use a callback. Callbacks are useful to declutter code for common tasks like checking if a user is signed in, set a record, handle 404 responses or tidy up the response.
+The corresponding DSL methods are before and after. These methods each accept a symbol that is the name of the method that we want to call, or an anonymous proc.</description>
+    </item>
+    
+    <item>
+      <title>Cookies</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/cookies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/cookies/</guid>
+      <description>Enable Cookies Hanami applies &amp;ldquo;batteries included, but not installed&amp;rdquo; philosophy. Cookies are a feature that is present but needs to be activated.
+In our application settings there is a line to uncomment.
+# apps/web/application.rb module Web class Application &amp;lt; Hanami::Application configure do # ... cookies true end end end From now on, cookies are automatically sent for each response.
+Settings With that configuration we can specify options that will be set for all cookies we send from our application.</description>
+    </item>
+    
+    <item>
+      <title>Exception Handling</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/exception-handling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/exception-handling/</guid>
+      <description>Actions have an elegant API for exception handling. The behavior changes according to the current Hanami environment and the custom settings in our configuration.
+Default Behavior # apps/web/controllers/dashboard/index.rb module Web module Controllers module Dashboard class Index include Web::Action def call(params) raise &amp;#39;boom&amp;#39; end end end end end Exceptions are automatically caught when in production mode, but not in development. In production, for our example, the application returns a 500 (Internal Server Error); in development, we&amp;rsquo;ll see the stack trace and all the information to debug the code.</description>
+    </item>
+    
+    <item>
+      <title>Exposures</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/exposures/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/exposures/</guid>
+      <description>For complex use cases we may want to pass data to views in order to present it to our users. Hanami puts emphasis on explicitness: data isn&amp;rsquo;t shared between the controller action and the view unless we tell it to do so.
+We use a simple and powerful mechanism to achieve our goal: exposures. Each exposure first looks for a method matching the given name. If no method is found, a getter is created with #attr_reader.</description>
+    </item>
+    
+    <item>
+      <title>HTTP Caching</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/http-caching/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/http-caching/</guid>
+      <description>We refer to HTTP caching as the set of techniques for HTTP/1.1 and implemented by browser vendors in order to make faster interactions with the server. There are a few headers that, if sent, will enable these HTTP caching mechanisms.
+Cache Control Actions offer a DSL to set a special header Cache-Control. The first argument is a cache response directive like :public or &amp;quot;must-revalidate&amp;quot;, while the second argument is a set of options like :max_age.</description>
+    </item>
+    
+    <item>
+      <title>MIME Types</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/mime-types/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/mime-types/</guid>
+      <description>Actions have advanced features for MIME Type detection, automatic headers, whitelisting etc..
+Request Introspection In order to understand what the requested MIME Type is, an action looks at the Accept request header and exposes a high level API: #format and #accept?.
+The first returns a symbol representation of the MIME Type (eg. :html, :json, :xml etc..), while the second is a query method that accepts a MIME type string and checks if it&amp;rsquo;s accepted by the current browser.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/overview/</guid>
+      <description>An action is an endpoint that handles incoming HTTP requests for a specific route. In a Hanami application, an action is an object, while a controller is a Ruby module that groups them.
+This design provides self contained actions that don&amp;rsquo;t share their context accidentally with other actions. It also prevents gigantic controllers. It has several advantages in terms of testability and control of an action.
+A Simple Action Hanami ships with a generator for actions.</description>
+    </item>
+    
+    <item>
+      <title>Parameters</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/parameters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/parameters/</guid>
+      <description>Parameters are taken from the Rack env and passed as an argument to #call. They are similar to a Ruby Hash, but they offer an expanded set of features.
+Sources Params can come from:
+ Router variables (eg. /books/:id) Query string (eg. /books?title=Hanami) Request body (eg. a POST request to /books)  Access To access the value of a param, we can use the subscriber operator #[].
+# apps/web/controllers/dashboard/index.rb module Web module Controllers module Dashboard class Index include Web::Action def call(params) self.</description>
+    </item>
+    
+    <item>
+      <title>Rack Integration</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/rack-integration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/rack-integration/</guid>
+      <description>Rack Environment Actions offer a high level API built on top of Rack. If we need to access raw data from Rack environment we can use params.env.
+Rack Middleware Hanami mounts a very thin default middleware stack. Additional components can be mounted globally, at the application level, or locally.
+Global Middleware If we need a component that wraps all the applications (under apps/), we can edit config.ru at the root of the project.</description>
+    </item>
+    
+    <item>
+      <title>Request &amp; Response</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/request-and-response/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/request-and-response/</guid>
+      <description>Request In order to access the metadata coming from a HTTP request, an action has a private object request that derives from Rack::Request. Here an example of some information that we can introspect.
+# apps/web/controllers/dashboard/index.rb module Web module Controllers module Dashboard class Index include Web::Action def call(params) puts request.path_info # =&amp;gt; &amp;#34;/dashboard&amp;#34; puts request.request_method # =&amp;gt; &amp;#34;GET&amp;#34; puts request.get? # =&amp;gt; true puts request.post? # =&amp;gt; false puts request.xhr? # =&amp;gt; false puts request.</description>
+    </item>
+    
+    <item>
+      <title>Sessions</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/sessions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/sessions/</guid>
+      <description>Enable Sessions Sessions are available in Hanami applications, but not enabled by default. If we want to turn on this feature, we just need to uncomment a line of code.
+# apps/web/application.rb module Web class Application &amp;lt; Hanami::Application configure do # ... sessions :cookie, secret: ENV[&amp;#39;WEB_SESSIONS_SECRET&amp;#39;] end end end The first argument is the name of the adapter for the session storage. The default value is :cookie, that uses Rack::Session::Cookie.</description>
+    </item>
+    
+    <item>
+      <title>Share Code</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/share-code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/share-code/</guid>
+      <description>Actions as objects have a lot of advantages but they make code sharing less intuitive. This section shares a few techniques to make this possible.
+Prepare In our settings (apps/web/application.rb), there is a code block that allows us to share the code for all the actions of our application. When an action includes the Web::Action module, that block code is yielded within the context of that class. This is heavily inspired by Ruby Module and its included hook.</description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://tmtm.github.io/hanami-guides/actions/testing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/actions/testing/</guid>
+      <description>Hanami pays a lot of attention to code testability and it offers advanced features to make our lives easier. The framework supports RSpec (default) and Minitest.
+Unit Tests First of all, actions can be unit tested. That means we can instantiate, exercise and verify expectations directly on actions instances.
+# spec/web/controllers/dashboard/index_spec.rb require_relative &amp;#39;../../../../apps/web/controllers/dashboard/index&amp;#39; RSpec.describe Web::Controllers::Dashboard::Index do let(:action) { Web::Controllers::Dashboard::Index.new } let(:params) { Hash[] } it &amp;#34;is successful&amp;#34; do response = action.</description>
+    </item>
+    
+  </channel>
+</rss>

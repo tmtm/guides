@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Migrations on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/migrations/</link>
+    <description>Recent content in Migrations on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/migrations/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Alter Table</title>
+      <link>https://tmtm.github.io/hanami-guides/migrations/alter-table/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/migrations/alter-table/</guid>
+      <description>Methods The following methods are available for table alterations:
+ #add_column (see #column for usage) #drop_column #rename_column (the first argument is the old name, while the second is the new name) #add_index (see #index for usage) #drop_index #add_primary_key (see #primary_key for usage) #add_foreign_key (see #foreign_key for usage) #add_constraint (see #constraint for usage) #drop_constraint (accepts the name of the constraint as argument) #add_unique_constraint #set_column_default (accepts the name of the column and the default value as comma separated args) #set_column_type (accepts the name of the column and the new type as comma separated args) #set_column_allow_null (accepts the name of the column) #set_column_not_null (accepts the name of the column)  Hanami::Model.</description>
+    </item>
+    
+    <item>
+      <title>Create Table</title>
+      <link>https://tmtm.github.io/hanami-guides/migrations/create-table/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/migrations/create-table/</guid>
+      <description>Create Table A table is defined via #create_table. This method accepts two arguments: the name and a block that expresses the design.
+Safe operation can be performed via #create_table?. It only creates the table if it doesn&amp;rsquo;t exist. Force operation can be performed via #create_table!. It drops the existing table and creates a new one from scratch. These operations shouldn&amp;rsquo;t be used in migrations.
+Column Definition To define a column we use #column, followed by the name, the type and options.</description>
+    </item>
+    
+    <item>
+      <title>Migrations</title>
+      <link>https://tmtm.github.io/hanami-guides/migrations/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/migrations/overview/</guid>
+      <description>Migrations are a feature that allows to manage database schema via Ruby. They come with some command line facilities that allow to perform database operations or to generate migrations.
+Migrations are only available if our application uses the SQL adapter.
+Anatomy Of A Migration Migrations are Ruby files stored by default under db/migrations. Their name is composed by a UTC timestamp and a snake case name (eg db/migrations/20150621165604_create_books.rb).
+Hanami::Model.migration do change do create_table :books do primary_key :id foreign_key :author_id, :authors, on_delete: :cascade, null: false column :code, String, null: false, unique: true, size: 128 column :title, String, null: false column :price, Integer, null: false, default: 100 # cents check { price &amp;gt; 0 } end end end We use a create_table block to define the schema of that table.</description>
+    </item>
+    
+  </channel>
+</rss>

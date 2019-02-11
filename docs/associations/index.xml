@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Associations on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/associations/</link>
+    <description>Recent content in Associations on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/associations/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Belongs To</title>
+      <link>https://tmtm.github.io/hanami-guides/associations/belongs-to/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/associations/belongs-to/</guid>
+      <description>Also known as many-to-one, is an association between a one of the entities (Book) associated to one parent entity (Author).
+Setup $ bundle exec hanami generate model author create lib/bookshelf/entities/author.rb create lib/bookshelf/repositories/author_repository.rb create db/migrations/20171024081558_create_authors.rb create spec/bookshelf/entities/author_spec.rb create spec/bookshelf/repositories/author_repository_spec.rb $ bundle exec hanami generate model book create lib/bookshelf/entities/book.rb create lib/bookshelf/repositories/book_repository.rb create db/migrations/20171024081617_create_books.rb create spec/bookshelf/entities/book_spec.rb create spec/bookshelf/repositories/book_repository_spec.rb Edit the migrations:
+# db/migrations/20171024081558_create_authors.rb Hanami::Model.migration do change do create_table :authors do primary_key :id column :name, String, null: false column :created_at, DateTime, null: false column :updated_at, DateTime, null: false end end end# db/migrations/20171024081617_create_books.</description>
+    </item>
+    
+    <item>
+      <title>Has Many</title>
+      <link>https://tmtm.github.io/hanami-guides/associations/has-many/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/associations/has-many/</guid>
+      <description>Also known as one-to-many, is an association between a single entity (Author) and a collection of many other linked entities (Book).
+Setup $ bundle exec hanami generate model author create lib/bookshelf/entities/author.rb create lib/bookshelf/repositories/author_repository.rb create db/migrations/20171024081558_create_authors.rb create spec/bookshelf/entities/author_spec.rb create spec/bookshelf/repositories/author_repository_spec.rb $ bundle exec hanami generate model book create lib/bookshelf/entities/book.rb create lib/bookshelf/repositories/book_repository.rb create db/migrations/20171024081617_create_books.rb create spec/bookshelf/entities/book_spec.rb create spec/bookshelf/repositories/book_repository_spec.rb Edit the migrations:
+# db/migrations/20171024081558_create_authors.rb Hanami::Model.migration do change do create_table :authors do primary_key :id column :name, String, null: false column :created_at, DateTime, null: false column :updated_at, DateTime, null: false end end end# db/migrations/20171024081617_create_books.</description>
+    </item>
+    
+    <item>
+      <title>Has Many Through</title>
+      <link>https://tmtm.github.io/hanami-guides/associations/has-many-through/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/associations/has-many-through/</guid>
+      <description>Also known as many-to-many, is an association between an entity (Story) and a collection of many entities (User), passing via an intermediate entity (Comment).
+Setup $ bundle exec hanami generate model user create lib/bookshelf/entities/user.rb create lib/bookshelf/repositories/user_repository.rb create db/migrations/20171024083639_create_users.rb create spec/bookshelf/entities/user_spec.rb create spec/bookshelf/repositories/user_repository_spec.rb $ bundle exec hanami generate model story create lib/bookshelf/entities/story.rb create lib/bookshelf/repositories/story_repository.rb create db/migrations/20171024085712_create_stories.rb create spec/bookshelf/entities/story_spec.rb create spec/bookshelf/repositories/story_repository_spec.rb $ bundle exec hanami generate model comment create lib/bookshelf/entities/comment.rb create lib/bookshelf/repositories/comment_repository.</description>
+    </item>
+    
+    <item>
+      <title>Has One</title>
+      <link>https://tmtm.github.io/hanami-guides/associations/has-one/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/associations/has-one/</guid>
+      <description>Also known as one-to-one, is an association between an entity (User) associated to one child entity (Avatar).
+Setup $ bundle exec hanami generate model user create lib/bookshelf/entities/user.rb create lib/bookshelf/repositories/user_repository.rb create db/migrations/20171024083639_create_users.rb create spec/bookshelf/entities/user_spec.rb create spec/bookshelf/repositories/user_repository_spec.rb $ bundle exec hanami generate model avatar create lib/bookshelf/entities/avatar.rb create lib/bookshelf/repositories/avatar_repository.rb create db/migrations/20171024083725_create_avatars.rb create spec/bookshelf/entities/avatar_spec.rb create spec/bookshelf/repositories/avatar_repository_spec.rb Edit the migrations:
+# db/migrations/20171024083639_create_users.rb Hanami::Model.migration do change do create_table :users do primary_key :id column :name, String, null: false column :created_at, DateTime, null: false column :updated_at, DateTime, null: false end end end# db/migrations/20171024083725_create_avatars.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/associations/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/associations/overview/</guid>
+      <description>An association is a logical relationship between two entities.
+As of the current version, Hanami supports associations as an experimental feature only for the SQL adapter. Because the association is made of data linked together in a database, we define associations in repositories.
+Explicit Interface When we declare an association, that repository does NOT get any extra method to its public interface. This because Hanami wants to prevent to bloat in repositories by adding methods that are often never used.</description>
+    </item>
+    
+  </channel>
+</rss>

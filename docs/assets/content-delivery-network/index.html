@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Assets: Content Delivery Network (CDN) | Hanami Guides" />
+
+    <meta property="og:url"          content="https://tmtm.github.io/hanami-guides/assets/content-delivery-network/" />
+    <meta property="og:type"         content="article" />
+    <meta property="og:locale"       content="en_US" />
+    <meta property="og:site_name"    content="Hanami Guides" />
+    <meta property="og:title"        content="Assets: Content Delivery Network (CDN) | Hanami Guides" />
+    <meta property="og:description"  content="Assets: Content Delivery Network (CDN) | Hanami Guides" />
+    <meta property="og:image"        content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
+    <meta property="og:image:type"   content="image/png" />
+    <meta property="og:image:width"  content="2968" />
+    <meta property="og:image:height" content="2968" />
+    <meta property="og:image:alt"    content="" />
+
+    <meta name="twitter:card"        content="summary" />
+    <meta name="twitter:site"        content="@hanamirb" />
+    <meta name="twitter:creator"     content="@hanamirb" />
+    <meta name="twitter:title"       content="Assets: Content Delivery Network (CDN) | Hanami Guides" />
+    <meta name="twitter:description" content="Assets: Content Delivery Network (CDN) | Hanami Guides" />
+    <meta name="twitter:image"       content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
+
+    <title>Assets: Content Delivery Network (CDN) | Hanami Guides</title>
+
+    <meta name="author" content="Hanami team">
+    <meta name="keywords" content="hanami,hanamirb,hanami guides,documentation,lotus,lotusrb,web,framework,ruby,open source,oss,os,software,free,free software,architecture,fast,lightweight,testing,tdd,bdd,test driven development,behaviour driven development,full stack,mvc,model view object,pattern,patterns,design patterns,oop,object oriented programming,testability,http,https,routing,router,http router,restful,resource,resources,convention,controller,models,repository,query,sql,interactors,two-step view,view,template,presenters,render,rendering,helpers,erb,haml,tilt,json,xml,yaml,yml,framwork,framewrok,riby,free sowftare" />
+    
+    <link rel="shortcut icon" href="/hanami-guides/assets/img/brand/favicon.ico">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    
+    <link href="/hanami-guides/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+    <link href="/hanami-guides/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link type="text/css" href="/hanami-guides/assets/css/argon.css?v=1.0.1" rel="stylesheet">
+    
+    <link type="text/css" href="/hanami-guides/assets/css/docs.min.css" rel="stylesheet">
+    
+    <link type="text/css" href="/hanami-guides/assets/css/theme.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+  </head>
+  <body data-spy="scroll" data-target="#secondary-navigation" data-offset="50">
+    <header class="navbar navbar-expand navbar-dark flex-row align-items-md-center ct-navbar">
+      <a class="navbar-brand mr-0 mr-md-2" href="/hanami-guides/" aria-label="Bootstrap">
+      <img src="/hanami-guides/assets/img/brand/white.png" alt="Hanami guides logo">
+    </a>
+    <ul class="navbar-nav flex-row mr-auto ml-4 d-none d-md-flex">
+      <li class="nav-item">
+        <form>
+          <input type="text" placeholder="Search" class="form-control" id="search-input" />
+        </form>
+      </li>
+    </ul>
+    <div class="d-none d-sm-block ml-auto">
+      <ul class="navbar-nav ct-navbar-nav flex-row align-items-center">
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="http://hanamirb.org" target="_blank" title="Hanami website">
+            <i class="ni ni-world"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://github.com/hanami/guides/edit//content/assets/content-delivery-network.md" target="_blank" title="Edit this page">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://github.com/hanami/hanami" target="_blank" title="Star Hanami on GitHub">
+            <i class="fa fa-github"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://twitter.com/hanamirb" target="_blank" title="Follow Hanami on Twitter">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://www.facebook.com/hanamirb" target="_blank" title="Like Hanami on Facebook">
+            <i class="fa fa-facebook-square"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://www.instagram.com/hanamirb" target="_blank" title="Follow Hanami on Instagram">
+            <i class="fa fa-instagram"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="http://chat.hanamirb.org/" target="_blank" title="Hanami chat">
+            <i class="ni ni-chat-round"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://github.com/hanami/guides/releases" target="_blank" title="Download Hanami Guides for offline usage">
+            <i class="fa fa-cloud-download"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <span class="badge badge-pill badge-primary">v1.3.1</span>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+      <div class="col-12 col-md-3 col-xl-2 ct-sidebar">
+        <nav class="collapse ct-links" id="ct-docs-nav">
+          
+          <div class="ct-toc-item active">
+          
+          
+            <span class="ct-toc-link">Introduction</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/introduction/getting-started/">はじめに</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Architecture</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/architecture/overview/">概要</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/architecture/interactors/">インタラクター</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Projects</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/code-reloading/">Code Reloading</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/rake/">Rake Tasks</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/logging/">Logging</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/initializers/">Initializers</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/rack-middleware/">Rack Middleware</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/security/">Project Security</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/http2-early-hints/">HTTP/2 Early Hints</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/selectively-boot-apps/">Selectively boot apps</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Routing</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/restful-resources/">RESTful Resource(s)</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Actions</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/parameters/">Parameters</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/request-and-response/">Request &amp; Response</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/exposures/">Exposures</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/rack-integration/">Rack Integration</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/mime-types/">MIME Types</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/cookies/">Cookies</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/sessions/">Sessions</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/exception-handling/">Exception Handling</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/control-flow/">Control Flow</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/http-caching/">HTTP Caching</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/share-code/">Share Code</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Views</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/templates/">Templates</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/mime-types/">MIME Types</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/layouts/">Layouts</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/custom-error-pages/">Custom Error Pages</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/share-code/">Share Code</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Models</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/models/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/models/database-configuration/">Database Configuration</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/models/use-your-own-orm/">Use Your Own ORM</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Repositories</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/repositories/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/repositories/sql-queries/">SQL Queries</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/repositories/postgresql/">PostgreSQL</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Entities</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/entities/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/entities/custom-schema/">Custom Schema</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/entities/data-types/">Data Types</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Associations</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/has-many/">Has Many</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/belongs-to/">Belongs To</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/has-one/">Has One</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/has-many-through/">Has Many Through</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Migrations</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/migrations/overview/">Migrations</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/migrations/create-table/">Create Table</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/migrations/alter-table/">Alter Table</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Validations</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/boolean-logic/">Boolean Logic</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/custom-predicates/">Custom Predicates</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/advanced-usage/">Advanced Usage</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Helpers</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/html5/">HTML5</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/forms/">Forms</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/routing/">Routing</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/assets/">Assets</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/links/">Links</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/escape/">Markup Escape</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/numbers/">Numbers</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/custom-helpers/">Custom Helpers</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Mailers</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/templates/">Templates</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/delivery/">Delivery</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/share-code/">Share Code</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Assets</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/preprocessors/">Preprocessors</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/compressors/">Compressors</a>
+              </li>
+            
+              
+              <li class="active ct-sidenav-active">
+              
+                <a href="/hanami-guides/assets/content-delivery-network/">Content Delivery Network (CDN)</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/use-your-own-assets-management-tool/">Use Your Own Assets Management</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Command Line</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/project/">Project</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/generators/">Generators</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/destroy/">Destroy</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/database/">Database</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/assets/">Assets</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/routes/">Routes</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/version/">Version</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/plugins/">Plugins</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Upgrade Notes</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v060/">v0.6.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v070/">v0.7.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v080/">v0.8.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v090/">v0.9.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v100/">v1.0.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v110/">v1.1.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v120/">v1.2.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v130/">v1.3.0</a>
+              </li>
+            
+            </ul>
+          
+          </div>
+        </nav>
+      </div>
+      <div class="d-none d-xl-block col-xl-2 ct-toc">
+        <ul class="section-nav" id="secondary-navigation">
+        
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#content-delivery-network-cdn" class="nav-link">Content Delivery Network (CDN)</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#subresource-integrity" class="nav-link">Subresource Integrity</a>
+          </li>
+        
+        </ul>
+      </div>
+      <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 ct-content">
+        <div class="ct-page-title">
+          <h1 class="ct-title" id="content">Assets: Content Delivery Network (CDN)</h1>
+          <div class="avatar-group mt-3">
+          </div>
+        </div>
+        <hr>
+        
+
+<h2 id="content-delivery-network-cdn">Content Delivery Network (CDN)</h2>
+
+<p>A Hanami application can serve assets from a <a href="https://en.wikipedia.org/wiki/Content_delivery_network">Content Delivery Network</a> (CDN).
+This feature is useful in <em>production</em> environment, where we want to speed up static assets serving.</p>
+
+<p>In order to take advantage of this feature, we need to specify CDN settings.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># apps/web/application.rb</span>
+<span style="color:#00a8c8">module</span> <span style="color:#111">Web</span>
+  <span style="color:#00a8c8">class</span> <span style="color:#75af00">Application</span> <span style="color:#f92672">&lt;</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Application</span>
+    <span style="color:#75715e"># ...</span>
+    <span style="color:#111">configure</span> <span style="color:#d88200">:production</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">scheme</span> <span style="color:#d88200">&#39;https&#39;</span>
+      <span style="color:#111">host</span>   <span style="color:#d88200">&#39;bookshelf.org&#39;</span>
+      <span style="color:#111">port</span>   <span style="color:#ae81ff">443</span>
+
+      <span style="color:#111">assets</span> <span style="color:#00a8c8">do</span>
+        <span style="color:#75715e"># ...</span>
+        <span style="color:#111">fingerprint</span> <span style="color:#00a8c8">true</span>
+
+        <span style="color:#75715e"># CDN settings</span>
+        <span style="color:#111">scheme</span> <span style="color:#d88200">&#39;https&#39;</span>
+        <span style="color:#111">host</span>   <span style="color:#d88200">&#39;123.cloudfront.net&#39;</span>
+        <span style="color:#111">port</span>   <span style="color:#ae81ff">443</span>
+      <span style="color:#00a8c8">end</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>Once <em>CDN mode</em> is on, all the <a href="/helpers/assets">asset helpers</a> will return <strong>absolute URLs</strong>.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= stylesheet &#39;application&#39; %&gt;</code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#111">&lt;</span><span style="color:#f92672">link</span> <span style="color:#75af00">href</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;https://123.cloudfront.net/assets/application-9ab4d1f57027f0d40738ab8ab70aba86.css&#34;</span> <span style="color:#75af00">type</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;text/css&#34;</span> <span style="color:#75af00">rel</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;stylesheet&#34;</span><span style="color:#111">&gt;</span></code></pre></div>
+<h2 id="subresource-integrity">Subresource Integrity</h2>
+
+<p>A CDN can dramatically improve page speed, but it can potentially open a security breach.
+If the CDN that we&rsquo;re using is compromised and serves evil javascript or stylesheet files, we&rsquo;re exposing our users to security attacks like Cross Site Scripting (XSS).</p>
+
+<p>To solve this problem, browsers vendors introduced a defense called <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a>.</p>
+
+<p>When enabled, the browser verifies that the checksum of the downloaded file, matches with the declared one.</p>
+
+<h3 id="from-a-cdn">From A CDN</h3>
+
+<p>If we&rsquo;re using jQuery from their CDN, we should find the checksum of the <code>.js</code> file on their website and write:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= javascript &#39;https://code.jquery.com/jquery-3.1.0.min.js&#39;, integrity: &#39;sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=&#39; %&gt;</code></pre></div>
+<p>The output will be:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#111">&lt;</span><span style="color:#f92672">script</span> <span style="color:#75af00">integrity</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=&#34;</span> <span style="color:#75af00">src</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;https://code.jquery.com/jquery-3.1.0.min.js&#34;</span> <span style="color:#75af00">type</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;text/javascript&#34;</span> <span style="color:#75af00">crossorigin</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;anonymous&#34;</span><span style="color:#111">&gt;&lt;/</span><span style="color:#f92672">script</span><span style="color:#111">&gt;</span></code></pre></div>
+<h3 id="content-security-policy-csp">Content Security Policy (CSP)</h3>
+
+<p>By default, Hanami sets a Content-Security-Policy header which does not allow for the execution of external JavaScript code.</p>
+
+<p>Let&rsquo;s say we want to use <a href="https://getbootstrap.com/">Bootstrap</a> in our <code>web</code> application, we have to explicitly allow for the use of the relevant CDNs in <code>app/web/application.rb</code> by appending them in the <code>script-src</code> field:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">      <span style="color:#111">security</span><span style="color:#f92672">.</span><span style="color:#111">content_security_policy</span> <span style="color:#d88200">%{
+</span><span style="color:#d88200">        …
+</span><span style="color:#d88200">        script-src &#39;self&#39; \
+</span><span style="color:#d88200">                   https://code.jquery.com \
+</span><span style="color:#d88200">                   https://cdnjs.cloudflare.com \
+</span><span style="color:#d88200">                   https://maxcdn.bootstrapcdn.com;
+</span><span style="color:#d88200">        …
+</span><span style="color:#d88200">      }</span></code></pre></div>
+<p>Read more about the CSP header in the <a href="/guides/1.2/projects/security/#content-security-policy">security guide</a>.</p>
+
+<h3 id="local-assets">Local Assets</h3>
+
+<p>The security problem described above doesn&rsquo;t concern only CDNs, but local files too.
+Imagine we have a compromised file system and someone was able to replace our javascripts with evil files: we would be vulnerable to the same kind of attack.</p>
+
+<p>As a defense against this security problem, Hanami <strong>enables Subresource Integrity by default in production.</strong>
+When we <a href="/guides/1.2/command-line/assets">precompile assets</a> at deploy time, Hanami calculates the checksum of all our assets and it adds a special HTML attribute <code>integrity</code> to our asset tags like <code>&lt;script&gt;</code>.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= javascript &#39;application&#39; %&gt;</code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#111">&lt;</span><span style="color:#f92672">script</span> <span style="color:#75af00">src</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;/assets/application-92cab02f6d2d51253880cd98d91f1d0e.js&#34;</span> <span style="color:#75af00">type</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;text/javascript&#34;</span> <span style="color:#75af00">integrity</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;sha256-WB2pRuy8LdgAZ0aiFxLN8DdfRjKJTc4P4xuEw31iilM=&#34;</span> <span style="color:#75af00">crossorigin</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;anonymous&#34;</span><span style="color:#111">&gt;&lt;/</span><span style="color:#f92672">script</span><span style="color:#111">&gt;</span></code></pre></div>
+<h3 id="settings">Settings</h3>
+
+<p>To turn off this feature, or to configure it, please have a look at the <code>production</code> block in <code>apps/web/application.rb</code></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#00a8c8">module</span> <span style="color:#111">Web</span>
+  <span style="color:#00a8c8">class</span> <span style="color:#75af00">Application</span> <span style="color:#f92672">&lt;</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Application</span>
+    <span style="color:#111">configure</span> <span style="color:#d88200">:production</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">assets</span> <span style="color:#00a8c8">do</span>
+        <span style="color:#75715e"># ...</span>
+        <span style="color:#111">subresource_integrity</span> <span style="color:#d88200">:sha256</span>
+      <span style="color:#00a8c8">end</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>By removing or commenting that line, the feature is turned off.</p>
+
+<p>We can choose one or more checksum algorithms:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">subresource_integrity</span> <span style="color:#d88200">:sha256</span><span style="color:#111">,</span> <span style="color:#d88200">:sha512</span></code></pre></div>
+<p>With this setting, Hanami will render <code>integrity</code> HTML attribute with two values: one for <code>SHA256</code> and one for <code>SHA512</code>.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#111">&lt;</span><span style="color:#f92672">script</span> <span style="color:#75af00">src</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;/assets/application-92cab02f6d2d51253880cd98d91f1d0e.js&#34;</span> <span style="color:#75af00">type</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;text/javascript&#34;</span> <span style="color:#75af00">integrity</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;sha256-WB2pRuy8LdgAZ0aiFxLN8DdfRjKJTc4P4xuEw31iilM= sha512-4gegSER1uqxBvmlb/O9CJypUpRWR49SniwUjOcK2jifCRjFptwGKplFWGlGJ1yms+nSlkjpNCS/Lk9GoKI1Kew==&#34;</span> <span style="color:#75af00">crossorigin</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;anonymous&#34;</span><span style="color:#111">&gt;&lt;/</span><span style="color:#f92672">script</span><span style="color:#111">&gt;</span></code></pre></div>
+<p><strong>Please note</strong> that checksum calculations are CPU intensive, so adding an additional <code>subresource_integrity</code> scheme will extend the time it takes to <em>precompile assests</em>, and therefore deploy. We suggest leaving the default setting (<code>:sha256</code>).</p>
+<hr>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              
+              <a href="/hanami-guides/assets/compressors/">
+                <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
+                  <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+                  <span class="btn-inner--text">Assets: Compressors</span>
+                </button>
+              </a>
+              
+            </div>
+            <div class="col text-align-right">
+              
+              <a href="/hanami-guides/assets/use-your-own-assets-management-tool/">
+                <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
+                  <span class="btn-inner--text">Assets: Use Your Own Assets Management</span>
+                  <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
+                </button>
+              </a>
+              
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  
+  <script src="/hanami-guides/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/popper/popper.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/headroom/headroom.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/clipboard/clipboard.min.js"></script>
+  
+  <script src="/hanami-guides/assets/js/argon.js?v=1.0.1"></script>
+  <script src="/hanami-guides/assets/js/theme.js"></script>
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script type="text/javascript"> docsearch({
+    apiKey: '69274449268769eb3878f6a13dd112f9',
+    indexName: 'hanamirb_guides',
+    inputSelector: '#search-input',
+    debug: false 
+  });
+  </script>
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-41951932-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+  </body>
+</html>

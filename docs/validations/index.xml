@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Validations on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/validations/</link>
+    <description>Recent content in Validations on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/validations/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Advanced Usage</title>
+      <link>https://tmtm.github.io/hanami-guides/validations/advanced-usage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/validations/advanced-usage/</guid>
+      <description>Required and Optional keys HTML forms can have required or optional fields. We can express this concept with two methods in our validations: required (which we already met in previous examples), and optional.
+require &amp;#39;hanami/validations&amp;#39; class Signup include Hanami::Validations validations do required(:email) { ... } optional(:referral) { ... } end end Type Safety At this point, we need to explicitly tell something really important about built-in predicates. Each of them have expectations about the methods that an input is able to respond to.</description>
+    </item>
+    
+    <item>
+      <title>Boolean Logic</title>
+      <link>https://tmtm.github.io/hanami-guides/validations/boolean-logic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/validations/boolean-logic/</guid>
+      <description>When we check data, we expect only two outcomes: an input can be valid or not. No grey areas, nor fuzzy results. It’s white or black, 1 or 0, true or false and boolean logic is the perfect tool to express these two states. Indeed, a Ruby boolean expression can only return true or false.
+To better recognise the pattern, let’s get back to the example above. This time we will map the natural language rules with programming language rules.</description>
+    </item>
+    
+    <item>
+      <title>Custom Predicates</title>
+      <link>https://tmtm.github.io/hanami-guides/validations/custom-predicates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/validations/custom-predicates/</guid>
+      <description>We have seen that built-in predicates as an expressive tool to get our job done with common use cases.
+But what if our case is not common? We can define our own custom predicates.
+Inline Custom Predicates If we are facing a really unique validation that don&amp;rsquo;t need to be reused across our code, we can opt for an inline custom predicate:
+require &amp;#39;hanami/validations&amp;#39; class Signup include Hanami::Validations predicate :url?</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://tmtm.github.io/hanami-guides/validations/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/validations/overview/</guid>
+      <description>Hanami::Validations is a mixin that, once included by an object, adds lightweight set of validations to it.
+It works with input hashes and lets us to define a set of validation rules for each key/value pair. These rules are wrapped by lambdas (or special DSL) that check the input for a specific key to determine if it&amp;rsquo;s valid or not. To do that, we translate business requirements into predicates that are chained together with Ruby faux boolean logic operators (eg.</description>
+    </item>
+    
+  </channel>
+</rss>

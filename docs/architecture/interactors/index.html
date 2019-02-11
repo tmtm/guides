@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Architecture: インタラクター | Hanami Guides" />
+
+    <meta property="og:url"          content="https://tmtm.github.io/hanami-guides/architecture/interactors/" />
+    <meta property="og:type"         content="article" />
+    <meta property="og:locale"       content="en_US" />
+    <meta property="og:site_name"    content="Hanami Guides" />
+    <meta property="og:title"        content="Architecture: インタラクター | Hanami Guides" />
+    <meta property="og:description"  content="Architecture: インタラクター | Hanami Guides" />
+    <meta property="og:image"        content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
+    <meta property="og:image:type"   content="image/png" />
+    <meta property="og:image:width"  content="2968" />
+    <meta property="og:image:height" content="2968" />
+    <meta property="og:image:alt"    content="" />
+
+    <meta name="twitter:card"        content="summary" />
+    <meta name="twitter:site"        content="@hanamirb" />
+    <meta name="twitter:creator"     content="@hanamirb" />
+    <meta name="twitter:title"       content="Architecture: インタラクター | Hanami Guides" />
+    <meta name="twitter:description" content="Architecture: インタラクター | Hanami Guides" />
+    <meta name="twitter:image"       content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
+
+    <title>Architecture: インタラクター | Hanami Guides</title>
+
+    <meta name="author" content="Hanami team">
+    <meta name="keywords" content="hanami,hanamirb,hanami guides,documentation,lotus,lotusrb,web,framework,ruby,open source,oss,os,software,free,free software,architecture,fast,lightweight,testing,tdd,bdd,test driven development,behaviour driven development,full stack,mvc,model view object,pattern,patterns,design patterns,oop,object oriented programming,testability,http,https,routing,router,http router,restful,resource,resources,convention,controller,models,repository,query,sql,interactors,two-step view,view,template,presenters,render,rendering,helpers,erb,haml,tilt,json,xml,yaml,yml,framwork,framewrok,riby,free sowftare" />
+    
+    <link rel="shortcut icon" href="/hanami-guides/assets/img/brand/favicon.ico">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    
+    <link href="/hanami-guides/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+    <link href="/hanami-guides/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link type="text/css" href="/hanami-guides/assets/css/argon.css?v=1.0.1" rel="stylesheet">
+    
+    <link type="text/css" href="/hanami-guides/assets/css/docs.min.css" rel="stylesheet">
+    
+    <link type="text/css" href="/hanami-guides/assets/css/theme.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+  </head>
+  <body data-spy="scroll" data-target="#secondary-navigation" data-offset="50">
+    <header class="navbar navbar-expand navbar-dark flex-row align-items-md-center ct-navbar">
+      <a class="navbar-brand mr-0 mr-md-2" href="/hanami-guides/" aria-label="Bootstrap">
+      <img src="/hanami-guides/assets/img/brand/white.png" alt="Hanami guides logo">
+    </a>
+    <ul class="navbar-nav flex-row mr-auto ml-4 d-none d-md-flex">
+      <li class="nav-item">
+        <form>
+          <input type="text" placeholder="Search" class="form-control" id="search-input" />
+        </form>
+      </li>
+    </ul>
+    <div class="d-none d-sm-block ml-auto">
+      <ul class="navbar-nav ct-navbar-nav flex-row align-items-center">
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="http://hanamirb.org" target="_blank" title="Hanami website">
+            <i class="ni ni-world"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://github.com/hanami/guides/edit//content/architecture/interactors.md" target="_blank" title="Edit this page">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://github.com/hanami/hanami" target="_blank" title="Star Hanami on GitHub">
+            <i class="fa fa-github"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://twitter.com/hanamirb" target="_blank" title="Follow Hanami on Twitter">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://www.facebook.com/hanamirb" target="_blank" title="Like Hanami on Facebook">
+            <i class="fa fa-facebook-square"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://www.instagram.com/hanamirb" target="_blank" title="Follow Hanami on Instagram">
+            <i class="fa fa-instagram"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="http://chat.hanamirb.org/" target="_blank" title="Hanami chat">
+            <i class="ni ni-chat-round"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="https://github.com/hanami/guides/releases" target="_blank" title="Download Hanami Guides for offline usage">
+            <i class="fa fa-cloud-download"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <span class="badge badge-pill badge-primary">v1.3.1</span>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+      <div class="col-12 col-md-3 col-xl-2 ct-sidebar">
+        <nav class="collapse ct-links" id="ct-docs-nav">
+          
+          <div class="ct-toc-item active">
+          
+          
+            <span class="ct-toc-link">Introduction</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/introduction/getting-started/">はじめに</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Architecture</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/architecture/overview/">概要</a>
+              </li>
+            
+              
+              <li class="active ct-sidenav-active">
+              
+                <a href="/hanami-guides/architecture/interactors/">インタラクター</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Projects</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/code-reloading/">Code Reloading</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/rake/">Rake Tasks</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/logging/">Logging</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/initializers/">Initializers</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/rack-middleware/">Rack Middleware</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/security/">Project Security</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/http2-early-hints/">HTTP/2 Early Hints</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/projects/selectively-boot-apps/">Selectively boot apps</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Routing</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/restful-resources/">RESTful Resource(s)</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/routing/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Actions</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/parameters/">Parameters</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/request-and-response/">Request &amp; Response</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/exposures/">Exposures</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/rack-integration/">Rack Integration</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/mime-types/">MIME Types</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/cookies/">Cookies</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/sessions/">Sessions</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/exception-handling/">Exception Handling</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/control-flow/">Control Flow</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/http-caching/">HTTP Caching</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/share-code/">Share Code</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/actions/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Views</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/templates/">Templates</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/mime-types/">MIME Types</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/layouts/">Layouts</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/custom-error-pages/">Custom Error Pages</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/share-code/">Share Code</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/views/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Models</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/models/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/models/database-configuration/">Database Configuration</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/models/use-your-own-orm/">Use Your Own ORM</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Repositories</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/repositories/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/repositories/sql-queries/">SQL Queries</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/repositories/postgresql/">PostgreSQL</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Entities</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/entities/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/entities/custom-schema/">Custom Schema</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/entities/data-types/">Data Types</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Associations</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/has-many/">Has Many</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/belongs-to/">Belongs To</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/has-one/">Has One</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/associations/has-many-through/">Has Many Through</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Migrations</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/migrations/overview/">Migrations</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/migrations/create-table/">Create Table</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/migrations/alter-table/">Alter Table</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Validations</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/boolean-logic/">Boolean Logic</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/custom-predicates/">Custom Predicates</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/validations/advanced-usage/">Advanced Usage</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Helpers</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/html5/">HTML5</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/forms/">Forms</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/routing/">Routing</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/assets/">Assets</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/links/">Links</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/escape/">Markup Escape</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/numbers/">Numbers</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/helpers/custom-helpers/">Custom Helpers</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Mailers</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/basic-usage/">Basic Usage</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/templates/">Templates</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/delivery/">Delivery</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/share-code/">Share Code</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/mailers/testing/">Testing</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Assets</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/overview/">Overview</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/preprocessors/">Preprocessors</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/compressors/">Compressors</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/content-delivery-network/">Content Delivery Network (CDN)</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/assets/use-your-own-assets-management-tool/">Use Your Own Assets Management</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Command Line</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/project/">Project</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/generators/">Generators</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/destroy/">Destroy</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/database/">Database</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/assets/">Assets</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/routes/">Routes</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/version/">Version</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/command-line/plugins/">Plugins</a>
+              </li>
+            
+            </ul>
+          
+          
+            <span class="ct-toc-link">Upgrade Notes</span>
+            <ul class="nav ct-sidenav">
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v060/">v0.6.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v070/">v0.7.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v080/">v0.8.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v090/">v0.9.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v100/">v1.0.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v110/">v1.1.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v120/">v1.2.0</a>
+              </li>
+            
+              
+              <li>
+              
+                <a href="/hanami-guides/upgrade-notes/v130/">v1.3.0</a>
+              </li>
+            
+            </ul>
+          
+          </div>
+        </nav>
+      </div>
+      <div class="d-none d-xl-block col-xl-2 ct-toc">
+        <ul class="section-nav" id="secondary-navigation">
+        
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e6%a6%82%e8%a6%81" class="nav-link">概要</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e6%96%b0%e6%a9%9f%e8%83%bd-e%e3%83%a1%e3%83%bc%e3%83%ab%e9%80%9a%e7%9f%a5" class="nav-link">新機能: Eメール通知</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e3%82%b3%e3%83%bc%e3%83%ab%e3%83%90%e3%83%83%e3%82%af-%e3%81%9d%e3%82%8c%e3%81%af%e5%bf%85%e8%a6%81%e3%81%82%e3%82%8a%e3%81%be%e3%81%9b%e3%82%93" class="nav-link">コールバック？ それは必要ありません！</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e3%82%b3%e3%83%b3%e3%82%bb%e3%83%97%e3%83%88" class="nav-link">コンセプト</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e6%ba%96%e5%82%99" class="nav-link">準備</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e3%82%a4%e3%83%b3%e3%82%bf%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%81%ae%e4%bd%9c%e6%88%90" class="nav-link">インタラクターの作成</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e6%9b%b8%e7%b1%8d%e3%82%92%e4%bd%9c%e3%82%8b" class="nav-link">書籍を作る</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e6%9b%b8%e7%b1%8d%e3%82%92%e6%b0%b8%e7%b6%9a%e5%8c%96%e3%81%99%e3%82%8b" class="nav-link">書籍を永続化する</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e4%be%9d%e5%ad%98%e6%80%a7%e6%b3%a8%e5%85%a5" class="nav-link">依存性注入</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#e%e3%83%a1%e3%83%bc%e3%83%ab%e9%80%9a%e7%9f%a5" class="nav-link">Eメール通知</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e3%82%b3%e3%83%b3%e3%83%88%e3%83%ad%e3%83%bc%e3%83%a9%e3%81%a8%e3%81%ae%e7%b5%b1%e5%90%88" class="nav-link">コントローラとの統合</a>
+          </li>
+        
+          
+          
+          <li class="toc-entry toc-h2">
+            <a href="#%e3%82%a4%e3%83%b3%e3%82%bf%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e9%83%a8" class="nav-link">インタラクター部</a>
+          </li>
+        
+        </ul>
+      </div>
+      <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 ct-content">
+        <div class="ct-page-title">
+          <h1 class="ct-title" id="content">Architecture: インタラクター</h1>
+          <div class="avatar-group mt-3">
+          </div>
+        </div>
+        <hr>
+        
+
+<h2 id="概要">概要</h2>
+
+<p>Hanamiはあなたのコードを組織化するための<strong>オプションの</strong>ツールを提供します。</p>
+
+<p>これらは <em>インタラクター</em> で、 <em>サービスオブジェクト</em> 、 <em>ユースケース</em> 、 <em>オペレーション</em> とも呼ばれます。</p>
+
+<p>私たちはそれらが素晴らしくて複雑さを管理するのを助けると思いますが、あなたがそれらなしでHanamiのアプリを作るのは自由です。</p>
+
+<p>このガイドでは、Hanamiのインタラクターが既存のアプリケーションに小さな機能を追加することによってどのように機能するかを説明します。</p>
+
+<p>これから作業する既存のアプリケーションは、 <a href="/guides/getting-started">入門ガイド</a>の<code>bookshelf</code>アプリケーションです。</p>
+
+<h2 id="新機能-eメール通知">新機能: Eメール通知</h2>
+
+<p>私たちの新機能のストーリー:
+&gt; 管理者として、書籍が追加されたときにEメール通知を受け取りたい</p>
+
+<p>アプリケーションには認証がないため、だれでも新しい書籍を追加できます。
+環境変数で管理者のメールアドレスを提供します。</p>
+
+<p>これはインタラクターをいつ使うべきか、そして特に<code>Hanami::Interactor</code>をどのように使うことができるかを示すほんの一例です。</p>
+
+<p>この例は、新しい書籍本が投稿される前に管理者による承認を追加したり、
+ユーザーが電子メールアドレスを入力してから特別なリンクを介してその書籍を編集することを許可するなど、
+他の機能の基礎を提供します。</p>
+
+<p>実際には、インタラクターを使用してWebから離れて抽象化された <em>任意のビジネスロジック</em> を実装できます。
+コードベースの複雑さを管理するために、一度に複数のことを行いたい場合に特に役立ちます。</p>
+
+<p>これは重要なビジネスロジックを分離するために使用されています。
+これは<a href="https://en.wikipedia.org/wiki/Single_responsibility_principle">単一責任原則</a>に従います。</p>
+
+<p>Webアプリケーションでは、一般的にコントローラのアクションから呼び出されます。
+これにより、懸念を分けることができます。
+あなたのビジネスロジックオブジェクト、インタラクターは、ウェブについてまったく知りません。</p>
+
+<h2 id="コールバック-それは必要ありません">コールバック？ それは必要ありません！</h2>
+
+<p>Eメール通知を実装する簡単な方法は、コールバックを追加することです。</p>
+
+<p>つまり: データベースに新しい<code>Book</code>レコードが作成された後、Eメールが送信されます。</p>
+
+<p>設計上、Hanamiはそのようなメカニズムを提供していません。
+これは、永続化コールバックを<strong>アンチパターン</strong>と見なしているためです。
+それは単一責任の原則に違反しています。
+この場合、それは永続化とEメール通知を不適切に混ぜ合わせます。</p>
+
+<p>テスト中(そしておそらく他でも)、あなたはそのコールバックをスキップしたくなるでしょう。
+これはすぐに混乱します。同じイベントに対する複数のコールバックが特定の順序で発生するためです。
+また、ある時点でいくつかのコールバックをスキップしたいと思うかもしれません。
+それらはコードを理解しにくく、もろくします。</p>
+
+<p>代わりに、<strong>暗黙的よりも明示的</strong>であることをお勧めします。</p>
+
+<p>インタラクターは特定の <em>ユースケース</em> を表すオブジェクトです。</p>
+
+<p>それは各クラスに一つの責任を持たせます。
+インタラクターの唯一の責任は、特定の結果を達成するためにオブジェクトとメソッド呼び出しを組み合わせることです。</p>
+
+<p>私たちは<code>Hanami::Interactor</code>をモジュールとして提供しているので、
+あなたは生の古いRubyオブジェクトから始め、
+あなたがその機能のいくつかを必要とするとき<code>include Hanami::Interactor</code>することができます。</p>
+
+<h2 id="コンセプト">コンセプト</h2>
+
+<p>インタラクターの背後にある中心的な考え方は、機能の分離した部品を新しいクラスに抽出することです。</p>
+
+<p>2つのパブリックメソッドを書くだけです: <code>#initialize</code>と<code>#call</code>。</p>
+
+<p>これは、オブジェクトは簡単に推論できることを意味します。
+オブジェクトが作成された後に呼び出すことができるメソッドが1つだけだからです。</p>
+
+<p>動作を単一のオブジェクトにカプセル化することで、テストが簡単になります。
+暗黙のうちに表現されるだけで、複雑さを隠すのではなく、コードベースを理解しやすくします。</p>
+
+<h2 id="準備">準備</h2>
+
+<p><a href="/getting-started">Getting Started</a>の<code>bookshelf</code>アプリケーションがあり、
+「追加した書籍のEメール通知」機能を追加したいとしましょう。</p>
+
+<h2 id="インタラクターの作成">インタラクターの作成</h2>
+
+<p>インタラクター用のフォルダーとスペック用のフォルダーを作成しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ mkdir lib/bookshelf/interactors
+$ mkdir spec/bookshelf/interactors</code></pre></div>
+<p>それらはWebアプリケーションから切り離されているので、<code>lib/bookshelf</code>に入れました。
+後で、管理者ポータル、API、あるいはコマンドラインユーティリティを使って書籍を追加したいと思うかもしれません。</p>
+
+<p>私たちのインタラクターを<code>AddBook</code>と呼び、
+新しいスペック<code>spec/bookshelf/interactors/add_book_spec.rb</code>を書きましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/bookshelf/interactors/add_book_spec.rb</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#00a8c8">AddBook</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:interactor</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">AddBook</span><span style="color:#f92672">.</span><span style="color:#111">new</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:attributes</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">.</span><span style="color:#111">new</span> <span style="color:#111">}</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#34;succeeds&#34;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">result</span> <span style="color:#f92672">=</span> <span style="color:#111">interactor</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">attributes</span><span style="color:#111">)</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">successful?</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">be</span><span style="color:#111">(</span><span style="color:#00a8c8">true</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p><code>AddBook</code>クラスがないため、テストスイートを実行するとNameErrorが発生します。
+そのクラスを<code>lib/bookshelf/interactors/add_book.rb</code>ファイルに作成しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">require</span> <span style="color:#d88200">&#39;hanami/interactor&#39;</span>
+
+<span style="color:#00a8c8">class</span> <span style="color:#75af00">AddBook</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Interactor</span>
+
+  <span style="color:#00a8c8">def</span> <span style="color:#75af00">initialize</span>
+    <span style="color:#75715e"># set up the object</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#00a8c8">def</span> <span style="color:#75af00">call</span><span style="color:#111">(</span><span style="color:#111">book_attributes</span><span style="color:#111">)</span>
+    <span style="color:#75715e"># get it done</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>これらは、このクラスが持つべきたった2つのパブリックメソッドです:
+<code>#initialize</code>(データをセットアップする)と、
+<code>#call</code>(実際にユースケースを満たす)です。</p>
+
+<p>これらのメソッド、特に<code>#call</code>はあなたが書くプライベートメソッドを呼び出すべきです。</p>
+
+<p>デフォルトでは、成功したと見なされます。
+明示的に失敗したとは言っていないためです。</p>
+
+<p>このテストを実行しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> rake</code></pre></div>
+<p>すべてのテストに合格するはずです！</p>
+
+<p>それでは、<code>AddBook</code>インタラクターに実際に何かをさせましょう！</p>
+
+<h2 id="書籍を作る">書籍を作る</h2>
+
+<p><code>spec/bookshelf/interactors/add_book_spec.rb</code> を編集:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/bookshelf/interactors/add_book_spec.rb</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#00a8c8">AddBook</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:interactor</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">AddBook</span><span style="color:#f92672">.</span><span style="color:#111">new</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:attributes</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">[</span><span style="color:#d88200">author</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;James Baldwin&#34;</span><span style="color:#111">,</span> <span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;The Fire Next Time&#34;</span><span style="color:#f92672">]</span> <span style="color:#111">}</span>
+
+  <span style="color:#111">context</span> <span style="color:#d88200">&#34;good input&#34;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:result</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">interactor</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">attributes</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#34;succeeds&#34;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">successful?</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">be</span><span style="color:#111">(</span><span style="color:#00a8c8">true</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#34;creates a Book with correct title and author&#34;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">book</span><span style="color:#f92672">.</span><span style="color:#111">title</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#34;The Fire Next Time&#34;</span><span style="color:#111">)</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">book</span><span style="color:#f92672">.</span><span style="color:#111">author</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#34;James Baldwin&#34;</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p><code>bundle exec rake</code>してテストを実行すると、次のエラーが表示されます:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#d88200">NoMethodError</span><span style="color:#111">:</span> <span style="color:#111">undefined</span> <span style="color:#111">method</span> <span style="color:#d88200">`book&#39; for #&lt;Hanami::Interactor::Result:0x007f94498c1718&gt;</span></code></pre></div>
+<p>インタラクターに記入してから、何をしたかを説明しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">require</span> <span style="color:#d88200">&#39;hanami/interactor&#39;</span>
+
+<span style="color:#00a8c8">class</span> <span style="color:#75af00">AddBook</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Interactor</span>
+
+  <span style="color:#111">expose</span> <span style="color:#d88200">:book</span>
+
+  <span style="color:#00a8c8">def</span> <span style="color:#75af00">initialize</span>
+    <span style="color:#75715e"># set up the object</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#00a8c8">def</span> <span style="color:#75af00">call</span><span style="color:#111">(</span><span style="color:#111">book_attributes</span><span style="color:#111">)</span>
+    <span style="color:#111">@book</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">Book</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#111">book_attributes</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>ここで注意することが2つあります:</p>
+
+<p><code>expose :book</code>行は、返される結果のメソッドとして<code>@book</code>インスタンス変数を公開します。</p>
+
+<p><code>call</code>メソッドは<code>@book</code>変数に新しいBookエンティティを割り当てます。これは結果に公開されます。</p>
+
+<p>テストは成功するはずです。</p>
+
+<p>新しいBookエンティティを初期化しましたが、データベースに永続化されていません。</p>
+
+<h2 id="書籍を永続化する">書籍を永続化する</h2>
+
+<p>タイトルと作者から渡された新しい<code>Book</code>が渡されましたが、データベースにはまだ存在しません。</p>
+
+<p>それを持続させるためには私たちの<code>BookRepository</code>を使う必要があります。</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/bookshelf/interactors/add_book_spec.rb</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#00a8c8">AddBook</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:interactor</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">AddBook</span><span style="color:#f92672">.</span><span style="color:#111">new</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:attributes</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">[</span><span style="color:#d88200">author</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;James Baldwin&#34;</span><span style="color:#111">,</span> <span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;The Fire Next Time&#34;</span><span style="color:#f92672">]</span> <span style="color:#111">}</span>
+
+  <span style="color:#111">context</span> <span style="color:#d88200">&#34;good input&#34;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:result</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">interactor</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">attributes</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#34;succeeds&#34;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">successful?</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">be</span><span style="color:#111">(</span><span style="color:#00a8c8">true</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#34;creates a Book with correct title and author&#34;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">book</span><span style="color:#f92672">.</span><span style="color:#111">title</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#34;The Fire Next Time&#34;</span><span style="color:#111">)</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">book</span><span style="color:#f92672">.</span><span style="color:#111">author</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#34;James Baldwin&#34;</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#34;persists the Book&#34;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">book</span><span style="color:#f92672">.</span><span style="color:#111">id</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to_not</span> <span style="color:#111">be_nil</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>テストを実行すると、新しい期待値が<code>Expected nil to not be nil.</code>で失敗するのがわかるでしょう。</p>
+
+<p>これは、私たちが作った書籍が<code>id</code>を持っていないからです。
+永続化されている場合はいつでも1つしか取得されないためです。</p>
+
+<p>このテストに合格するには、代わりに<em>永続化された</em> <code>Book</code>を作成する必要があります。
+(もう1つの、同様に有効な選択肢は、私たちがすでに持っているBookを永続化させることです。)</p>
+
+<p>私たちの<code>lib/bookshelf/interactors/add_book.rb</code>インタラクターの<code>call</code>メソッドを編集します:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#00a8c8">def</span> <span style="color:#75af00">call</span>
+  <span style="color:#111">@book</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">BookRepository</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#f92672">.</span><span style="color:#111">create</span><span style="color:#111">(</span><span style="color:#111">book_attributes</span><span style="color:#111">)</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p><code>Book.new</code>を呼び出す代わりに、
+新しい<code>BookRepository</code>を作成し、それに属性を付けて<code>create</code>を送信します。</p>
+
+<p>これでも<code>Book</code>が返されますが、このレコードもデータベースに保持されます。</p>
+
+<p>今すぐテストを実行すると、すべてのテストに成功するはずです。</p>
+
+<h2 id="依存性注入">依存性注入</h2>
+
+<p><a href="https://martinfowler.com/articles/injection.html">依存性注入</a>を利用するために、実装をリファクタリングしましょう。</p>
+
+<p>依存性注入を使用することをお勧めしますが、必須ではありません。
+これは<code>Hanami::Interactor</code>の完全にオプションの機能です。</p>
+
+<p>specは機能しますが、リポジトリの動作に依存しています(永続性が成功した後に<code>id</code>メソッドが定義されるようになります)。
+これがリポジトリの動作の詳細です。
+たとえば、永続化する <em>前に</em> UUIDを作成し、その永続化が<code>id</code>列を設定する以外の方法で成功したことを示す場合は、このspecを変更する必要があります。</p>
+
+<p>specとインタラクターをより堅牢にするために変更することができます:
+ファイルの外部での変更のために壊れる可能性は低くなります。</p>
+
+<p>インタラクターで依存性注入を使用する方法は次のとおりです:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">require</span> <span style="color:#d88200">&#39;hanami/interactor&#39;</span>
+
+<span style="color:#00a8c8">class</span> <span style="color:#75af00">AddBook</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Interactor</span>
+
+  <span style="color:#111">expose</span> <span style="color:#d88200">:book</span>
+
+  <span style="color:#00a8c8">def</span> <span style="color:#75af00">initialize</span><span style="color:#111">(</span><span style="color:#d88200">repository</span><span style="color:#111">:</span> <span style="color:#00a8c8">BookRepository</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">)</span>
+    <span style="color:#111">@repository</span> <span style="color:#f92672">=</span> <span style="color:#111">repository</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#00a8c8">def</span> <span style="color:#75af00">call</span><span style="color:#111">(</span><span style="color:#111">book_attributes</span><span style="color:#111">)</span>
+    <span style="color:#111">@book</span> <span style="color:#f92672">=</span> <span style="color:#111">@repository</span><span style="color:#f92672">.</span><span style="color:#111">create</span><span style="color:#111">(</span><span style="color:#111">book_attributes</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p><code>@repository</code>インスタンス変数を作成することは、少しコードがあるだけで、基本的に同じことです。</p>
+
+<p>今のところ、私たちのspecは、<code>id</code>が移入されていることを確認することによって、リポジトリのふるまいをテストします
+(<code>expect(result.book.id).to_not be(nil)</code>)。</p>
+
+<p>これは実装の詳細です。</p>
+
+<p>代わりに、リポジトリが<code>create</code>メッセージを確実に受信するようにspecを変更し、
+リポジトリがそれを永続化することを信頼することができます(それがその責務です)。</p>
+
+<p>変更して<code>it &quot;persists the Book&quot;</code>という期待を取り除き、
+<code>context &quot;persistence&quot;</code>ブロックを作成しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/bookshelf/interactors/add_book_spec.rb</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#00a8c8">AddBook</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:interactor</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">AddBook</span><span style="color:#f92672">.</span><span style="color:#111">new</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:attributes</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">[</span><span style="color:#d88200">author</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;James Baldwin&#34;</span><span style="color:#111">,</span> <span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#d88200">&#34;The Fire Next Time&#34;</span><span style="color:#f92672">]</span> <span style="color:#111">}</span>
+
+  <span style="color:#111">context</span> <span style="color:#d88200">&#34;good input&#34;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:result</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">interactor</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">attributes</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#34;succeeds&#34;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">successful?</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">be</span><span style="color:#111">(</span><span style="color:#00a8c8">true</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#34;creates a Book with correct title and author&#34;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">book</span><span style="color:#f92672">.</span><span style="color:#111">title</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#34;The Fire Next Time&#34;</span><span style="color:#111">)</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#111">book</span><span style="color:#f92672">.</span><span style="color:#111">author</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#34;James Baldwin&#34;</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">context</span> <span style="color:#d88200">&#34;persistence&#34;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:repository</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">instance_double</span><span style="color:#111">(</span><span style="color:#d88200">&#34;BookRepository&#34;</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#34;persists the Book&#34;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">repository</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">receive</span><span style="color:#111">(</span><span style="color:#d88200">:create</span><span style="color:#111">)</span>
+      <span style="color:#00a8c8">AddBook</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#d88200">repository</span><span style="color:#111">:</span> <span style="color:#111">repository</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">attributes</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>今私達のテストは懸念の境界に違反していません。</p>
+
+<p>ここで行ったことは、インタラクターのリポジトリへの依存性を<strong>注入</strong>することです。
+注: テストしていないコードでは、何も変更する必要はありません。
+<code>repository:</code>キーワード引数のデフォルト値は、新しいリポジトリオブジェクトが渡されなかった場合にそれを提供します。</p>
+
+<h2 id="eメール通知">Eメール通知</h2>
+
+<p>Eメール通知を追加しましょう！</p>
+
+<p>別のライブラリを使うこともできますが、
+私たちは<code>Hanami::Mailer</code>を使います。
+(SMSの送信、チャットメッセージの送信、Webフックの呼び出しなど、何でもできます。)</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> hanami generate mailer book_added_notification
+      create  lib/bookshelf/mailers/book_added_notification.rb
+      create  spec/bookshelf/mailers/book_added_notification_spec.rb
+      create  lib/bookshelf/mailers/templates/book_added_notification.txt.erb
+      create  lib/bookshelf/mailers/templates/book_added_notification.html.erb</code></pre></div>
+<p><a href="/mailers/overview">メーラの動作の詳細</a>については説明しませんが、
+非常に簡単です: <code>Hanami::Mailer</code>クラス、関連するspec、および2つのテンプレート(プレーンテキスト用とhtml用)があります。</p>
+
+<p>テンプレートは空のままにするので、
+Eメールは空になり、
+件名が「Book added!」となります。</p>
+
+<p>メーラーspec<code>spec/bookshelf/mailers/book_added_notification_spec.rb</code>を編集します:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/bookshelf/mailers/book_added_notification_spec.rb</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#00a8c8">Mailers</span><span style="color:#f92672">::</span><span style="color:#00a8c8">BookAddedNotification</span><span style="color:#111">,</span> <span style="color:#d88200">type</span><span style="color:#111">:</span> <span style="color:#d88200">:mailer</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">subject</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Mailers</span><span style="color:#f92672">::</span><span style="color:#00a8c8">BookAddedNotification</span> <span style="color:#111">}</span>
+
+  <span style="color:#111">before</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Mailer</span><span style="color:#f92672">.</span><span style="color:#111">deliveries</span><span style="color:#f92672">.</span><span style="color:#111">clear</span> <span style="color:#111">}</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;has correct `from` email address&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">subject</span><span style="color:#f92672">.</span><span style="color:#111">from</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#34;no-reply@example.com&#34;</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;has correct `to` email address&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">subject</span><span style="color:#f92672">.</span><span style="color:#111">to</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#34;admin@example.com&#34;</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;has correct `subject`&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">subject</span><span style="color:#f92672">.</span><span style="color:#111">subject</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#34;Book added!&#34;</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">it</span> <span style="color:#d88200">&#39;delivers mail&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">expect</span> <span style="color:#111">{</span>
+      <span style="color:#111">subject</span><span style="color:#f92672">.</span><span style="color:#111">deliver</span>
+    <span style="color:#111">}</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">change</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Mailer</span><span style="color:#f92672">.</span><span style="color:#111">deliveries</span><span style="color:#f92672">.</span><span style="color:#111">length</span> <span style="color:#111">}</span><span style="color:#f92672">.</span><span style="color:#111">by</span><span style="color:#111">(</span><span style="color:#ae81ff">1</span><span style="color:#111">)</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>そしてメーラー<code>lib/bookshelf/mailers/book_added_notification.rb</code>を編集します:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># lib/bookshelf/mailers/book_added_notification.rb</span>
+
+<span style="color:#00a8c8">class</span> <span style="color:#75af00">Mailers</span><span style="color:#f92672">::</span><span style="color:#00a8c8">BookAddedNotification</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Mailer</span>
+
+  <span style="color:#111">from</span>    <span style="color:#d88200">&#39;no-reply@example.com&#39;</span>
+  <span style="color:#111">to</span>      <span style="color:#d88200">&#39;admin@example.com&#39;</span>
+  <span style="color:#111">subject</span> <span style="color:#d88200">&#39;Book added!&#39;</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>これですべてのテストは成功するはずです！</p>
+
+<p>しかし、このメーラーはどこからも呼び出されません。
+<code>AddBook</code>インタラクターからこのメーラーを呼び出す必要があります。</p>
+
+<p>私たちのメーラが呼ばれるように、<code>AddBook</code>specを編集しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#f92672">...</span>
+  <span style="color:#111">context</span> <span style="color:#d88200">&#34;sending email&#34;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:mailer</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">instance_double</span><span style="color:#111">(</span><span style="color:#d88200">&#34;Mailers::BookAddedNotification&#34;</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#34;send :deliver to the mailer&#34;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">mailer</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">receive</span><span style="color:#111">(</span><span style="color:#d88200">:deliver</span><span style="color:#111">)</span>
+      <span style="color:#00a8c8">AddBook</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#d88200">mailer</span><span style="color:#111">:</span> <span style="color:#111">mailer</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">attributes</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+  <span style="color:#f92672">...</span></code></pre></div>
+<p>テストスイートを実行するとエラーが表示されます: <code>ArgumentError: unknown keyword: mailer</code>。
+これは理にかなっています、なぜなら私たちのインタラクターはただ一つのキーワード引数<code>repository</code>を持っているだけだからです。</p>
+
+<p>初期化に新しい<code>mailer</code>キーワード引数を追加することによって、今私たちのメーラーを統合しましょう。</p>
+
+<p>また、新しい<code>@mailer</code>インスタンス変数で<code>deliver</code>を呼び出します。</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">require</span> <span style="color:#d88200">&#39;hanami/interactor&#39;</span>
+
+<span style="color:#00a8c8">class</span> <span style="color:#75af00">AddBook</span>
+  <span style="color:#00a8c8">include</span> <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Interactor</span>
+
+  <span style="color:#111">expose</span> <span style="color:#d88200">:book</span>
+
+  <span style="color:#00a8c8">def</span> <span style="color:#75af00">initialize</span><span style="color:#111">(</span><span style="color:#d88200">repository</span><span style="color:#111">:</span> <span style="color:#00a8c8">BookRepository</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">,</span> <span style="color:#d88200">mailer</span><span style="color:#111">:</span> <span style="color:#00a8c8">Mailers</span><span style="color:#f92672">::</span><span style="color:#00a8c8">BookAddedNotification</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">)</span>
+    <span style="color:#111">@repository</span> <span style="color:#f92672">=</span> <span style="color:#111">repository</span>
+    <span style="color:#111">@mailer</span> <span style="color:#f92672">=</span> <span style="color:#111">mailer</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#00a8c8">def</span> <span style="color:#75af00">call</span><span style="color:#111">(</span><span style="color:#111">book_attributes</span><span style="color:#111">)</span>
+    <span style="color:#111">@book</span> <span style="color:#f92672">=</span> <span style="color:#111">@repository</span><span style="color:#f92672">.</span><span style="color:#111">create</span><span style="color:#111">(</span><span style="color:#111">book_attributes</span><span style="color:#111">)</span>
+    <span style="color:#111">@mailer</span><span style="color:#f92672">.</span><span style="color:#111">deliver</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>これで私たちのインタラクターは、書籍が追加されたことを通知するEメールを配信します。</p>
+
+<h2 id="コントローラとの統合">コントローラとの統合</h2>
+
+<p>最後に、アクションからこのインタラクターを呼び出す必要があります。</p>
+
+<p>アクションファイル<code>apps/web/controllers/books/create.rb</code>を編集します:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#00a8c8">def</span> <span style="color:#75af00">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">if</span> <span style="color:#111">params</span><span style="color:#f92672">.</span><span style="color:#111">valid?</span>
+      <span style="color:#111">@book</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">AddBook</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#f92672">[</span><span style="color:#d88200">:book</span><span style="color:#f92672">]</span><span style="color:#111">)</span>
+
+      <span style="color:#111">redirect_to</span> <span style="color:#111">routes</span><span style="color:#f92672">.</span><span style="color:#111">books_path</span>
+    <span style="color:#00a8c8">else</span>
+      <span style="color:#111">self</span><span style="color:#f92672">.</span><span style="color:#111">status</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">422</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span></code></pre></div>
+<p>私たちのスペックはまだ合格しますが、小さな問題があります。</p>
+
+<p>書籍作成コードを<strong>2回</strong>テストしています。</p>
+
+<p>これは一般的に悪い習慣であり、インタラクターの別の利点を説明することで修正できます。</p>
+
+<p>再び依存性注入を使用します。
+今回は、私たちのアクションの中で。</p>
+
+<p><code>interactor</code>用のキーワード引数で、<code>initialize</code>メソッドを追加します。</p>
+
+<p>しかし、最初にspec<code>spec/web/controllers/books/create_spec.rb</code>を編集しましょう。</p>
+
+<p><code>BookRepository</code>への参照を削除し、
+<code>AddBook</code>インタラクター用のdoubleを利用します:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># spec/web/controllers/books/create_spec.rb</span>
+
+<span style="color:#00a8c8">RSpec</span><span style="color:#f92672">.</span><span style="color:#111">describe</span> <span style="color:#00a8c8">Web</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Controllers</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Books</span><span style="color:#f92672">::</span><span style="color:#00a8c8">Create</span> <span style="color:#00a8c8">do</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:interactor</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">instance_double</span><span style="color:#111">(</span><span style="color:#d88200">&#39;AddBook&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">call</span><span style="color:#111">:</span> <span style="color:#00a8c8">nil</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+  <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:action</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#111">described_class</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#d88200">interactor</span><span style="color:#111">:</span> <span style="color:#111">interactor</span><span style="color:#111">)</span> <span style="color:#111">}</span>
+
+  <span style="color:#111">context</span> <span style="color:#d88200">&#39;with valid params&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:params</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">[</span><span style="color:#d88200">book</span><span style="color:#111">:</span> <span style="color:#111">{</span> <span style="color:#d88200">title</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;1984&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">author</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;George Orwell&#39;</span> <span style="color:#111">}</span><span style="color:#f92672">]</span> <span style="color:#111">}</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#39;calls interactor&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">interactor</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">receive</span><span style="color:#111">(</span><span style="color:#d88200">:call</span><span style="color:#111">)</span>
+      <span style="color:#111">response</span> <span style="color:#f92672">=</span> <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#39;redirects the user to the books listing&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">response</span> <span style="color:#f92672">=</span> <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">response</span><span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#ae81ff">302</span><span style="color:#111">)</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">response</span><span style="color:#f92672">[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">][</span><span style="color:#d88200">&#39;Location&#39;</span><span style="color:#f92672">]</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#d88200">&#39;/books&#39;</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#111">context</span> <span style="color:#d88200">&#39;with invalid params&#39;</span> <span style="color:#00a8c8">do</span>
+    <span style="color:#111">let</span><span style="color:#111">(</span><span style="color:#d88200">:params</span><span style="color:#111">)</span> <span style="color:#111">{</span> <span style="color:#00a8c8">Hash</span><span style="color:#f92672">[</span><span style="color:#d88200">book</span><span style="color:#111">:</span> <span style="color:#111">{}</span><span style="color:#f92672">]</span> <span style="color:#111">}</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#39;calls interactor&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">interactor</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">receive</span><span style="color:#111">(</span><span style="color:#d88200">:call</span><span style="color:#111">)</span>
+      <span style="color:#111">response</span> <span style="color:#f92672">=</span> <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#39;re-renders the books#new view&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">response</span> <span style="color:#f92672">=</span> <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">response</span><span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#ae81ff">422</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+
+    <span style="color:#111">it</span> <span style="color:#d88200">&#39;sets errors attribute accordingly&#39;</span> <span style="color:#00a8c8">do</span>
+      <span style="color:#111">response</span> <span style="color:#f92672">=</span> <span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">params</span><span style="color:#f92672">.</span><span style="color:#111">errors</span><span style="color:#f92672">[</span><span style="color:#d88200">:book</span><span style="color:#f92672">][</span><span style="color:#d88200">:title</span><span style="color:#f92672">]</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#f92672">[</span><span style="color:#d88200">&#39;is missing&#39;</span><span style="color:#f92672">]</span><span style="color:#111">)</span>
+      <span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#111">action</span><span style="color:#f92672">.</span><span style="color:#111">params</span><span style="color:#f92672">.</span><span style="color:#111">errors</span><span style="color:#f92672">[</span><span style="color:#d88200">:book</span><span style="color:#f92672">][</span><span style="color:#d88200">:author</span><span style="color:#f92672">]</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">to</span> <span style="color:#111">eq</span><span style="color:#111">(</span><span style="color:#f92672">[</span><span style="color:#d88200">&#39;is missing&#39;</span><span style="color:#f92672">]</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+<span style="color:#00a8c8">end</span></code></pre></div>
+<p>initializeをオーバーライドしていないので、テストはエラーを引き起こします。
+それでは、<code>#call</code>メソッドで新しいインスタンス変数を活用しましょう:</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">  <span style="color:#f92672">...</span>
+  <span style="color:#00a8c8">def</span> <span style="color:#75af00">initialize</span><span style="color:#111">(</span><span style="color:#d88200">interactor</span><span style="color:#111">:</span> <span style="color:#00a8c8">AddBook</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#111">)</span>
+    <span style="color:#111">@interactor</span> <span style="color:#f92672">=</span> <span style="color:#111">interactor</span>
+  <span style="color:#00a8c8">end</span>
+
+  <span style="color:#00a8c8">def</span> <span style="color:#75af00">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#111">)</span>
+    <span style="color:#00a8c8">if</span> <span style="color:#111">params</span><span style="color:#f92672">.</span><span style="color:#111">valid?</span>
+      <span style="color:#111">@book</span> <span style="color:#f92672">=</span> <span style="color:#111">@interactor</span><span style="color:#f92672">.</span><span style="color:#111">call</span><span style="color:#111">(</span><span style="color:#111">params</span><span style="color:#f92672">[</span><span style="color:#d88200">:book</span><span style="color:#f92672">]</span><span style="color:#111">)</span>
+
+      <span style="color:#111">redirect_to</span> <span style="color:#111">routes</span><span style="color:#f92672">.</span><span style="color:#111">books_path</span>
+    <span style="color:#00a8c8">else</span>
+      <span style="color:#111">self</span><span style="color:#f92672">.</span><span style="color:#111">status</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">422</span>
+    <span style="color:#00a8c8">end</span>
+  <span style="color:#00a8c8">end</span>
+  <span style="color:#f92672">...</span></code></pre></div>
+<p>今、私たちのspecは成功しており、それらははるかに堅牢です！</p>
+
+<p>私たちのアクションは今や責任が少なくなっています。
+それはその実際の振る舞いを私たちのインタラクターに委譲します。</p>
+
+<p>アクションは(パラメータから)入力を受け取り、
+実際にその仕事をするために私たちのインタラクターを呼び出します。
+唯一の責任はWebを扱うことです。
+私たちのインタラクターは現在、私たちの実際のビジネスロジックを扱います。</p>
+
+<p>これは私たちのアクションとそのspecにとって大きな安心です。</p>
+
+<p>私たちのアクションは主に私たちのビジネスロジックから解放されています。</p>
+
+<p>インタラクターを変更するときに、
+アクションまたはそのspecを変更する必要は<strong>ありません</strong>。</p>
+
+<p>(実際のアプリケーションでは、結果が成功することを確認するなど、上記のロジック以上のことをしたいと思うでしょう。
+そうでなければ、失敗した場合はインタラクターからのエラーを渡したいと思うでしょう。)</p>
+
+<h2 id="インタラクター部">インタラクター部</h2>
+
+<h3 id="インタフェース">インタフェース</h3>
+
+<p>上記のように、インターフェースはかなり単純です。
+(オプションで)実装できるもう1つの方法もあります。
+それは<code>#valid?</code>という名前のプライベートメソッドです。</p>
+
+<p>デフォルトでは<code>#valid?</code>はtrueを返します。
+<code>#valid?</code>を定義してfalseを返した場合、
+<code>#call</code>は実行されません。</p>
+
+<p>代わりに、結果はすぐに返されます。
+これも結果を(成功ではなく)失敗にします。</p>
+
+<p>それについては<a href="http://www.rubydoc.info/gems/hanami-utils/Hanami/Interactor/Interface">APIドキュメント</a>で読むことができます。</p>
+
+<h3 id="結果">結果</h3>
+
+<p><code>Hanami::Interactor#call</code>の結果は<code>Hanami::Interactor::Result</code>オブジェクトです。</p>
+
+<p>それはあなたが<code>expose</code>したどんなインスタンス変数に対しても定義されたアクセサメソッドを持ちます。</p>
+
+<p>エラーを追跡する機能もあります。</p>
+
+<p>あなたのインタラクターでは、エラーを追加するためにメッセージとともに<code>error</code>を呼び出すことができます。
+これは自動的に結果のオブジェクトを失敗にします。</p>
+
+<p>(<code>error!</code>メソッドもあり、
+これは同じことをし、 <em>そして</em> フローを中断し、
+インタラクターがそれ以上コードを実行するのを止めます)。</p>
+
+<p>結果のオブジェクトのエラーにアクセスするには、<code>.errors</code>を呼び出します。</p>
+
+<p><a href="http://www.rubydoc.info/gems/hanami-utils/Hanami/Interactor/Result">APIのドキュメント</a>でResultオブジェクトについてもっと読むことができます。</p>
+<hr>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              
+              <a href="/hanami-guides/architecture/overview/">
+                <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
+                  <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+                  <span class="btn-inner--text">Architecture: 概要</span>
+                </button>
+              </a>
+              
+            </div>
+            <div class="col text-align-right">
+              
+              <a href="/hanami-guides/projects/code-reloading/">
+                <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
+                  <span class="btn-inner--text">Projects: Code Reloading</span>
+                  <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
+                </button>
+              </a>
+              
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  
+  <script src="/hanami-guides/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/popper/popper.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/headroom/headroom.min.js"></script>
+  <script src="/hanami-guides/assets/vendor/clipboard/clipboard.min.js"></script>
+  
+  <script src="/hanami-guides/assets/js/argon.js?v=1.0.1"></script>
+  <script src="/hanami-guides/assets/js/theme.js"></script>
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script type="text/javascript"> docsearch({
+    apiKey: '69274449268769eb3878f6a13dd112f9',
+    indexName: 'hanamirb_guides',
+    inputSelector: '#search-input',
+    debug: false 
+  });
+  </script>
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-41951932-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Introductions on Hanami Guides</title>
+    <link>https://tmtm.github.io/hanami-guides/introduction/</link>
+    <description>Recent content in Introductions on Hanami Guides</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>All rights reserved - 2018</copyright>
+    
+	<atom:link href="https://tmtm.github.io/hanami-guides/introduction/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>はじめに</title>
+      <link>https://tmtm.github.io/hanami-guides/introduction/getting-started/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/introduction/getting-started/</guid>
+      <description>こんにちは。あなたがこのページを見ているということはおそらくHanamiについてもっと学びたいということでしょう。 すばらしい。おめでとう！ メンテ可能でセキュアで高速でテスト可能なWebアプリケーションを構築する新しい方法を探しているのであれば大丈夫です。 Hanamiはあなたのような人のために作られています。 あなたが完全な初心者であろうと経験豊富な開発者であろうとこの学習プロセスは難しいことを警告します。 時間が経つにつれて、私たちは物事がどうあるべきかについての期待を築き、それを変えるのは苦痛になる可能性があります。 しかし、変化がなければ、挑戦はありません。そして挑戦がなければ、成長はありません。 機能が正しく見えないことがあっても、それはあなたが正しくないということではありません。 それは、形成された習慣、設計上の誤り、またはバグである可能性があります。 私とコミュニティは、Hanamiを良くするために毎日最善の努力を払っています。 このガイドでは、最初のHanamiプロジェクトをセットアップし、簡単な本棚Webアプリケーションを作成します。 テストによって導かれる、Hanamiフレームワークのすべての主要コンポーネントに触れます。 あなたが孤独を感じている、または欲求不満を感じているなら、あきらめないで、私たちのチャットに飛び乗って助けを求めてください。 あなたと話をすることでより幸せになる人がいるでしょう。 エンジョイ
+Luca Guidi
+Hanami作者 
+
+前提条件 始める前に、離れていくつかの前提条件を見てみましょう。 まず、Webアプリケーション開発の基本的な知識を想定しています。
+またBundler, Rake, 端末の操作, および Model, View, Controllerパラダイムを使用したアプリケーションの作成にも精通している必要があります。
+最後に、このガイドではSQLiteデータベースを使います。 先に進む場合は、Ruby 2.3以降とSQLite 3以降がシステムにインストールされていることを確認してください。
+新しいHanamiプロジェクトの作成 新しいHanamiプロジェクトを作成するには、RubygemsからHanami gemをインストールする必要があります。 それから、新しいhanami実行ファイルを使って新しいプロジェクトを生成することができます:
+$ gem install hanami $ hanami new bookshelf デフォルトでは、プロジェクトはSQLiteデータベースを使用するように設定されます。実際のプロジェクトでは、エンジンを指定できます:  $ hanami new bookshelf --database=postgres  これにより、現在の場所に新しいディレクトリbookshelfが作成されます。 内容を見てみましょう:
+$ cd bookshelf $ tree -L 1 . ├── Gemfile ├── README.md ├── Rakefile ├── apps ├── config ├── config.</description>
+    </item>
+    
+  </channel>
+</rss>

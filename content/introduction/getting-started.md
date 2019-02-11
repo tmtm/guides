@@ -106,7 +106,7 @@ $ bundle exec hanami server
 
 そして… [http://localhost:2300](http://localhost:2300)であなたの最初のHanamiプロジェクトの栄光を浴びてください！ 次のような画面が表示されます:
 
-<p><img src="welcome-page.png" alt="Hanami welcome page" class="img-responsive"></p>
+<p><img src="../welcome-page.png" alt="Hanami welcome page" class="img-responsive"></p>
 
 ## Hanamiのアーキテクチャ
 
@@ -1134,6 +1134,6 @@ redirect_to routes.books_path
 私たちが行ったことを見てみましょう: 私たちはHanamiの主要なフレームワークを通してそれらがどのように関連しているかを理解するためにリクエストをトレースしました。エンティティとリポジトリを使用してドメインをモデル化する方法を説明しました。フォームを構築し、データベーススキーマを維持し、ユーザー入力を検証するためのソリューションを見てきました。
 
 私たちは長い道のりを歩んできましたが、探求するべきことがまだたくさんあります。
-[他のガイド](/)、[Hanami APIドキュメント](https://docs.hanamirb.org)を調べ、[ソースコード](https://github.com/hanami)を読み、[ブログ](http://hanamirb.org/blog)をたどってください。
+[他のガイド](../../)、[Hanami APIドキュメント](https://docs.hanamirb.org)を調べ、[ソースコード](https://github.com/hanami)を読み、[ブログ](http://hanamirb.org/blog)をたどってください。
 
 **何よりも、素晴らしいものを作ることを楽しもう！**

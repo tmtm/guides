@@ -1,27 +1,27 @@
 ---
-title: "Overview"
+title: "概要"
 order: 10
 ---
 
-Hanami is based on two principles: [Clean Architecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) and [Monolith First](http://martinfowler.com/bliki/MonolithFirst.html).
+Hanami は2つの原則に基づいています: [クリーンアーキテクチャ](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) と [Monolith First](http://martinfowler.com/bliki/MonolithFirst.html)。
 
-## Clean Architecture
+## クリーンアーキテクチャ
 
-The main purpose of this architecture is to enforce a **separation of concerns** between the **core** of our product and the **delivery mechanisms**.
-The first is expressed by the set of **use cases** that our product implements, while the latter are interfaces to make these features available to the outside world.
+このアーキテクチャの主な目的は、プロダクトの**コア**と**配信メカニズム**との間で**懸念を分離**することです。
+前者は私たちのプロダクトが実装する**ユースケース**のセットで表現され、後者はこれらの機能を外の世界で利用できるようにするためのインターフェースです。
 
-When we generate a new project we can find two important directories: `lib/` and `apps/`.
-They are home to the main parts described above.
+新しいプロジェクトを生成すると、2つの重要なディレクトリが見つかります: `lib/`と`apps/`。
+それらは上記の主要部分のホームです。
 
-### Application Core
+### アプリケーションコア
 
-We implement a set of functionalities, without worrying about how they can be exposed to the outside world.
-This is the **cornerstone** of our product, and we want to be careful on how we manage dependencies for it.
+どのように外部の世界に公開されるのかを心配することなく、一連の機能を実装します。
+これが私たちのプロダクトの**土台**であり、私たちはそれに対する依存関係をどのように管理するかに注意を払いたいのです。
 
-`Hanami::Model` is the default choice for persisting our Ruby objects.
-This is a _soft-dependency_, it can be removed from our `Gemfile` and replaced with something else.
+`Hanami::Model`は、私たちのRubyオブジェクトを永続化するためのデフォルトの選択です。
+これは_ソフトな依存関係_です。`Gemfile`から削除して他のものに置き換えることができます。
 
-Let's have a look at how the `lib/` directory appears for a new generated project called `bookshelf` that uses `Hanami::Model`.
+`Hanami::Model`を使用する`bookshelf`という名前の新しく作られたプロジェクトに対して`lib/`ディレクトリがどのように表示されるかを見てみましょう。
 
 ```shell
 $ tree lib
@@ -36,28 +36,28 @@ lib
 5 directories, 1 file
 ```
 
-The idea is to develop our application like a Ruby gem.
+そのアイデアは私たちのアプリケーションをRuby gemのように開発することです。
 
-The `lib/bookshelf.rb` file is the entry point for our application, when we require this file, we require and initialize all the code under `lib/`.
+`lib/bookshelf.rb`ファイルが私たちのアプリケーションの入り口になっています。このファイルが必要なときは、`lib/`下にあるすべてのコードを必要とし、初期化します。
 
-There are two important directories:
+2つの重要なディレクトリがあります:
 
   * `lib/bookshelf/entities`
   * `lib/bookshelf/repositories`
 
-They contain [entities](/guides/1.2/entities/overview) that are Ruby objects at the core of our model domain, and they aren't aware of any persistence mechanism.
-For this purpose we have a separate concept, [repositories](/guides/1.2/repositories/overview), which are a mediator between our entities and the underlying database.
+それらは私たちのモデルドメインの中核にあるRubyオブジェクトである[エンティティ](/guides/1.2/entities/overview)を含んでいます、そしてそれらはどんな永続化メカニズムも知りません。
+この目的のために私たちは別の概念、[リポジトリ](/guides/1.2/repositories/overview)を持っています。それは私たちのエンティティと基礎となるデータベースの間の仲介者です。
 
-For each entity named `Book` we can have a `BookRepository`.
+`Book`というエンティティごとに、`BookRepository`を持つことができます。
 
-We can add as many directories that we want, such as `lib/bookshelf/interactors` to implement our use cases.
+私たちはユースケースを実装するために`lib/bookshelf/interactors`のように望むだけ多くのディレクトリを追加することができます。
 
-### Delivery Mechanisms
+### 配送メカニズム
 
-Hanami generates a default application named `Web`, which lives under `apps/web`.
-This application **depends** on the core of our product, as it uses entities, repositories and all the other objects defined there.
+Hanamiは`Web`という名前のデフォルトアプリケーションを生成します。これは`apps/web`下にあります。
+このアプリケーションは、エンティティ、リポジトリ、およびそこで定義されている他のすべてのオブジェクトを使用するため、製品のコアに**依存**します。
 
-It's used as web delivery mechanism, for our features.
+それは私たちの機能のために、Web配信メカニズムとして使用されています。
 
 ```shell
 $ tree apps/web
@@ -79,35 +79,35 @@ apps/web
 8 directories, 5 files
 ```
 
-Let's have a quick look at this code.
+このコードを簡単に見てみましょう。
 
-The file `apps/web/application.rb` contains a Hanami application named `Web::Application`, here we can configure all the settings for this **component** of our project.
-Directories such as `apps/web/controllers`, `views` and `templates` will contain our [actions](/guides/1.2/actions/overview), [views](/guides/1.2/views/overview) and [templates](/guides/1.2/views/templates).
+ファイル`apps/web/application.rb`は、`Web::Application`という名前のHanamiアプリケーションを含んでいます。ここで、プロジェクトのこの**コンポーネント**のすべての設定を構成できます。
+`apps/web/controllers`、`views`、`templates`などのディレクトリには、[アクション](/guides/1.2/actions/overview)、[ビュー](/guides/1.2/views/overview)、[テンプレート](/guides/1.2/views/templates)が含まれます。
 
-Web assets such as javascripts and stylesheets will be automatically served by the application.
+JavaScriptやスタイルシートなどのWebアセットは、アプリケーションによって自動的に提供されます。
 
-## Monolith First
+## モノリスファースト
 
-Our default application `Web` can be used as a UI interface for our customers.
-At a certain point in our story, we want to manage our users with an admin panel.
+デフォルトのアプリケーション`Web`は、顧客用のUIインターフェースとして使用できます。
+私たちのストーリーのある時点で、管理パネルを使ってユーザーを管理したいと思います。
 
-We know that the set of features that we're going to introduce doesn't belong to our main UI (`Web`).
-On the other hand, it's **too early** for us to implement a microservices architecture, only for the purpose of helping our users reset their password.
+私たちが導入しようとしている機能のセットは私たちのメインのUI(`Web`)に属していないことを私たちは知っています。
+一方、マイクロサービスアーキテクチャを実装するのは**時期尚早**です。これは、ユーザーが自分のパスワードをリセットできるようにすることだけを目的としています。
 
-Hanami has a solution for our problem: we can generate a new app that lives in the same Ruby process, but it's a separated component.
+Hanamiは私たちの問題に対する解決策を持っています: 私たちは同じRubyプロセスの中にある新しいアプリを生成することができますが、それは別々のコンポーネントです。
 
 ```shell
 $ bundle exec hanami generate app admin
 ```
 
-This command MUST be run from the root of our project. It will generate a new application (`Admin::Application`) under `apps/admin`.
+このコマンドは私たちのプロジェクトのルートから実行しなければなりません。`apps/admin`下に新しいアプリケーション(`Admin::Application`)が生成されます。
 
-In the late stages of our product life-cycle, we could decide to extract this into a standalone component.
-We would just need to move everything under `apps/admin` into another repository and deploy it separately.
+私たちのプロダクトライフサイクルの後期段階では、これをスタンドアロンコンポーネントに抽出することにしました。
+`apps/admin`下にあるすべてのものを別のリポジトリーに移動して別々にデプロイする必要があるだけです。
 
-## Anatomy Of A Project
+## プロジェクトの内部構造
 
-We have already examined `lib/` and `apps/`, but there are other parts of a newly generated project that deserve to be explained.
+`lib/`と`apps/`についてはすでに検討しましたが、新たに生成されたプロジェクトには説明が必要な部分が他にもあります。
 
 ```shell
 $ tree -L 1
@@ -124,14 +124,14 @@ $ tree -L 1
 └── spec
 ```
 
-Let's quickly introduce them:
+簡単に紹介しましょう:
 
-  * `Gemfile` and `Gemfile.lock` are [Bundler](http://bundler.io) artifacts
-  * `README.md` tells us how to setup and use the project.
-  * `Rakefile` describes Rake task for our project.
-  * `config/` contains an important file `config/environment.rb`, which is the **entry point** for our project.
-    By requiring it, we'll preload our dependencies (Ruby gems), Hanami frameworks and our code.
-  * `config.ru` is a file that describes how a Rack server must run our applications.
-  * `db/` contains database files (for File System adapter or SQLite).
-    When our project uses a SQL database it also contains `db/migrations` and `db/schema.sql`.
-  * `spec/` contains unit and acceptance tests.
+  * `Gemfile`と`Gemfile.lock`は[Bundler](http://bundler.io)の生成物です。
+  * `README.md`はプロジェクトの設定方法と使用方法を教えてくれます。
+  * `Rakefile`は私たちのプロジェクトのためのRakeタスクを記述しています。
+  * `config/`は重要なファイル`config/environment.rb`が含まれていて、これはプロジェクトの**エントリポイント**です。
+    それを要求することによって、私たちは依存関係(Ruby gems)、Hanamiフレームワーク、そして私たちのコードをプリロードします。
+  * `config.ru`はRackサーバーがどのように私たちのアプリケーションを実行しなければならないかを記述するファイルです。
+  * `db/`はデータベースファイルが含まれます(ファイルシステムアダプタやSQLite用)
+    私たちのプロジェクトがSQLデータベースを使用するとき、それは`db/migrations`と`db/schema.sql`も含みます。
+  * `spec/`はユニットテストと受け入れテストが含まれます。

@@ -1,113 +1,102 @@
 ---
-title: Interactors
+title: インタラクター
 order: 20
 ---
 
-## Overview
+## 概要
 
-Hanami provides an **optional** tool for organizing your code.
+Hanamiはあなたのコードを組織化するための**オプションの**ツールを提供します。
 
-These are *Interactors*,
-also referred to *service objects*, *use-cases* or *operations*
+これらは*インタラクター*で、*サービスオブジェクト*、*ユースケース*、*オペレーション*とも呼ばれます。
 
-We think they're great and help manage complexity,
-but you're free to build a Hanami app without them at all.
+私たちはそれらが素晴らしくて複雑さを管理するのを助けると思いますが、あなたがそれらなしでHanamiのアプリを作るのは自由です。
 
-In this guide, we'll explain how Hanami's Interactors work by adding a small feature to an existing application.
+このガイドでは、Hanamiのインタラクターが既存のアプリケーションに小さな機能を追加することによってどのように機能するかを説明します。
 
-The existing application we'll work from is the `bookshelf` application
-from the [Getting Started Guide](/guides/getting-started).
+これから作業する既存のアプリケーションは、 [入門ガイド](/guides/getting-started)の`bookshelf`アプリケーションです。
 
-## A New Feature: Email Notifications
+## 新機能: Eメール通知
 
-The story for our new feature is:
-> As an administrator, I want to receive an email notification when a book is added
+私たちの新機能のストーリー:
+> 管理者として、書籍が追加されたときにEメール通知を受け取りたい
 
-Since the application doesn't have authentication, anyone can add a new book.
-We'll provide an admin email address via an environment variable.
+アプリケーションには認証がないため、だれでも新しい書籍を追加できます。
+環境変数で管理者のメールアドレスを提供します。
 
-This is just an example to show when you should use an interactor, and,
-specifically, how `Hanami::Interactor` can be used.
+これはインタラクターをいつ使うべきか、そして特に`Hanami::Interactor`をどのように使うことができるかを示すほんの一例です。
 
-This example could provide a basis for other features like
-adding administrator approval of new books before they're posted,
-or allowing users to provide an email address, then edit the book via a special link.
+この例は、新しい書籍本が投稿される前に管理者による承認を追加したり、
+ユーザーが電子メールアドレスを入力してから特別なリンクを介してその書籍を編集することを許可するなど、
+他の機能の基礎を提供します。
 
-In practice,
-you can use interactors to implement *any business logic*,
-abstracted away from the web.
-It's particularly useful for when you want to do several things at once,
-in order to manage the complexity of the codebase.
+実際には、インタラクターを使用してWebから離れて抽象化された*任意のビジネスロジック*を実装できます。
+コードベースの複雑さを管理するために、一度に複数のことを行いたい場合に特に役立ちます。
 
-They're used to isolate non-trivial business logic.
-This follows the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle)
+これは重要なビジネスロジックを分離するために使用されています。
+これは[単一責任原則](https://en.wikipedia.org/wiki/Single_responsibility_principle)に従います。
 
-In a web application, they will generally be called from the controller action.
-This lets you separate concerns.
-Your business logic objects, interactors, won't know about the web at all.
+Webアプリケーションでは、一般的にコントローラのアクションから呼び出されます。
+これにより、懸念を分けることができます。
+あなたのビジネスロジックオブジェクト、インタラクターは、ウェブについてまったく知りません。
 
-## Callbacks? We Don't Need Them!
+## コールバック？ それは必要ありません！
 
-An easy way of implementing email notification would be to add a callback.
+Eメール通知を実装する簡単な方法は、コールバックを追加することです。
 
-That is: after a new `Book` record is created in the database, an email is sent out.
+つまり: データベースに新しい`Book`レコードが作成された後、Eメールが送信されます。
 
-By design, Hanami doesn't provide any such mechanism.
-This is because we consider persistence callbacks an **anti-pattern**.
-They violate the Single Responsibility principle.
-In this case, they improperly mix persistence with email notifications.
+設計上、Hanamiはそのようなメカニズムを提供していません。
+これは、永続化コールバックを**アンチパターン**と見なしているためです。
+それは単一責任の原則に違反しています。
+この場合、それは永続化とEメール通知を不適切に混ぜ合わせます。
 
-During testing (and at some other point, most likely),
-you'll want to skip that callback.
-This quickly becomes confusing,
-since multiple callbacks on the same event will be triggered in a specific order.
-Also, you may want to skip several callbacks at some point.
-They make code hard to understand, and brittle.
+テスト中(そしておそらく他でも)、あなたはそのコールバックをスキップしたくなるでしょう。
+これはすぐに混乱します。同じイベントに対する複数のコールバックが特定の順序で発生するためです。
+また、ある時点でいくつかのコールバックをスキップしたいと思うかもしれません。
+それらはコードを理解しにくく、もろくします。
 
-Instead, we recommend being **explicit over implicit**.
+代わりに、**暗黙的よりも明示的**であることをお勧めします。
 
-An interactor is an object that represents a specific *use-case*.
+インタラクターは特定の*ユースケース*を表すオブジェクトです。
 
-They let each class have a single responsibility.
-An interactor's single responsibility is to combine object and method calls in order to achieve a specific outcome.
+それは各クラスに一つの責任を持たせます。
+インタラクターの唯一の責任は、特定の結果を達成するためにオブジェクトとメソッド呼び出しを組み合わせることです。
 
-We provide `Hanami::Interactor` as a module,
-so you can start with a Plain Old Ruby Object,
-and include `include Hanami::Interactor` when you need some of its features.
+私たちは`Hanami::Interactor`をモジュールとして提供しているので、
+あなたは生の古いRubyオブジェクトから始め、
+あなたがその機能のいくつかを必要とするとき`include Hanami::Interactor`することができます。
 
-## Concept
+## コンセプト
 
-The central idea behind interactors is that you extract an isolated piece of functionality into a new class.
+インタラクターの背後にある中心的な考え方は、機能の分離した部品を新しいクラスに抽出することです。
 
-You should only write two public methods: `#initialize` and `#call`.
+2つのパブリックメソッドを書くだけです: `#initialize`と`#call`。
 
-This means objects are easy to reason about,
-since there's only one possible method to call after the object is created.
+これは、オブジェクトは簡単に推論できることを意味します。
+オブジェクトが作成された後に呼び出すことができるメソッドが1つだけだからです。
 
-By encapsulating behavior into a single object, it's easier to test.
-It also makes your codebase easier to understand,
-rather than leaving your complexity hidden, only expressed implicitly.
+動作を単一のオブジェクトにカプセル化することで、テストが簡単になります。
+暗黙のうちに表現されるだけで、複雑さを隠すのではなく、コードベースを理解しやすくします。
 
-## Preparing
+## 準備
 
-Let's say we have our `bookshelf` application,
-from the [Getting Started](/getting-started)
-and we want to add the 'email notification for added book' feature.
+[Getting Started](/getting-started)の`bookshelf`アプリケーションがあり、
+「追加した書籍のEメール通知」機能を追加したいとしましょう。
 
-## Creating Our Interactor
+## インタラクターの作成
 
-Let's create a folder for our interactors, and a folder for their specs:
+インタラクター用のフォルダーとスペック用のフォルダーを作成しましょう:
 
 ```shell
 $ mkdir lib/bookshelf/interactors
 $ mkdir spec/bookshelf/interactors
 ```
 
-We put them in `lib/bookshelf` because they're decoupled from the web application.
-Later, you may want to add books via an admin portal, an API, or even a command-line utility.
+それらはWebアプリケーションから切り離されているので、`lib/bookshelf`に入れました。
+後で、管理者ポータル、API、あるいはコマンドラインユーティリティを使って書籍を追加したいと思うかもしれません。
 
-Let's call our interactor `AddBook`,
-and write a new spec `spec/bookshelf/interactors/add_book_spec.rb`:
+私たちのインタラクターを`AddBook`と呼び、
+新しいスペック`spec/bookshelf/interactors/add_book_spec.rb`を書きましょう:
 
 ```ruby
 # spec/bookshelf/interactors/add_book_spec.rb
@@ -123,8 +112,8 @@ RSpec.describe AddBook do
 end
 ```
 
-Running your test suite will cause a NameError because there is no `AddBook` class.
-Let's create that class in a `lib/bookshelf/interactors/add_book.rb` file:
+`AddBook`クラスがないため、テストスイートを実行するとNameErrorが発生します。
+そのクラスを`lib/bookshelf/interactors/add_book.rb`ファイルに作成しましょう:
 
 ```ruby
 require 'hanami/interactor'
@@ -142,29 +131,28 @@ class AddBook
 end
 ```
 
-These are the only two public methods this class should ever have:
-`#initialize`, to set-up the data, and
-`#call` to actually fulfill the use-case.
+これらは、このクラスが持つべきたった2つのパブリックメソッドです:
+`#initialize`(データをセットアップする)と、
+`#call`(実際にユースケースを満たす)です。
 
-These methods, especially `#call`, should call private methods that you'll write.
+これらのメソッド、特に`#call`はあなたが書くプライベートメソッドを呼び出すべきです。
 
-By default, the result is considered a success,
-since we didn't say that it explicitly say it failed.
+デフォルトでは、成功したと見なされます。
+明示的に失敗したとは言っていないためです。
 
-Let's run this test:
+このテストを実行しましょう:
 
 ```shell
 $ bundle exec rake
 ```
 
-All the tests should pass!
+すべてのテストに合格するはずです！
 
-Now, let's make our `AddBook` interactor actually do something!
+それでは、`AddBook`インタラクターに実際に何かをさせましょう！
 
+## 書籍を作る
 
-## Creating a Book
-
-Edit `spec/bookshelf/interactors/add_book_spec.rb`:
+`spec/bookshelf/interactors/add_book_spec.rb` を編集:
 
 ```ruby
 # spec/bookshelf/interactors/add_book_spec.rb
@@ -188,14 +176,13 @@ RSpec.describe AddBook do
 end
 ```
 
-If you run the tests with `bundle exec rake`, you'll see this error:
+`bundle exec rake`してテストを実行すると、次のエラーが表示されます:
 
 ```ruby
 NoMethodError: undefined method `book' for #<Hanami::Interactor::Result:0x007f94498c1718>
 ```
 
-Let's fill out our interactor,
-then explain what we did:
+インタラクターに記入してから、何をしたかを説明しましょう:
 
 ```ruby
 require 'hanami/interactor'
@@ -215,22 +202,21 @@ class AddBook
 end
 ```
 
-There are two important things to note here:
+ここで注意することが2つあります:
 
-The `expose :book` line exposes the `@book` instance variable as a method on the result that will be returned.
+`expose :book`行は、返される結果のメソッドとして`@book`インスタンス変数を公開します。
 
-The `call` method assigns a new Book entity to the `@book` variable, which will be exposed to the result.
+`call`メソッドは`@book`変数に新しいBookエンティティを割り当てます。これは結果に公開されます。
 
-The tests should pass now.
+テストは成功するはずです。
 
-We've initialized a new Book entity, but it's not persisted to the database.
+新しいBookエンティティを初期化しましたが、データベースに永続化されていません。
 
-## Persisting the Book
+## 書籍を永続化する
 
-We have a new `Book` built from the title and author passed in,
-but it doesn't exist in the database yet.
+タイトルと作者から渡された新しい`Book`が渡されましたが、データベースにはまだ存在しません。
 
-We need to use our `BookRepository` to persist it.
+それを持続させるためには私たちの`BookRepository`を使う必要があります。
 
 ```ruby
 # spec/bookshelf/interactors/add_book_spec.rb
@@ -258,16 +244,15 @@ RSpec.describe AddBook do
 end
 ```
 
-If you run the tests,
-you'll see the new expectation fails with `Expected nil to not be nil.`
+テストを実行すると、新しい期待値が`Expected nil to not be nil.`で失敗するのがわかるでしょう。
 
-This is because the book we built doesn't have an `id`,
-since it only gets one if and when it is persisted.
+これは、私たちが作った書籍が`id`を持っていないからです。
+永続化されている場合はいつでも1つしか取得されないためです。
 
-To make this test pass, we'll need to create a _persisted_ `Book` instead.
-(Another, equally valid, option would be to persist the Book we already have.)
+このテストに合格するには、代わりに_永続化された_ `Book`を作成する必要があります。
+(もう1つの、同様に有効な選択肢は、私たちがすでに持っているBookを永続化させることです。)
 
-Edit the `call` method in our `lib/bookshelf/interactors/add_book.rb` interactor:
+私たちの`lib/bookshelf/interactors/add_book.rb`インタラクターの`call`メソッドを編集します:
 
 ```ruby
 def call
@@ -275,33 +260,28 @@ def call
 end
 ```
 
-Instead of calling `Book.new`,
-we create a new `BookRepository` and send `create` to it, with our attributes.
+`Book.new`を呼び出す代わりに、
+新しい`BookRepository`を作成し、それに属性を付けて`create`を送信します。
 
-This still returns a `Book`, but it also persists this record to the database.
+これでも`Book`が返されますが、このレコードもデータベースに保持されます。
 
-If you run the tests now you'll see all the tests pass.
+今すぐテストを実行すると、すべてのテストに成功するはずです。
 
-## Dependency Injection
+## 依存性注入
 
-Let's refactor our implementation though,
-to leverage [Dependency Injection](https://martinfowler.com/articles/injection.html)
+[依存性注入](https://martinfowler.com/articles/injection.html)を利用するために、実装をリファクタリングしましょう。
 
-We recommend you use Dependency Injection, but you don't have to.
-This is an entirely optional feature of `Hanami::Interactor`.
+依存性注入を使用することをお勧めしますが、必須ではありません。
+これは`Hanami::Interactor`の完全にオプションの機能です。
 
-The spec so far works,
-but it relies on the behavior of the Repository
-(that the `id` method is defined after persistence succeeds).
-That is an implementation detail of how the Repository works.
-For example, if you wanted to create a UUID *before* it's persisted,
-and signify the persistence was successful in some other way than populating an `id` column,
-you'd have to modify this spec.
+specは機能しますが、リポジトリの動作に依存しています(永続性が成功した後に`id`メソッドが定義されるようになります)。
+これがリポジトリの動作の詳細です。
+たとえば、永続化する*前に*UUIDを作成し、その永続化が`id`列を設定する以外の方法で成功したことを示す場合は、このspecを変更する必要があります。
 
-We can change our spec and our interactor to make it more robust:
-it'll be less likely to break because of changes outside of its file.
+specとインタラクターをより堅牢にするために変更することができます:
+ファイルの外部での変更のために壊れる可能性は低くなります。
 
-Here's how we can use Dependency Injection in our interactor:
+インタラクターで依存性注入を使用する方法は次のとおりです:
 
 ```ruby
 require 'hanami/interactor'
@@ -321,20 +301,18 @@ class AddBook
 end
 ```
 
-It's basically the same thing, with a little bit more code,
-to create the `@repository` instance variable.
+`@repository`インスタンス変数を作成することは、少しコードがあるだけで、基本的に同じことです。
 
-Right now, our spec tests the behavior of the repository,
-by checking to make sure `id` is populated
-(`expect(result.book.id).to_not be(nil)`).
+今のところ、私たちのspecは、`id`が移入されていることを確認することによって、リポジトリのふるまいをテストします
+(`expect(result.book.id).to_not be(nil)`)。
 
-This is an implementation detail.
+これは実装の詳細です。
 
-Instead, we can change our spec to merely make sure the repository receives the `create` message,
-and trust that the repository will persist it (since that is its responsibility).
+代わりに、リポジトリが`create`メッセージを確実に受信するようにspecを変更し、
+リポジトリがそれを永続化することを信頼することができます(それがその責務です)。
 
-Let's change remove our `it "persists the Book"` expectation and
-create a `context "persistence"` block:
+変更して`it "persists the Book"`という期待を取り除き、
+`context "persistence"`ブロックを作成しましょう:
 
 ```ruby
 # spec/bookshelf/interactors/add_book_spec.rb
@@ -367,19 +345,19 @@ RSpec.describe AddBook do
 end
 ```
 
-Now our test doesn't violate the boundaries of the concern.
+今私達のテストは懸念の境界に違反していません。
 
-What we did here is **inject** our interactor's dependency on the repository.
-Note: in our non-test code, we don't need to change anything.
-The default value for the `repository:` keyword argument provides a new repository object if one is not passed in.
+ここで行ったことは、インタラクターのリポジトリへの依存性を**注入**することです。
+注: テストしていないコードでは、何も変更する必要はありません。
+`repository:`キーワード引数のデフォルト値は、新しいリポジトリオブジェクトが渡されなかった場合にそれを提供します。
 
-## Email Notification
+## Eメール通知
 
-Let's add the email notification!
+Eメール通知を追加しましょう！
 
-You can use a different library,
-but we'll use `Hanami::Mailer`.
-(You could do anything here, like send an SMS, send a chat message, or call a webhook.)
+別のライブラリを使うこともできますが、
+私たちは`Hanami::Mailer`を使います。
+(SMSの送信、チャットメッセージの送信、Webフックの呼び出しなど、何でもできます。)
 
 ```shell
 $ bundle exec hanami generate mailer book_added_notification
@@ -389,15 +367,14 @@ $ bundle exec hanami generate mailer book_added_notification
       create  lib/bookshelf/mailers/templates/book_added_notification.html.erb
 ```
 
-We won't get into the details of [how the mailer works](/mailers/overview),
-but it's pretty simple: there's a `Hanami::Mailer` class, an associated spec,
-and two templates (one for plaintext, and one for html).
+[メーラの動作の詳細](/mailers/overview)については説明しませんが、
+非常に簡単です: `Hanami::Mailer`クラス、関連するspec、および2つのテンプレート(プレーンテキスト用とhtml用)があります。
 
-We'll keep our templates empty,
-so the emails will be blank,
-with a subject line saying 'Book added!'.
+テンプレートは空のままにするので、
+Eメールは空になり、
+件名が「Book added!」となります。
 
-Edit the mailer spec `spec/bookshelf/mailers/book_added_notification_spec.rb`:
+メーラーspec`spec/bookshelf/mailers/book_added_notification_spec.rb`を編集します:
 
 ```ruby
 # spec/bookshelf/mailers/book_added_notification_spec.rb
@@ -427,7 +404,7 @@ RSpec.describe Mailers::BookAddedNotification, type: :mailer do
 end
 ```
 
-And edit the mailer `lib/bookshelf/mailers/book_added_notification.rb`:
+そしてメーラー`lib/bookshelf/mailers/book_added_notification.rb`を編集します:
 
 ```ruby
 # lib/bookshelf/mailers/book_added_notification.rb
@@ -441,13 +418,13 @@ class Mailers::BookAddedNotification
 end
 ```
 
-Now all our tests should pass!
+これですべてのテストは成功するはずです！
 
 
-But, this Mailer isn't called from anywhere.
-We need to call this Mailer from our `AddBook` interactor.
+しかし、このメーラーはどこからも呼び出されません。
+`AddBook`インタラクターからこのメーラーを呼び出す必要があります。
 
-Let's edit our `AddBook` spec, to ensure our mailer is called:
+私たちのメーラが呼ばれるように、`AddBook`specを編集しましょう:
 
 ```ruby
   ...
@@ -462,13 +439,12 @@ Let's edit our `AddBook` spec, to ensure our mailer is called:
   ...
 ```
 
-Running your test suite will show an error: `ArgumentError: unknown keyword: mailer`.
-This makes sense, since our interactor has only a singular keyword argument: `repository`.
+テストスイートを実行するとエラーが表示されます: `ArgumentError: unknown keyword: mailer`。
+これは理にかなっています、なぜなら私たちのインタラクターはただ一つのキーワード引数`repository`を持っているだけだからです。
 
-Let's integrate our mailer now,
-by adding a new `mailer` keyword argument on the initializer.
+初期化に新しい`mailer`キーワード引数を追加することによって、今私たちのメーラーを統合しましょう。
 
-We'll also call `deliver` on our new `@mailer` instance variable.
+また、新しい`@mailer`インスタンス変数で`deliver`を呼び出します。
 
 ```ruby
 require 'hanami/interactor'
@@ -490,13 +466,13 @@ class AddBook
 end
 ```
 
-Now our interactor will deliver an email, notifying that a book has been added.
+これで私たちのインタラクターは、書籍が追加されたことを通知するEメールを配信します。
 
-## Integrating With Our Controller
+## コントローラとの統合
 
-Finally, we need to call this interactor from our action.
+最後に、アクションからこのインタラクターを呼び出す必要があります。
 
-Edit the action file, `apps/web/controllers/books/create.rb`:
+アクションファイル`apps/web/controllers/books/create.rb`を編集します:
 
 ```ruby
   def call(params)
@@ -510,23 +486,21 @@ Edit the action file, `apps/web/controllers/books/create.rb`:
   end
 ```
 
-Our specs will still pass, but there's a small problem.
+私たちのスペックはまだ合格しますが、小さな問題があります。
 
-We're testing the book creation code **twice**.
+書籍作成コードを**2回**テストしています。
 
-This is generally bad practice, and we can fix it,
-by illustrating another benefit of interactors.
+これは一般的に悪い習慣であり、インタラクターの別の利点を説明することで修正できます。
 
-We're going to use Dependency Injection again.
-This time, in our action.
+再び依存性注入を使用します。
+今回は、私たちのアクションの中で。
 
-We'll add a `initialize` method,
-with a keyword argument for `interactor`.
+`interactor`用のキーワード引数で、`initialize`メソッドを追加します。
 
-But first, let's edit the spec `spec/web/controllers/books/create_spec.rb`.
+しかし、最初にspec`spec/web/controllers/books/create_spec.rb`を編集しましょう。
 
-We're going to remove references to `BookRepository`,
-and leverage a double for our `AddBook` interactor:
+`BookRepository`への参照を削除し、
+`AddBook`インタラクター用のdoubleを利用します:
 
 ```ruby
 # spec/web/controllers/books/create_spec.rb
@@ -574,10 +548,8 @@ RSpec.describe Web::Controllers::Books::Create do
 end
 ```
 
-The test will cause an error,
-because we haven't overridden our initialize.
-Let's do that now,
-and leverage our new instance variable in the `#call` method:
+initializeをオーバーライドしていないので、テストはエラーを引き起こします。
+それでは、`#call`メソッドで新しいインスタンス変数を活用しましょう:
 
 ```ruby
   ...
@@ -597,62 +569,58 @@ and leverage our new instance variable in the `#call` method:
   ...
 ```
 
-Now our specs pass, and they're much more robust!
+今、私たちのspecは成功しており、それらははるかに堅牢です！
 
-Our action now has less responsibility;
-it delegates its real behavior to our interactor.
+私たちのアクションは今や責任が少なくなっています。
+それはその実際の振る舞いを私たちのインタラクターに委譲します。
 
-The action takes input (from parameters),
-and calls our interactor to actually do its work.
-It's single responsibility is to deal with the web.
-Our interactor now deals with our actual business logic.
+アクションは(パラメータから)入力を受け取り、
+実際にその仕事をするために私たちのインタラクターを呼び出します。
+唯一の責任はWebを扱うことです。
+私たちのインタラクターは現在、私たちの実際のビジネスロジックを扱います。
 
-This is a great relief for our action and its spec.
+これは私たちのアクションとそのspecにとって大きな安心です。
 
-Our action is largely liberated from our business logic.
+私たちのアクションは主に私たちのビジネスロジックから解放されています。
 
-When we modify our interactor,
-we do **not** have to modify our action, or its spec.
+インタラクターを変更するときに、
+アクションまたはそのspecを変更する必要は**ありません**。
 
-(Note that in a real app, you'll likely want to do more than our logic above,
-like make sure the result is a success.
-Else, if it's a failure, you'll want to pass along errors from the interactor.)
+(実際のアプリケーションでは、結果が成功することを確認するなど、上記のロジック以上のことをしたいと思うでしょう。
+そうでなければ、失敗した場合はインタラクターからのエラーを渡したいと思うでしょう。)
 
-## Interactor parts
+## インタラクター部
 
-### Interface
+### インタフェース
 
-The interface is rather simple, as shown above.
-There's also one more method you can (optionally) implement.
-It's a private method named `#valid?`.
+上記のように、インターフェースはかなり単純です。
+(オプションで)実装できるもう1つの方法もあります。
+それは`#valid?`という名前のプライベートメソッドです。
 
-By default `#valid?` returns true.
-If you define `#valid?` and it ever returns `false`,
-then `#call` will never be executed.
+デフォルトでは`#valid?`はtrueを返します。
+`#valid?`を定義してfalseを返した場合、
+`#call`は実行されません。
 
-Instead, the result will be returned immediately.
-This also causes the result to be a failure (instead of a success.)
+代わりに、結果はすぐに返されます。
+これも結果を(成功ではなく)失敗にします。
 
-You can read about it in the
-[API documentation](http://www.rubydoc.info/gems/hanami-utils/Hanami/Interactor/Interface)
+それについては[APIドキュメント](http://www.rubydoc.info/gems/hanami-utils/Hanami/Interactor/Interface)で読むことができます。
 
-### Result
+### 結果
 
-The result of `Hanami::Interactor#call` is a `Hanami::Interactor::Result` object.
+`Hanami::Interactor#call`の結果は`Hanami::Interactor::Result`オブジェクトです。
 
-It will have accessor methods defined for whatever instance variables you `expose`.
+それはあなたが`expose`したどんなインスタンス変数に対しても定義されたアクセサメソッドを持ちます。
 
-It also has the ability to keep track of errors.
+エラーを追跡する機能もあります。
 
-In your interactor, you can call `error` with a message,
-to add an error.
-This automatically makes the resulting object a failure.
+あなたのインタラクターでは、エラーを追加するためにメッセージとともに`error`を呼び出すことができます。
+これは自動的に結果のオブジェクトを失敗にします。
 
-(There's also an `error!` method,
-which does the same *and* also interrupts the flow,
-stopping the interactor from executing more code).
+(`error!`メソッドもあり、
+これは同じことをし、*そして*フローを中断し、
+インタラクターがそれ以上コードを実行するのを止めます)。
 
-You can access the errors on the resulting object, by calling `.errors`.
+結果のオブジェクトのエラーにアクセスするには、`.errors`を呼び出します。
 
-You can read more about the Result object in the
-[API documentation](http://www.rubydoc.info/gems/hanami-utils/Hanami/Interactor/Result).
+[APIのドキュメント](http://www.rubydoc.info/gems/hanami-utils/Hanami/Interactor/Result)でResultオブジェクトについてもっと読むことができます。

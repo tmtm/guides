@@ -1,11 +1,11 @@
 ---
-title: Logging
+title: ロギング
 order: 30
 ---
 
-Each project has a global logger available at `Hanami.logger` that can be used like this: `Hanami.logger.debug "Hello"`
+各プロジェクトは`Hanami.logger`で利用可能なグローバルロガーを持っています。これは次のように使用できます: `Hanami.logger.debug "Hello"`
 
-It can be configured in `config/environment.rb`
+それは`config/environment.rb`で設定することが出来ます。
 
 ```ruby
 # config/environment.rb
@@ -26,21 +26,21 @@ Hanami.configure do
 end
 ```
 
-By default it uses standard output because it's a [best practice](http://12factor.net/logs) that most hosting SaaS companies [suggest using](https://devcenter.heroku.com/articles/rails4#logging-and-assets).
+ほとんどのホスティングSaaS企業が[推奨](https://devcenter.heroku.com/articles/rails4#logging-and-assets)する[ベストプラクティス](http://12factor.net/logs)であるため、デフォルトでは標準出力が使用されます。
 
-If you want to use a file, pass `stream: 'path/to/file.log'` as an option.
+ファイルを使いたい場合は、`stream: 'path/to/file.log'`をオプションとして渡します。
 
-## Filter sensitive informations
+##  機密情報のフィルタ
 
-Hanami automatically logs the body of non-GET HTTP requests.
+Hanamiは自動的に非GET HTTPリクエストの本体をログに記録します。
 
-When a user submits a form, all the fields and their values will appear in the log:
+ユーザーがフォームを送信すると、すべてのフィールドとその値がログに現れます:
 
 ```log
 [bookshelf] [INFO] [2017-08-11 18:17:54 +0200] HTTP/1.1 POST 302 ::1 /signup 5 {"signup"=>{"username"=>"jodosha", "password"=>"secret", "password_confirmation"=>"secret", "bio"=>"lorem"}} 0.00593
 ```
 
-To avoid sensitive informations to be logged, you can filter them:
+機密情報がログに記録されるのを防ぐために、それらをフィルタリングすることができます:
 
 ```ruby
 # config/environment.rb
@@ -54,14 +54,14 @@ Hanami.configure do
 end
 ```
 
-Now the output will be:
+出力は次のようになります:
 
 ```log
 [bookshelf] [INFO] [2017-08-11 18:17:54 +0200] HTTP/1.1 POST 302 ::1 /signup 5 {"signup"=>{"username"=>"jodosha", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "bio"=>"lorem"}} 0.00593
 ```
 
-It also supports fine grained patterns to disambiguate params with the same name.
-For instance, we have a billing form with street number and credit card number, and we want only to filter the credit card:
+同じ名前のパラメータを明確にするためのきめ細かいパターンもサポートしています。
+たとえば、ストリート番号とクレジットカード番号を含む請求フォームがあり、クレジットカードのみをフィルタリングたい場合:
 
 ```ruby
 # config/environment.rb
@@ -79,10 +79,9 @@ end
 [bookshelf] [INFO] [2017-08-11 18:43:04 +0200] HTTP/1.1 PATCH 200 ::1 /billing 2 {"billing"=>{"name"=>"Luca", "address"=>{"street"=>"Centocelle", "number"=>"23", "city"=>"Rome"}, "credit_card"=>{"number"=>"[FILTERED]"}}} 0.009782
 ```
 
-Note that `billing => address => number` wasn't filtered while `billing => credit_card => number` was filtered instead.
+`billing => address => number` はフィルタされず、代わりに `billing => credit_card => number` がフィルタされたことに注意してください。
 
-If you want to disable logging of the body completely, it can be easily achieved
-with custom formatter:
+本体のログを完全に無効にしたい場合は、カスタムフォーマッタを使用すると簡単に実現できます:
 
 ```ruby
 class NoParamsFormatter < ::Hanami::Logger::Formatter
@@ -93,17 +92,17 @@ class NoParamsFormatter < ::Hanami::Logger::Formatter
 end
 ```
 
-and than just telling logger to use our new formatter for logging
+そして、loggerに新しいフォーマッタを使ってロギングするように伝えるだけです
 
 ```ruby
 logger level: :debug, formatter: NoParamsFormatter.new
 ```
 
-## Arbitrary Arguments
+## 任意の引数
 
-You can speficy [arbitrary arguments](https://ruby-doc.org/stdlib/libdoc/logger/rdoc/Logger.html#class-Logger-label-How+to+create+a+logger), that are compatible with Ruby's `Logger`.
+Rubyの`Logger`と互換性のある[任意の引数](https://ruby-doc.org/stdlib/libdoc/logger/rdoc/Logger.html#class-Logger-label-How+to+create+a+logger)を指定できます。
 
-Here's how to setup daily log rotation:
+毎日のログローテーションを設定する方法は次のとおりです:
 
 ```ruby
 # config/environment.rb
@@ -120,7 +119,7 @@ Hanami.configure do
 end
 ```
 
-Alternatively, you can decide to put a limit to the number of files (let's say `10`) and the size of each file (eg `1,024,000` bytes, aka `1` megabyte):
+あるいは、ファイル数(`10`としましょう)と各ファイルのサイズ(例: `1,024,000`バイト、`1`メガバイト)に制限を設けることもできます:
 
 ```ruby
 # config/environment.rb
@@ -137,28 +136,27 @@ Hanami.configure do
 end
 ```
 
-## Automatic Logging
+## 自動ロギング
 
-All HTTP requests, SQL queries, and database operations are automatically logged.
+すべてのHTTP要求、SQL照会、およびデータベース操作は自動的にロギングされます。
 
-When a project is used in development mode, the logging format is human readable:
+プロジェクトが開発モードで使用されている場合、ロギング形式は人間が判読可能です:
 
 ```ruby
 [bookshelf] [INFO] [2017-02-11 15:42:48 +0100] HTTP/1.1 GET 200 127.0.0.1 /books/1  451 0.018576
 [bookshelf] [INFO] [2017-02-11 15:42:48 +0100] (0.000381s) SELECT "id", "title", "created_at", "updated_at" FROM "books" WHERE ("book"."id" = '1') ORDER BY "books"."id"
 ```
 
-For production environment, the default format is JSON.
-JSON is parseable and more machine-oriented. It works great with log aggregators or SaaS logging products.
+プロダクション環境の場合、デフォルトのフォーマットはJSONです。
+JSONは解析可能で、よりマシン指向です。ログ収集やSaaSロギング製品に最適です。
 
 ```json
 {"app":"bookshelf","severity":"INFO","time":"2017-02-10T22:31:51Z","http":"HTTP/1.1","verb":"GET","status":"200","ip":"127.0.0.1","path":"/books/1","query":"","length":"451","elapsed":0.000391478}
 ```
 
-## Custom Loggers
+## カスタムロガー
 
-You can specify a custom logger in cases where you desire different logging behaviour. For example,
-the [Timber logger](https://github.com/timberio/timber-ruby):
+異なるロギング動作が必要な場合は、カスタムロガーを指定できます。たとえば、[Timberロガー](https://github.com/timberio/timber-ruby):
 
 ```ruby
 # config/environment.rb
@@ -175,14 +173,13 @@ Hanami.configure do
 end
 ```
 
-Use this logger as normal via `Hanami.logger`. It's important to note that any logger chosen
-must conform to the default `::Logger` interface.
+`Hanami.logger`経由で通常通りこのロガーを使用してください。選択されたどのロガーもデフォルトの`::Logger`インターフェースに準拠しなければならないことに注意することが重要です。
 
-## Colorization
+## 色付け
 
-### Disable colorization
+### 色付けを無効にする
 
-In order to disable the colorization:
+色付けを無効にするには:
 
 ```ruby
 # config/environment.rb
@@ -197,9 +194,9 @@ Hanami.configure do
 end
 ```
 
-### Custom colorizer
+### カスタム色付け
 
-You can build your own colorization strategy
+あなたはあなた自身の色付け戦略を構築することができます
 
 ```ruby
 # config/environment.rb

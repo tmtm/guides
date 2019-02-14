@@ -1,15 +1,15 @@
 ---
-title: "Code Reloading"
+title: "コードのリロード"
 order: 10
 ---
 
-_Code reloading_ allows us to edit code and see the changes with a browser refresh, without needing to stop and restart the [server](/guides/1.2/command-line/applications).
+_コードのリロード_ により、コードを編集してブラウザを更新して変更を確認できます。[サーバー](/guides/1.2/command-line/applications)を停止と再起動は必要ありません。
 
-## Development Environment
+## 開発環境
 
-This is a development-only feature.
-Hanami uses `shotgun` Ruby gem to reload the code as-needed.
-New generated projects have this entry in their `Gemfile`:
+これは開発専用の機能です。
+Hanamiは`shotgun` Ruby gemを使って必要に応じてコードをリロードします。
+新しく生成されたプロジェクトは、 `Gemfile`にこのエントリを登録します:
 
 ```ruby
 group :development do
@@ -19,17 +19,17 @@ group :development do
 end
 ```
 
-Unfortunately, `shotgun` requires that the current environment supports `fork(2)`.
-JRuby and Windows don't support it.
-If this is your case, `shotgun` is not compatible with your development environment, then you can remove that entry from the `Gemfile` or start the server with the `--no-code-reloading` argument.
+残念ながら、`shotgun`は現在の環境が`fork(2)`をサポートすることを要求します。
+JRubyとWindowsはそれをサポートしていません。
+このような場合、`shotgun`は開発環境と互換性がないので、そのエントリを`Gemfile`から削除するか、`--no-code-reloading`引数を使用してサーバーを起動します。
 
-## Other Environments
+## その他の環境
 
-Hanami doesn't implement _code reloading_ in its core.
+Hanami _コードのリロード_ をそのコアに実装していません。
 
-The framework doesn't know about this feature, it just uses Ruby to load the code and execute it. It's `shotgun` that makes _code reloading_ possible, by wrapping Hanami projects' code.
+フレームワークはこの機能については知りません。コードをロードして実行するためにRubyを使用するだけです。`shotgun` がHanamiプロジェクトのコードをラップすることで、 _コードのリロード_ を可能にすします。
 
-Because `shotgun` is only enabled in development, all the other environments don't have this _code reloading_ feature.
-By excluding this feature from the core of the framework, we make sure that Hanami projects don't mess with Ruby's code loading mechanisms in production.
+`shotgun`は開発時にのみ有効になるため、他のすべての環境ではこの _コードのリロード_ 機能はありません。
+この機能をフレームワークのコアから除外することで、Hanamiプロジェクトが本番環境でRubyのコード読み込みメカニズムを台無しにしないようにします。
 
-In other words, once the code is loaded in production, it isn't changed anymore.
+つまり、いったんコードが本番環境にロードされると、それはもう変更されません。

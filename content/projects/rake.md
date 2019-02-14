@@ -1,9 +1,9 @@
 ---
-title: Rake Tasks
+title: Rakeタスク
 order: 20
 ---
 
-Hanami ships with default Rake tasks that can be used as _prerequisites_ by developers to build their own tasks.
+HanamiにはデフォルトのRakeタスクが同梱されています。これは開発者が独自のタスクを作成するための _前提条件_ として使用できます。
 
 ```shell
 $ bundle exec rake -T
@@ -12,13 +12,13 @@ rake test        # Run tests (for Minitest)
 rake spec        # Run tests (for RSpec)
 ```
 
-## Environment
+## 環境
 
-Use this as a Rake task prerequisite when we need to access project code (eg. entities, actions, views, etc..)
+プロジェクトコード(エンティティ、アクション、ビューなど)にアクセスする必要がある場合は、これをRakeタスクの前提条件として使用します。
 
-### Example
+### 例
 
-Imagine we want to build a Rake task that is able to access project code (eg. a repository)
+プロジェクトコード(リポジトリなど)にアクセスできるRakeタスクを作成したいとします。
 
 ```ruby
 # Rakefile
@@ -32,11 +32,11 @@ end
 $ bundle exec rake clear_users
 ```
 
-## Test / Spec
+## テスト/スペック
 
-This is the default Rake task, which runs the test suite
+これはテストスイートを実行するデフォルトのRakeタスクです。
 
-The following commands are equivalent:
+以下のコマンドは同等です。
 
 ```shell
 $ bundle exec rake
@@ -47,30 +47,30 @@ $ bundle exec rake test
 ```
 
 <p class="convention">
-  The <code>:test</code> (or <code>:spec</code> in case you generated the application with <code>--test=rspec</code> switch) Rake task is the default.
+  <code>:test</code> (または<code>--test=rspec</code>スイッチでアプリケーションを生成した場合は<code>:spec</code>) Rakeタスクがデフォルトです。
 </p>
 
-## Ruby Server Hosting Ecosystem Compatibility
+## Rubyサーバーホスティングエコシステムの互換性
 
-Many Software as a Service (SaaS) of the Ruby server hosting ecosystem are modeled after Ruby on Rails.
-For instance, Heroku expects to find the following Rake tasks in a Ruby application:
+Rubyサーバーホスティングエコシステムの多くのSoftware as a Service(SaaS)は、Ruby on Railsをモデルにしています。
+たとえば、HerokuはRubyアプリケーションで次のRakeタスクを見つけることを期待しています:
 
   * `db:migrate`
   * `assets:precompile`
 
-For Heroku, there isn't a way to customize the deploy, so we're supporting these "standard" Rake tasks from Ruby on Rails.
+Herokuにはデプロイをカスタマイズする方法がないので、Ruby on Railsのこれらの「標準的な」Rakeタスクをサポートしています。
 
-**If you are in control of your deployment, don't rely on these Rake tasks, but please use `hanami` [command line](/guides/1.2/command-line/database), instead.**
+**あなたがあなたのデプロイを管理しているなら、これらのRakeタスクに頼らないでください。代わりに`hanami`[コマンドライン](/guides/1.2/command-line/database)を使ってください。**
 
-## Custom rake tasks
+## カスタムrakeタスク
 
-If you want to create a custom rake tasks you can create a `rakelib` folder in project root:
+カスタムrakeタスクを作成したい場合は、プロジェクトルートに`rakelib`フォルダを作成できます:
 
 ```
 $ mkdir rakelib/
 ```
 
-And after that create `*.rake` file, `export.rake` for example:
+その後、`*.rake`ファイルを作成します。たとえば`export.rake`:
 
 ```ruby
 # rakelib/export.rake
@@ -83,6 +83,7 @@ namespace :export do
 end
 ```
 
+これで、カスタムrakeタスクがリストに表示されます:
 Now you can see your custom rake task in the list:
 
 ```shell

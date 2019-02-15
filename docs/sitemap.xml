@@ -93,12 +93,6 @@
   </url>
   
   <url>
-    <loc>https://tmtm.github.io/hanami-guides/projects/code-reloading/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://tmtm.github.io/hanami-guides/command-line/</loc>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
@@ -286,12 +280,6 @@
   
   <url>
     <loc>https://tmtm.github.io/hanami-guides/helpers/links/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tmtm.github.io/hanami-guides/projects/logging/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -676,6 +664,18 @@
   
   <url>
     <loc>https://tmtm.github.io/hanami-guides/architecture/interactors/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tmtm.github.io/hanami-guides/projects/code-reloading/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tmtm.github.io/hanami-guides/projects/logging/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

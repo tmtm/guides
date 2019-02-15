@@ -126,17 +126,6 @@ To better recognise the pattern, let’s get back to the example above. This tim
     </item>
     
     <item>
-      <title>Code Reloading</title>
-      <link>https://tmtm.github.io/hanami-guides/projects/code-reloading/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tmtm.github.io/hanami-guides/projects/code-reloading/</guid>
-      <description>Code reloading allows us to edit code and see the changes with a browser refresh, without needing to stop and restart the server.
-Development Environment This is a development-only feature. Hanami uses shotgun Ruby gem to reload the code as-needed. New generated projects have this entry in their Gemfile:
-group :development do # Code reloading # See: http://hanamirb.org/guides/1.2/projects/code-reloading gem &amp;#39;shotgun&amp;#39; end Unfortunately, shotgun requires that the current environment supports fork(2).</description>
-    </item>
-    
-    <item>
       <title>Compressors</title>
       <link>https://tmtm.github.io/hanami-guides/assets/compressors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -436,18 +425,6 @@ Usage It accepts two mandatory and one optional arguments. The first is the cont
     </item>
     
     <item>
-      <title>Logging</title>
-      <link>https://tmtm.github.io/hanami-guides/projects/logging/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tmtm.github.io/hanami-guides/projects/logging/</guid>
-      <description>Each project has a global logger available at Hanami.logger that can be used like this: Hanami.logger.debug &amp;quot;Hello&amp;quot;
-It can be configured in config/environment.rb
-# config/environment.rb # ... Hanami.configure do # ... environment :development do logger level: :info end environment :production do logger level: :info, formatter: :json # ... end end By default it uses standard output because it&amp;rsquo;s a best practice that most hosting SaaS companies suggest using.
-If you want to use a file, pass stream: &#39;path/to/file.</description>
-    </item>
-    
-    <item>
       <title>MIME Types</title>
       <link>https://tmtm.github.io/hanami-guides/actions/mime-types/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -739,14 +716,18 @@ Global Middleware If we need a component that wraps all the applications (under 
     </item>
     
     <item>
-      <title>Rake Tasks</title>
+      <title>Rakeタスク</title>
       <link>https://tmtm.github.io/hanami-guides/projects/rake/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tmtm.github.io/hanami-guides/projects/rake/</guid>
-      <description>Hanami ships with default Rake tasks that can be used as prerequisites by developers to build their own tasks.
-$ bundle exec rake -T rake environment # Load the full project rake test # Run tests (for Minitest) rake spec # Run tests (for RSpec) Environment Use this as a Rake task prerequisite when we need to access project code (eg. entities, actions, views, etc..)
-Example Imagine we want to build a Rake task that is able to access project code (eg.</description>
+      <description>HanamiにはデフォルトのRakeタスクが同梱されています。これは開発者が独自のタスクを作成するための 前提条件 として使用できます。
+$ bundle exec rake -T rake environment # Load the full project rake test # Run tests (for Minitest) rake spec # Run tests (for RSpec) 環境 プロジェクトコード(エンティティ、アクション、ビューなど)にアクセスする必要がある場合は、これをRakeタスクの前提条件として使用します。
+例 プロジェクトコード(リポジトリなど)にアクセスできるRakeタスクを作成したいとします。
+# Rakefile task clear_users: :environment do UserRepository.new.clear end$ bundle exec rake clear_users テスト/スペック これはテストスイートを実行するデフォルトのRakeタスクです。
+以下のコマンドは同等です。
+$ bundle exec rake$ bundle exec rake test :test (または--test=rspecスイッチでアプリケーションを生成した場合は:spec) Rakeタスクがデフォルトです。 Rubyサーバーホスティングエコシステムの互換性 Rubyサーバーホスティングエコシステムの多くのSoftware as a Service(SaaS)は、Ruby on Railsをモデルにしています。 たとえば、HerokuはRubyアプリケーションで次のRakeタスクを見つけることを期待しています:
+ db:migrate assets:precompile  Herokuにはデプロイをカスタマイズする方法がないので、Ruby on Railsのこれらの「標準的な」Rakeタスクをサポートしています。</description>
     </item>
     
     <item>
@@ -1103,6 +1084,37 @@ Webアプリケーションでは、一般的にコントローラのアクシ�
 これは、オブジェクトは簡単に推論できることを意味します。 オブジェクトが作成された後に呼び出すことができるメソッドが1つだけだからです。
 動作を単一のオブジェクトにカプセル化することで、テストが簡単になります。 暗黙のうちに表現されるだけで、複雑さを隠すのではなく、コードベースを理解しやすくします。
 準備 Getting Startedのbookshelfアプリケーションがあり、 「追加した書籍のEメール通知」機能を追加したいとしましょう。</description>
+    </item>
+    
+    <item>
+      <title>コードのリロード</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/code-reloading/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/code-reloading/</guid>
+      <description>コードのリロード により、コードを編集してブラウザを更新して変更を確認できます。サーバーを停止と再起動は必要ありません。
+開発環境 これは開発専用の機能です。 Hanamiはshotgun Ruby gemを使って必要に応じてコードをリロードします。 新しく生成されたプロジェクトは、 Gemfileにこのエントリを登録します:
+group :development do # Code reloading # See: http://hanamirb.org/guides/1.2/projects/code-reloading gem &amp;#39;shotgun&amp;#39; end 残念ながら、shotgunは現在の環境がfork(2)をサポートすることを要求します。 JRubyとWindowsはそれをサポートしていません。 このような場合、shotgunは開発環境と互換性がないので、そのエントリをGemfileから削除するか、--no-code-reloading引数を使用してサーバーを起動します。
+その他の環境 Hanami コードのリロード をそのコアに実装していません。
+フレームワークはこの機能については知りません。コードをロードして実行するためにRubyを使用するだけです。shotgun がHanamiプロジェクトのコードをラップすることで、 コードのリロード を可能にすします。
+shotgunは開発時にのみ有効になるため、他のすべての環境ではこの コードのリロード 機能はありません。 この機能をフレームワークのコアから除外することで、Hanamiプロジェクトが本番環境でRubyのコード読み込みメカニズムを台無しにしないようにします。
+つまり、いったんコードが本番環境にロードされると、それはもう変更されません。</description>
+    </item>
+    
+    <item>
+      <title>ロギング</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/logging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/logging/</guid>
+      <description>各プロジェクトはHanami.loggerで利用可能なグローバルロガーを持っています。これは次のように使用できます: Hanami.logger.debug &amp;quot;Hello&amp;quot;
+それはconfig/environment.rbで設定することが出来ます。
+# config/environment.rb # ... Hanami.configure do # ... environment :development do logger level: :info end environment :production do logger level: :info, formatter: :json # ... end end ほとんどのホスティングSaaS企業が推奨するベストプラクティスであるため、デフォルトでは標準出力が使用されます。
+ファイルを使いたい場合は、stream: &#39;path/to/file.log&#39;をオプションとして渡します。
+機密情報のフィルタ Hanamiは自動的に非GET HTTPリクエストの本体をログに記録します。
+ユーザーがフォームを送信すると、すべてのフィールドとその値がログに現れます:
+[bookshelf] [INFO] [2017-08-11 18:17:54 +0200] HTTP/1.1 POST 302 ::1 /signup 5 {&amp;#34;signup&amp;#34;=&amp;gt;{&amp;#34;username&amp;#34;=&amp;gt;&amp;#34;jodosha&amp;#34;, &amp;#34;password&amp;#34;=&amp;gt;&amp;#34;secret&amp;#34;, &amp;#34;password_confirmation&amp;#34;=&amp;gt;&amp;#34;secret&amp;#34;, &amp;#34;bio&amp;#34;=&amp;gt;&amp;#34;lorem&amp;#34;}} 0.00593 機密情報がログに記録されるのを防ぐために、それらをフィルタリングすることができます:
+# config/environment.rb # ... Hanami.configure do # ... environment :development do logger level: :debug, filter: %w[password password_confirmation] end end 出力は次のようになります:</description>
     </item>
     
     <item>

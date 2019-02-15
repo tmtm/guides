@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Projects: Rake Tasks | Hanami Guides" />
+    <meta name="description" content="Projects: Rakeタスク | Hanami Guides" />
 
     <meta property="og:url"          content="https://tmtm.github.io/hanami-guides/projects/rake/" />
     <meta property="og:type"         content="article" />
     <meta property="og:locale"       content="en_US" />
     <meta property="og:site_name"    content="Hanami Guides" />
-    <meta property="og:title"        content="Projects: Rake Tasks | Hanami Guides" />
-    <meta property="og:description"  content="Projects: Rake Tasks | Hanami Guides" />
+    <meta property="og:title"        content="Projects: Rakeタスク | Hanami Guides" />
+    <meta property="og:description"  content="Projects: Rakeタスク | Hanami Guides" />
     <meta property="og:image"        content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
     <meta property="og:image:type"   content="image/png" />
     <meta property="og:image:width"  content="2968" />
@@ -20,11 +20,11 @@
     <meta name="twitter:card"        content="summary" />
     <meta name="twitter:site"        content="@hanamirb" />
     <meta name="twitter:creator"     content="@hanamirb" />
-    <meta name="twitter:title"       content="Projects: Rake Tasks | Hanami Guides" />
-    <meta name="twitter:description" content="Projects: Rake Tasks | Hanami Guides" />
+    <meta name="twitter:title"       content="Projects: Rakeタスク | Hanami Guides" />
+    <meta name="twitter:description" content="Projects: Rakeタスク | Hanami Guides" />
     <meta name="twitter:image"       content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
 
-    <title>Projects: Rake Tasks | Hanami Guides</title>
+    <title>Projects: Rakeタスク | Hanami Guides</title>
 
     <meta name="author" content="Hanami team">
     <meta name="keywords" content="hanami,hanamirb,hanami guides,documentation,lotus,lotusrb,web,framework,ruby,open source,oss,os,software,free,free software,architecture,fast,lightweight,testing,tdd,bdd,test driven development,behaviour driven development,full stack,mvc,model view object,pattern,patterns,design patterns,oop,object oriented programming,testability,http,https,routing,router,http router,restful,resource,resources,convention,controller,models,repository,query,sql,interactors,two-step view,view,template,presenters,render,rendering,helpers,erb,haml,tilt,json,xml,yaml,yml,framwork,framewrok,riby,free sowftare" />
@@ -148,19 +148,19 @@
               
               <li>
               
-                <a href="/hanami-guides/projects/code-reloading/">Code Reloading</a>
+                <a href="/hanami-guides/projects/code-reloading/">コードのリロード</a>
               </li>
             
               
               <li class="active ct-sidenav-active">
               
-                <a href="/hanami-guides/projects/rake/">Rake Tasks</a>
+                <a href="/hanami-guides/projects/rake/">Rakeタスク</a>
               </li>
             
               
               <li>
               
-                <a href="/hanami-guides/projects/logging/">Logging</a>
+                <a href="/hanami-guides/projects/logging/">ロギング</a>
               </li>
             
               
@@ -787,87 +787,87 @@
           
           
           <li class="toc-entry toc-h2">
-            <a href="#environment" class="nav-link">Environment</a>
+            <a href="#%e7%92%b0%e5%a2%83" class="nav-link">環境</a>
           </li>
         
           
           
           <li class="toc-entry toc-h2">
-            <a href="#test-spec" class="nav-link">Test / Spec</a>
+            <a href="#%e3%83%86%e3%82%b9%e3%83%88-%e3%82%b9%e3%83%9a%e3%83%83%e3%82%af" class="nav-link">テスト/スペック</a>
           </li>
         
           
           
           <li class="toc-entry toc-h2">
-            <a href="#ruby-server-hosting-ecosystem-compatibility" class="nav-link">Ruby Server Hosting Ecosystem Compatibility</a>
+            <a href="#ruby%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e3%83%9b%e3%82%b9%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%e3%82%a8%e3%82%b3%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e3%81%ae%e4%ba%92%e6%8f%9b%e6%80%a7" class="nav-link">Rubyサーバーホスティングエコシステムの互換性</a>
           </li>
         
           
           
           <li class="toc-entry toc-h2">
-            <a href="#custom-rake-tasks" class="nav-link">Custom rake tasks</a>
+            <a href="#%e3%82%ab%e3%82%b9%e3%82%bf%e3%83%a0rake%e3%82%bf%e3%82%b9%e3%82%af" class="nav-link">カスタムrakeタスク</a>
           </li>
         
         </ul>
       </div>
       <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 ct-content">
         <div class="ct-page-title">
-          <h1 class="ct-title" id="content">Projects: Rake Tasks</h1>
+          <h1 class="ct-title" id="content">Projects: Rakeタスク</h1>
           <div class="avatar-group mt-3">
           </div>
         </div>
         <hr>
         
 
-<p>Hanami ships with default Rake tasks that can be used as <em>prerequisites</em> by developers to build their own tasks.</p>
+<p>HanamiにはデフォルトのRakeタスクが同梱されています。これは開発者が独自のタスクを作成するための <em>前提条件</em> として使用できます。</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> rake -T
 rake environment <span style="color:#75715e"># Load the full project</span>
 rake <span style="color:#111">test</span>        <span style="color:#75715e"># Run tests (for Minitest)</span>
 rake spec        <span style="color:#75715e"># Run tests (for RSpec)</span></code></pre></div>
-<h2 id="environment">Environment</h2>
+<h2 id="環境">環境</h2>
 
-<p>Use this as a Rake task prerequisite when we need to access project code (eg. entities, actions, views, etc..)</p>
+<p>プロジェクトコード(エンティティ、アクション、ビューなど)にアクセスする必要がある場合は、これをRakeタスクの前提条件として使用します。</p>
 
-<h3 id="example">Example</h3>
+<h3 id="例">例</h3>
 
-<p>Imagine we want to build a Rake task that is able to access project code (eg. a repository)</p>
+<p>プロジェクトコード(リポジトリなど)にアクセスできるRakeタスクを作成したいとします。</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Rakefile</span>
 
 <span style="color:#111">task</span> <span style="color:#d88200">clear_users</span><span style="color:#111">:</span> <span style="color:#d88200">:environment</span> <span style="color:#00a8c8">do</span>
   <span style="color:#00a8c8">UserRepository</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#f92672">.</span><span style="color:#111">clear</span>
 <span style="color:#00a8c8">end</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> rake clear_users</code></pre></div>
-<h2 id="test-spec">Test / Spec</h2>
+<h2 id="テスト-スペック">テスト/スペック</h2>
 
-<p>This is the default Rake task, which runs the test suite</p>
+<p>これはテストスイートを実行するデフォルトのRakeタスクです。</p>
 
-<p>The following commands are equivalent:</p>
+<p>以下のコマンドは同等です。</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> rake</code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> rake test</code></pre></div>
 <p class="convention">
-  The <code>:test</code> (or <code>:spec</code> in case you generated the application with <code>--test=rspec</code> switch) Rake task is the default.
+  <code>:test</code> (または<code>--test=rspec</code>スイッチでアプリケーションを生成した場合は<code>:spec</code>) Rakeタスクがデフォルトです。
 </p>
 
-<h2 id="ruby-server-hosting-ecosystem-compatibility">Ruby Server Hosting Ecosystem Compatibility</h2>
+<h2 id="rubyサーバーホスティングエコシステムの互換性">Rubyサーバーホスティングエコシステムの互換性</h2>
 
-<p>Many Software as a Service (SaaS) of the Ruby server hosting ecosystem are modeled after Ruby on Rails.
-For instance, Heroku expects to find the following Rake tasks in a Ruby application:</p>
+<p>Rubyサーバーホスティングエコシステムの多くのSoftware as a Service(SaaS)は、Ruby on Railsをモデルにしています。
+たとえば、HerokuはRubyアプリケーションで次のRakeタスクを見つけることを期待しています:</p>
 
 <ul>
 <li><code>db:migrate</code></li>
 <li><code>assets:precompile</code></li>
 </ul>
 
-<p>For Heroku, there isn&rsquo;t a way to customize the deploy, so we&rsquo;re supporting these &ldquo;standard&rdquo; Rake tasks from Ruby on Rails.</p>
+<p>Herokuにはデプロイをカスタマイズする方法がないので、Ruby on Railsのこれらの「標準的な」Rakeタスクをサポートしています。</p>
 
-<p><strong>If you are in control of your deployment, don&rsquo;t rely on these Rake tasks, but please use <code>hanami</code> <a href="/guides/1.2/command-line/database">command line</a>, instead.</strong></p>
+<p><strong>あなたがあなたのデプロイを管理しているなら、これらのRakeタスクに頼らないでください。代わりに<code>hanami</code><a href="/guides/1.2/command-line/database">コマンドライン</a>を使ってください。</strong></p>
 
-<h2 id="custom-rake-tasks">Custom rake tasks</h2>
+<h2 id="カスタムrakeタスク">カスタムrakeタスク</h2>
 
-<p>If you want to create a custom rake tasks you can create a <code>rakelib</code> folder in project root:</p>
+<p>カスタムrakeタスクを作成したい場合は、プロジェクトルートに<code>rakelib</code>フォルダを作成できます:</p>
 
 <pre><code>$ mkdir rakelib/
 </code></pre>
 
-<p>And after that create <code>*.rake</code> file, <code>export.rake</code> for example:</p>
+<p>その後、<code>*.rake</code>ファイルを作成します。たとえば<code>export.rake</code>:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># rakelib/export.rake</span>
 
 <span style="color:#111">namespace</span> <span style="color:#d88200">:export</span> <span style="color:#00a8c8">do</span>
@@ -876,7 +876,8 @@ For instance, Heroku expects to find the following Rake tasks in a Ruby applicat
     <span style="color:#00a8c8">ExportInteractor</span><span style="color:#f92672">.</span><span style="color:#111">new</span><span style="color:#f92672">.</span><span style="color:#111">call</span>
   <span style="color:#00a8c8">end</span>
 <span style="color:#00a8c8">end</span></code></pre></div>
-<p>Now you can see your custom rake task in the list:</p>
+<p>これで、カスタムrakeタスクがリストに表示されます:
+Now you can see your custom rake task in the list:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ bundle <span style="color:#111">exec</span> rake -T
 rake export:books  <span style="color:#75715e"># Export books to algolia service</span>
 rake environment   <span style="color:#75715e"># Load the full project</span>
@@ -888,7 +889,7 @@ rake spec          <span style="color:#75715e"># Run RSpec code examples</span><
               <a href="/hanami-guides/projects/code-reloading/">
                 <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
                   <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
-                  <span class="btn-inner--text">Projects: Code Reloading</span>
+                  <span class="btn-inner--text">Projects: コードのリロード</span>
                 </button>
               </a>
               
@@ -897,7 +898,7 @@ rake spec          <span style="color:#75715e"># Run RSpec code examples</span><
               
               <a href="/hanami-guides/projects/logging/">
                 <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
-                  <span class="btn-inner--text">Projects: Logging</span>
+                  <span class="btn-inner--text">Projects: ロギング</span>
                   <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
                 </button>
               </a>

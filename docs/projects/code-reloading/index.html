@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Projects: Code Reloading | Hanami Guides" />
+    <meta name="description" content="Projects: コードのリロード | Hanami Guides" />
 
     <meta property="og:url"          content="https://tmtm.github.io/hanami-guides/projects/code-reloading/" />
     <meta property="og:type"         content="article" />
     <meta property="og:locale"       content="en_US" />
     <meta property="og:site_name"    content="Hanami Guides" />
-    <meta property="og:title"        content="Projects: Code Reloading | Hanami Guides" />
-    <meta property="og:description"  content="Projects: Code Reloading | Hanami Guides" />
+    <meta property="og:title"        content="Projects: コードのリロード | Hanami Guides" />
+    <meta property="og:description"  content="Projects: コードのリロード | Hanami Guides" />
     <meta property="og:image"        content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
     <meta property="og:image:type"   content="image/png" />
     <meta property="og:image:width"  content="2968" />
@@ -20,11 +20,11 @@
     <meta name="twitter:card"        content="summary" />
     <meta name="twitter:site"        content="@hanamirb" />
     <meta name="twitter:creator"     content="@hanamirb" />
-    <meta name="twitter:title"       content="Projects: Code Reloading | Hanami Guides" />
-    <meta name="twitter:description" content="Projects: Code Reloading | Hanami Guides" />
+    <meta name="twitter:title"       content="Projects: コードのリロード | Hanami Guides" />
+    <meta name="twitter:description" content="Projects: コードのリロード | Hanami Guides" />
     <meta name="twitter:image"       content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
 
-    <title>Projects: Code Reloading | Hanami Guides</title>
+    <title>Projects: コードのリロード | Hanami Guides</title>
 
     <meta name="author" content="Hanami team">
     <meta name="keywords" content="hanami,hanamirb,hanami guides,documentation,lotus,lotusrb,web,framework,ruby,open source,oss,os,software,free,free software,architecture,fast,lightweight,testing,tdd,bdd,test driven development,behaviour driven development,full stack,mvc,model view object,pattern,patterns,design patterns,oop,object oriented programming,testability,http,https,routing,router,http router,restful,resource,resources,convention,controller,models,repository,query,sql,interactors,two-step view,view,template,presenters,render,rendering,helpers,erb,haml,tilt,json,xml,yaml,yml,framwork,framewrok,riby,free sowftare" />
@@ -148,19 +148,19 @@
               
               <li class="active ct-sidenav-active">
               
-                <a href="/hanami-guides/projects/code-reloading/">Code Reloading</a>
+                <a href="/hanami-guides/projects/code-reloading/">コードのリロード</a>
               </li>
             
               
               <li>
               
-                <a href="/hanami-guides/projects/rake/">Rake Tasks</a>
+                <a href="/hanami-guides/projects/rake/">Rakeタスク</a>
               </li>
             
               
               <li>
               
-                <a href="/hanami-guides/projects/logging/">Logging</a>
+                <a href="/hanami-guides/projects/logging/">ロギング</a>
               </li>
             
               
@@ -787,52 +787,52 @@
           
           
           <li class="toc-entry toc-h2">
-            <a href="#development-environment" class="nav-link">Development Environment</a>
+            <a href="#%e9%96%8b%e7%99%ba%e7%92%b0%e5%a2%83" class="nav-link">開発環境</a>
           </li>
         
           
           
           <li class="toc-entry toc-h2">
-            <a href="#other-environments" class="nav-link">Other Environments</a>
+            <a href="#%e3%81%9d%e3%81%ae%e4%bb%96%e3%81%ae%e7%92%b0%e5%a2%83" class="nav-link">その他の環境</a>
           </li>
         
         </ul>
       </div>
       <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 ct-content">
         <div class="ct-page-title">
-          <h1 class="ct-title" id="content">Projects: Code Reloading</h1>
+          <h1 class="ct-title" id="content">Projects: コードのリロード</h1>
           <div class="avatar-group mt-3">
           </div>
         </div>
         <hr>
         
 
-<p><em>Code reloading</em> allows us to edit code and see the changes with a browser refresh, without needing to stop and restart the <a href="/guides/1.2/command-line/applications">server</a>.</p>
+<p><em>コードのリロード</em> により、コードを編集してブラウザを更新して変更を確認できます。<a href="/guides/1.2/command-line/applications">サーバー</a>を停止と再起動は必要ありません。</p>
 
-<h2 id="development-environment">Development Environment</h2>
+<h2 id="開発環境">開発環境</h2>
 
-<p>This is a development-only feature.
-Hanami uses <code>shotgun</code> Ruby gem to reload the code as-needed.
-New generated projects have this entry in their <code>Gemfile</code>:</p>
+<p>これは開発専用の機能です。
+Hanamiは<code>shotgun</code> Ruby gemを使って必要に応じてコードをリロードします。
+新しく生成されたプロジェクトは、 <code>Gemfile</code>にこのエントリを登録します:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">group</span> <span style="color:#d88200">:development</span> <span style="color:#00a8c8">do</span>
   <span style="color:#75715e"># Code reloading</span>
   <span style="color:#75715e"># See: http://hanamirb.org/guides/1.2/projects/code-reloading</span>
   <span style="color:#111">gem</span> <span style="color:#d88200">&#39;shotgun&#39;</span>
 <span style="color:#00a8c8">end</span></code></pre></div>
-<p>Unfortunately, <code>shotgun</code> requires that the current environment supports <code>fork(2)</code>.
-JRuby and Windows don&rsquo;t support it.
-If this is your case, <code>shotgun</code> is not compatible with your development environment, then you can remove that entry from the <code>Gemfile</code> or start the server with the <code>--no-code-reloading</code> argument.</p>
+<p>残念ながら、<code>shotgun</code>は現在の環境が<code>fork(2)</code>をサポートすることを要求します。
+JRubyとWindowsはそれをサポートしていません。
+このような場合、<code>shotgun</code>は開発環境と互換性がないので、そのエントリを<code>Gemfile</code>から削除するか、<code>--no-code-reloading</code>引数を使用してサーバーを起動します。</p>
 
-<h2 id="other-environments">Other Environments</h2>
+<h2 id="その他の環境">その他の環境</h2>
 
-<p>Hanami doesn&rsquo;t implement <em>code reloading</em> in its core.</p>
+<p>Hanami <em>コードのリロード</em> をそのコアに実装していません。</p>
 
-<p>The framework doesn&rsquo;t know about this feature, it just uses Ruby to load the code and execute it. It&rsquo;s <code>shotgun</code> that makes <em>code reloading</em> possible, by wrapping Hanami projects&rsquo; code.</p>
+<p>フレームワークはこの機能については知りません。コードをロードして実行するためにRubyを使用するだけです。<code>shotgun</code> がHanamiプロジェクトのコードをラップすることで、 <em>コードのリロード</em> を可能にすします。</p>
 
-<p>Because <code>shotgun</code> is only enabled in development, all the other environments don&rsquo;t have this <em>code reloading</em> feature.
-By excluding this feature from the core of the framework, we make sure that Hanami projects don&rsquo;t mess with Ruby&rsquo;s code loading mechanisms in production.</p>
+<p><code>shotgun</code>は開発時にのみ有効になるため、他のすべての環境ではこの <em>コードのリロード</em> 機能はありません。
+この機能をフレームワークのコアから除外することで、Hanamiプロジェクトが本番環境でRubyのコード読み込みメカニズムを台無しにしないようにします。</p>
 
-<p>In other words, once the code is loaded in production, it isn&rsquo;t changed anymore.</p>
+<p>つまり、いったんコードが本番環境にロードされると、それはもう変更されません。</p>
 <hr>
         <div class="container">
           <div class="row">
@@ -850,7 +850,7 @@ By excluding this feature from the core of the framework, we make sure that Hana
               
               <a href="/hanami-guides/projects/rake/">
                 <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
-                  <span class="btn-inner--text">Projects: Rake Tasks</span>
+                  <span class="btn-inner--text">Projects: Rakeタスク</span>
                   <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
                 </button>
               </a>

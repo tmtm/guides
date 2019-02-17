@@ -166,19 +166,19 @@
               
               <li>
               
-                <a href="/hanami-guides/projects/initializers/">Initializers</a>
+                <a href="/hanami-guides/projects/initializers/">イニシャライザ</a>
               </li>
             
               
               <li>
               
-                <a href="/hanami-guides/projects/rack-middleware/">Rack Middleware</a>
+                <a href="/hanami-guides/projects/rack-middleware/">Rackミドルウェア</a>
               </li>
             
               
               <li>
               
-                <a href="/hanami-guides/projects/security/">Project Security</a>
+                <a href="/hanami-guides/projects/security/">プロジェクトセキュリティ</a>
               </li>
             
               
@@ -190,7 +190,7 @@
               
               <li>
               
-                <a href="/hanami-guides/projects/selectively-boot-apps/">Selectively boot apps</a>
+                <a href="/hanami-guides/projects/selectively-boot-apps/">アプリを選択的に起動する</a>
               </li>
             
             </ul>
@@ -787,19 +787,19 @@
           
           
           <li class="toc-entry toc-h2">
-            <a href="#setup" class="nav-link">Setup</a>
+            <a href="#%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97" class="nav-link">セットアップ</a>
           </li>
         
           
           
           <li class="toc-entry toc-h2">
-            <a href="#assets-helpers" class="nav-link">Assets helpers</a>
+            <a href="#%e3%82%a2%e3%82%bb%e3%83%83%e3%83%88%e3%83%98%e3%83%ab%e3%83%91%e3%83%bc" class="nav-link">アセットヘルパー</a>
           </li>
         
           
           
           <li class="toc-entry toc-h2">
-            <a href="#demo-project" class="nav-link">Demo project</a>
+            <a href="#%e3%83%87%e3%83%a2%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88" class="nav-link">デモプロジェクト</a>
           </li>
         
         </ul>
@@ -813,36 +813,36 @@
         <hr>
         
 
-<p>A web page may link to external resources such as stylesheets, or images (assets).
-With HTTP/1.1 the browser parses the HTML and for each link, it downloads the asset and eventually take an action on it: renders an image or evaluate JavaScript code.
-With HTTP/2 introduced an enhancement: the server can proactively &ldquo;push&rdquo; in parallel both the HTML payload <strong>and</strong> the some assets to the browser. This workflow is allowed due to the HTTP/2 TCP connections are multiplexed. That means many communications can happen at the same time.</p>
+<p>Webページは、スタイルシートや画像(アセット)などの外部リソースにリンクすることがあります。
+HTTP/1.1では、ブラウザはHTMLを解析し、リンクごとにアセットをダウンロードし、最終的にそれに対してアクションを実行します: 画像のレンダリングまたはJavaScriptコードの評価。
+HTTP/2では機能強化が導入されました: サーバーはHTMLペイロード<strong>と</strong>一部のアセットの両方を並行して事前にブラウザーに「プッシュ」することができます。このワークフローは、HTTP/2 TCP接続が多重化されているため許可されています。それは多くのコミュニケーションが同時に起こることができることを意味します。</p>
 
-<p>Unfortunately HTTP/2 adoption is still slow, so the IETF &ldquo;backported&rdquo; this workflow to HTTP/1.1 as well, by introducing the HTTP status <a href="https://datatracker.ietf.org/doc/rfc8297/"><code>103 Early Hints</code></a>.
-In this case the server sends <strong>one or more HTTP responses for a single request</strong>. The last one must be the traditional <code>200 OK</code> that returns the HTML of the page, whereas the first <code>n</code> can include a special header <code>Link</code> to tell the browser to fetch the asset ahead of time.</p>
+<p>残念ながらHTTP/2の採用はまだ遅いので、IETFはHTTPステータス<a href="https://datatracker.ietf.org/doc/rfc8297/"><code>103 Early Hints</code></a>を導入することで、このワークフローをHTTP/1.1にも「バックポート」しました。
+この場合、サーバーは<strong>単一の要求に対して1つ以上のHTTP応答</strong>を送信します。最後のものは、ページのHTMLを返す伝統的な<code>200 OK</code>でなければなりませんが、最初の<code>n</code>は、ブラウザにアセットを事前に取得するように指示する特別なヘッダ<code>Link</code>を含めることができます。</p>
 
-<h2 id="setup">Setup</h2>
+<h2 id="セットアップ">セットアップ</h2>
 
-<p>As first thing, you need <a href="http://puma.io/">Puma</a> <code>3.11.0+</code> with Early-Hints enabled:</p>
+<p>まず最初に、Early-Hintsを有効にした<a href="http://puma.io/">Puma</a> <code>3.11.0+</code> が必要です:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Gemfile</span>
 <span style="color:#111">gem</span> <span style="color:#d88200">&#34;puma&#34;</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># config/puma.rb</span>
 <span style="color:#111">early_hints</span> <span style="color:#00a8c8">true</span></code></pre></div>
-<p>Then from the project configuration, you can simply enable the feature:</p>
+<p>その後、プロジェクト構成から、この機能を簡単に有効にすることができます:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># config/environment.rb</span>
 <span style="color:#00a8c8">Hanami</span><span style="color:#f92672">.</span><span style="color:#111">configure</span> <span style="color:#00a8c8">do</span>
   <span style="color:#75715e"># ...</span>
   <span style="color:#111">early_hints</span> <span style="color:#00a8c8">true</span>
 <span style="color:#00a8c8">end</span></code></pre></div>
-<p>As last step, you need a web server that supports HTTP/2 and Early Hints like <a href="https://h2o.examp1e.net/">h2o</a>.
-When you&rsquo;ll start the server and visit the page, javascripts and stylesheets will be pushed (see <a href="#assets-helpers">Assets helpers</a> section).</p>
+<p>最後のステップとして、HTTP/2と<a href="https://h2o.examp1e.net/">h2o</a>のようなEarly HintsをサポートするWebサーバーが必要です。
+サーバーを起動してページにアクセスすると、JavaScriptとスタイルシートがプッシュされます(<a href="#assets-helpers">アセットヘルパー</a>セクションを参照)。</p>
 
-<h3 id="other-web-servers">Other web servers</h3>
+<h3 id="他のwebサーバー">他のWebサーバー</h3>
 
-<p>As of today, only Puma supports Early Hints.</p>
+<p>現在では、PumaだけがEarly Hintsをサポートしています。</p>
 
-<h2 id="assets-helpers">Assets helpers</h2>
+<h2 id="アセットヘルパー">アセットヘルパー</h2>
 
-<p>In order to automatically push your assets, you have to use our <a href="/helpers/assets">assets helpers</a>.
-But given to browser limitations (only up to 100 assets can be pushed), Hanami by default sends stylesheets and javascripts only.</p>
+<p>あなたの資産を自動的にプッシュするために、あなたは私たちの<a href="/helpers/assets">アセットヘルパー</a>を使わなければなりません。
+しかし、ブラウザの制限(最大100アセットまでしかプッシュできません)により、デフォルトではHanamiはスタイルシートとJavaScriptのみを送信します。</p>
 
 <table class="table table-bordered">
   <thead>
@@ -896,37 +896,37 @@ But given to browser limitations (only up to 100 assets can be pushed), Hanami b
   </tbody>
 </table>
 
-<p>You can <strong>opt-in/out</strong> the following types:</p>
+<p>次の種類を<strong>オプトインまたはオプトアウト</strong>できます:</p>
 
-<h3 id="javascripts">Javascripts</h3>
+<h3 id="javascript">JavaScript</h3>
 
-<p>Pushed by default:</p>
+<p>デフォルトでプッシュされます:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= javascript &#34;application&#34; %&gt;
 &lt;%= javascript &#34;https://somecdn.test/framework.js&#34;, &#34;dashboard&#34; %&gt;</code></pre></div>
-<p>Opt-out:</p>
+<p>オプトアウト:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= javascript &#34;application&#34;, push: false %&gt;
 &lt;%= javascript &#34;https://somecdn.test/framework.css&#34;, &#34;dashboard&#34;, push: false %&gt;</code></pre></div>
-<h3 id="stylesheets">Stylesheets</h3>
+<h3 id="スタイルシート">スタイルシート</h3>
 
-<p>Pushed by default:</p>
+<p>デフォルトでプッシュされます:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= stylesheet &#34;application&#34; %&gt;
 &lt;%= stylesheet &#34;https://somecdn.test/framework.css&#34;, &#34;dashboard&#34; %&gt;</code></pre></div>
-<p>Opt-out:</p>
+<p>オプトアウト:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= stylesheet &#34;application&#34;, push: false %&gt;
 &lt;%= stylesheet &#34;https://somecdn.test/framework.css&#34;, &#34;dashboard&#34;, push: false %&gt;</code></pre></div>
 <h3 id="favicon">Favicon</h3>
 
-<p>Opt-in:</p>
+<p>オプトイン:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= favicon &#34;favicon.ico&#34;, push: :image %&gt;</code></pre></div>
-<h3 id="image">Image</h3>
+<h3 id="画像">画像</h3>
 
-<p>Opt-in:</p>
+<p>オプトイン:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= image &#34;avatar.png&#34;, push: :image %&gt;</code></pre></div>
-<h3 id="audio">Audio</h3>
+<h3 id="オーディオ">オーディオ</h3>
 
-<p>Opt-in:</p>
+<p>オプトイン:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= audio &#34;song.ogg&#34;, push: true %&gt;</code></pre></div>
-<p>Block syntax (pushes only <code>song.ogg</code>):</p>
+<p>ブロック構文(<code>song.ogg</code> のみプッシュ):</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%=
   audio do
     text &#34;Your browser does not support the audio tag&#34;
@@ -934,11 +934,11 @@ But given to browser limitations (only up to 100 assets can be pushed), Hanami b
     source src: asset_path(&#34;song.wav&#34;), type: &#34;audio/wav&#34;
   end
 %&gt;</code></pre></div>
-<h3 id="video">Video</h3>
+<h3 id="ビデオ">ビデオ</h3>
 
-<p>Opt-in:</p>
+<p>オプトイン:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= video &#34;movie.mp4&#34;, push: true %&gt;</code></pre></div>
-<p>Block syntax (pushes only <code>movie.mp4</code>):</p>
+<p>ブロック構文(<code>movie.mp4</code> のみプッシュ):</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%=
   video do
     text &#34;Your browser does not support the video tag&#34;
@@ -946,13 +946,13 @@ But given to browser limitations (only up to 100 assets can be pushed), Hanami b
     source src: asset_path(&#34;movie.ogg&#34;), type: &#34;video/ogg&#34;
   end
 %&gt;</code></pre></div>
-<h3 id="asset-path">Asset path</h3>
+<h3 id="アセットパス">アセットパス</h3>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= asset_path &#34;application.js&#34;, push: :script %&gt;</code></pre></div>
-<h3 id="asset-url">Asset URL</h3>
+<h3 id="アセットurl">アセットURL</h3>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-erb" data-lang="erb">&lt;%= asset_url &#34;https://somecdn.test/framework.js&#34;, push: :script %&gt;</code></pre></div>
-<h2 id="demo-project">Demo project</h2>
+<h2 id="デモプロジェクト">デモプロジェクト</h2>
 
-<p>If you&rsquo;re looking for a full working example, please check this <a href="https://github.com/jodosha/hall_of_fame">demo project</a>.</p>
+<p>完全に機能する例を探しているなら、この<a href="https://github.com/jodosha/hall_of_fame">デモプロジェクト</a>をチェックしてください。</p>
 <hr>
         <div class="container">
           <div class="row">
@@ -961,7 +961,7 @@ But given to browser limitations (only up to 100 assets can be pushed), Hanami b
               <a href="/hanami-guides/projects/security/">
                 <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
                   <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
-                  <span class="btn-inner--text">Projects: Project Security</span>
+                  <span class="btn-inner--text">Projects: プロジェクトセキュリティ</span>
                 </button>
               </a>
               
@@ -970,7 +970,7 @@ But given to browser limitations (only up to 100 assets can be pushed), Hanami b
               
               <a href="/hanami-guides/projects/selectively-boot-apps/">
                 <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
-                  <span class="btn-inner--text">Projects: Selectively boot apps</span>
+                  <span class="btn-inner--text">Projects: アプリを選択的に起動する</span>
                   <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
                 </button>
               </a>

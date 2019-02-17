@@ -355,7 +355,14 @@ Cache Control Actions offer a DSL to set a special header Cache-Control. The fir
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tmtm.github.io/hanami-guides/projects/http2-early-hints/</guid>
-      <description>A web page may link to external resources such as stylesheets, or images (assets). With HTTP/1.1 the browser parses the HTML and for each link, it downloads the asset and eventually take an action on it: renders an image or evaluate JavaScript code. With HTTP/2 introduced an enhancement: the server can proactively &amp;ldquo;push&amp;rdquo; in parallel both the HTML payload and the some assets to the browser. This workflow is allowed due to the HTTP/2 TCP connections are multiplexed.</description>
+      <description>Webページは、スタイルシートや画像(アセット)などの外部リソースにリンクすることがあります。 HTTP/1.1では、ブラウザはHTMLを解析し、リンクごとにアセットをダウンロードし、最終的にそれに対してアクションを実行します: 画像のレンダリングまたはJavaScriptコードの評価。 HTTP/2では機能強化が導入されました: サーバーはHTMLペイロードと一部のアセットの両方を並行して事前にブラウザーに「プッシュ」することができます。このワークフローは、HTTP/2 TCP接続が多重化されているため許可されています。それは多くのコミュニケーションが同時に起こることができることを意味します。
+残念ながらHTTP/2の採用はまだ遅いので、IETFはHTTPステータス103 Early Hintsを導入することで、このワークフローをHTTP/1.1にも「バックポート」しました。 この場合、サーバーは単一の要求に対して1つ以上のHTTP応答を送信します。最後のものは、ページのHTMLを返す伝統的な200 OKでなければなりませんが、最初のnは、ブラウザにアセットを事前に取得するように指示する特別なヘッダLinkを含めることができます。
+セットアップ まず最初に、Early-Hintsを有効にしたPuma 3.11.0+ が必要です:
+# Gemfile gem &amp;#34;puma&amp;#34;# config/puma.rb early_hints true その後、プロジェクト構成から、この機能を簡単に有効にすることができます:
+# config/environment.rb Hanami.configure do # ... early_hints true end 最後のステップとして、HTTP/2とh2oのようなEarly HintsをサポートするWebサーバーが必要です。 サーバーを起動してページにアクセスすると、JavaScriptとスタイルシートがプッシュされます(アセットヘルパーセクションを参照)。
+他のWebサーバー 現在では、PumaだけがEarly Hintsをサポートしています。
+アセットヘルパー あなたの資産を自動的にプッシュするために、あなたは私たちのアセットヘルパーを使わなければなりません。 しかし、ブラウザの制限(最大100アセットまでしかプッシュできません)により、デフォルトではHanamiはスタイルシートとJavaScriptのみを送信します。
+  Helper Early Hints asset type Pushed by default     javascript :script yes   stylesheet :style yes   favicon :image no   image :image no   video :video no   audio :audio no   asset_path N/A no   asset_url N/A no    次の種類をオプトインまたはオプトアウトできます:</description>
     </item>
     
     <item>
@@ -388,18 +395,6 @@ Setup $ bundle exec hanami generate model user create lib/bookshelf/entities/use
       <description>Also known as one-to-one, is an association between an entity (User) associated to one child entity (Avatar).
 Setup $ bundle exec hanami generate model user create lib/bookshelf/entities/user.rb create lib/bookshelf/repositories/user_repository.rb create db/migrations/20171024083639_create_users.rb create spec/bookshelf/entities/user_spec.rb create spec/bookshelf/repositories/user_repository_spec.rb $ bundle exec hanami generate model avatar create lib/bookshelf/entities/avatar.rb create lib/bookshelf/repositories/avatar_repository.rb create db/migrations/20171024083725_create_avatars.rb create spec/bookshelf/entities/avatar_spec.rb create spec/bookshelf/repositories/avatar_repository_spec.rb Edit the migrations:
 # db/migrations/20171024083639_create_users.rb Hanami::Model.migration do change do create_table :users do primary_key :id column :name, String, null: false column :created_at, DateTime, null: false column :updated_at, DateTime, null: false end end end# db/migrations/20171024083725_create_avatars.</description>
-    </item>
-    
-    <item>
-      <title>Initializers</title>
-      <link>https://tmtm.github.io/hanami-guides/projects/initializers/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tmtm.github.io/hanami-guides/projects/initializers/</guid>
-      <description>A project can optionally have one or more custom initializers.
-Initializers are optional An initializer is a Ruby file used to setup third-party libraries or some other aspect of the code.
-They are run as the last thing after the dependencies, the framework and the project code are loaded, but before the server or the console is started.
-For instance, if we want to setup Bugsnag for our project we can do:</description>
     </item>
     
     <item>
@@ -670,18 +665,6 @@ We can use the --test argument to specify a different framework, from the list b
     </item>
     
     <item>
-      <title>Project Security</title>
-      <link>https://tmtm.github.io/hanami-guides/projects/security/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tmtm.github.io/hanami-guides/projects/security/</guid>
-      <description>Modern web development has many challenges, and of those security is both very important and often under-emphasized.
-Hanami provides ways to secure from most common vulnerabilities. Security options can be configured in application.rb.
-X-Frame-Options X-Frame-Options is a HTTP header supported by modern browsers. It determines if a web page can or cannot be included via &amp;lt;frame&amp;gt; and &amp;lt;iframe&amp;gt; tags by untrusted domains.
-Web applications can send this header to prevent Clickjacking attacks:</description>
-    </item>
-    
-    <item>
       <title>RESTful Resource(s)</title>
       <link>https://tmtm.github.io/hanami-guides/routing/restful-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -706,13 +689,13 @@ Global Middleware If we need a component that wraps all the applications (under 
     </item>
     
     <item>
-      <title>Rack Middleware</title>
+      <title>Rackミドルウェア</title>
       <link>https://tmtm.github.io/hanami-guides/projects/rack-middleware/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tmtm.github.io/hanami-guides/projects/rack-middleware/</guid>
-      <description>Hanami exposes a project level Rack middleware stack to be configured like this:
-# config/environment.rb Hanami.configure do middleware.use MyRackMiddleware end It&amp;rsquo;s worth noticing that this is equivalent to add a middleware in config.ru file. The only difference is that third-party plugins can hook into Hanami.configure to inject their own middleware.</description>
+      <description>HanamiはプロジェクトレベルのRackミドルウェアスタックを次のように設定します:
+# config/environment.rb Hanami.configure do middleware.use MyRackMiddleware end これはconfig.ruファイルにミドルウェアを追加するのと同じことは注目に値します。 唯一の違いは、サードパーティのプラグインがHanami.configureにフックして独自のミドルウェアを注入できることです。</description>
     </item>
     
     <item>
@@ -771,16 +754,6 @@ For a given route named :home, we can use home_path or home_url to generate rela
 class UserRepository &amp;lt; Hanami::Repository def all_with_name users.select(:id, :name) end end Raw SQL You can perform queries with raw SQL:
 class UserRepository &amp;lt; Hanami::Repository def all_by_sql users.read(&amp;#34;SELECT * FROM users&amp;#34;) end end Sort You can sort records using #order:
 class UserRepository &amp;lt; Hanami::Repository def from_first_to_last users.order { created_at.asc } end def from_last_to_first users.order { created_at.desc } end def alphabetical users.</description>
-    </item>
-    
-    <item>
-      <title>Selectively boot apps</title>
-      <link>https://tmtm.github.io/hanami-guides/projects/selectively-boot-apps/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tmtm.github.io/hanami-guides/projects/selectively-boot-apps/</guid>
-      <description>With Hanami you can build your project by following the Monolith-First principle. As you add more code to the project, you can grow it organically, by splitting the project into several Hanami apps.
-A real world Hanami project could have dozens of Hanami apps in the same project (for example, web for the front-end, admin for the administration, api for a JSON API, etc&amp;hellip;) You might want to deploy them to different servers, even though they&amp;rsquo;re all a part of the same project.</description>
     </item>
     
     <item>
@@ -1054,6 +1027,32 @@ $ cd bookshelf $ tree -L 1 . ├── Gemfile ├── README.md ├── Rak
     </item>
     
     <item>
+      <title>アプリを選択的に起動する</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/selectively-boot-apps/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/selectively-boot-apps/</guid>
+      <description>Hanamiでは、Monolith-First原則に従ってプロジェクトを構築できます。 プロジェクトにコードを追加するにつれて、プロジェクトを複数のHanamiアプリに分割することで、それを有機的拡張できます。
+実際のHanamiプロジェクトでは、同じプロジェクト内に多数のHanamiアプリ(たとえば、フロントエンド用のweb、管理用のadmin、JSON API用のAPIなど)を持つことができます。 それらはすべて同じプロジェクトの一部ですが、異なるサーバーにデプロイしたいかもしれません。 たとえば、ほとんどのサーバーはwebアプリ(サイトの顧客用)に、いくつかはapi(おそらくモバイルアプリを使用する顧客用)に使用し、そして、単一のサーバーでadminアプリを実行することもできます。これは他の2つよりもトラフィックが少なくなる可能性があるためです。
+選択的起動 でこれをサポートします:
+# config/environment.rb # ... Hanami.configure do if Hanami.app?(:web) require_relative &amp;#39;../apps/web/application&amp;#39; mount Web::Application, at: &amp;#39;/&amp;#39; end if Hanami.app?(:api) require_relative &amp;#39;../apps/api/application&amp;#39; mount Api::Application, at: &amp;#39;/api&amp;#39; end if Hanami.app?(:admin) require_relative &amp;#39;../apps/admin/application&amp;#39; mount Admin::Application, at: &amp;#39;/admin&amp;#39; end end HANAMI_APPS環境変数を使用して、使用するアプリを宣言できます。 単一のアプリ、または複数のアプリ(コンマで結合)を指定できます:
+$ HANAMI_APPS=web,api bundle exec hanami server This would start only the web and api applications.</description>
+    </item>
+    
+    <item>
+      <title>イニシャライザ</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/initializers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/initializers/</guid>
+      <description>プロジェクトはオプションで 1つ以上のカスタムイニシャライザを持つことができます。
+イニシャライザはオプションです イニシャライザは、サードパーティのライブラリやその他のコードの側面を設定するために使用されるRubyファイルです。
+これらは、依存関係、フレームワーク、プロジェクトコードがロードされた後 、サーバーまたはコンソールが起動される前に 最後に実行されます。
+たとえば、Bugsnagを自分のプロジェクト用に設定したい場合は、次のようにします:
+# config/initializers/bugsnag.rb require &amp;#39;bugsnag&amp;#39; Bugsnag.configure do |config| config.api_key = ENV[&amp;#39;BUGSNAG_API_KEY&amp;#39;] end プロジェクトイニシャライザはconfig/initializers下に追加されなければなりません。 イニシャライザはアルファベット順に実行されます。 </description>
+    </item>
+    
+    <item>
       <title>インタラクター</title>
       <link>https://tmtm.github.io/hanami-guides/architecture/interactors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1099,6 +1098,21 @@ group :development do # Code reloading # See: http://hanamirb.org/guides/1.2/pro
 フレームワークはこの機能については知りません。コードをロードして実行するためにRubyを使用するだけです。shotgun がHanamiプロジェクトのコードをラップすることで、 コードのリロード を可能にすします。
 shotgunは開発時にのみ有効になるため、他のすべての環境ではこの コードのリロード 機能はありません。 この機能をフレームワークのコアから除外することで、Hanamiプロジェクトが本番環境でRubyのコード読み込みメカニズムを台無しにしないようにします。
 つまり、いったんコードが本番環境にロードされると、それはもう変更されません。</description>
+    </item>
+    
+    <item>
+      <title>プロジェクトセキュリティ</title>
+      <link>https://tmtm.github.io/hanami-guides/projects/security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tmtm.github.io/hanami-guides/projects/security/</guid>
+      <description>現代のWeb開発は多くの課題を抱えており、それらのセキュリティは非常に重要であり、またしばしば強調されすぎていません。
+Hanamiは脆弱性から保護する最も一般的な方法を提供します。セキュリティオプションはapplication.rbで設定できます。
+X-Frame-Options X-Frame-Optionsは最近のブラウザでサポートされているHTTPヘッダです。信頼できないドメインによって&amp;lt;frame&amp;gt;および&amp;lt;iframe&amp;gt;タグを介してWebページを含めることができるかどうかを決定します。
+Clickjacking攻撃を防ぐために、Webアプリケーションはこのヘッダーを送信できます:
+# Denies all untrusted domains (default) security.x_frame_options &amp;#39;DENY&amp;#39;# Allows iframes on example.com security.x_frame_options &amp;#39;ALLOW-FROM https://example.com/&amp;#39; X-Content-Type-Options X-Content-Type-OptionsはブラウザがHTTPヘッダのContent-Typeによって宣言されたもの以外のものとしてファイルを解釈するのを防ぎます。
+# Will prevent the browser from MIME-sniffing a response away from the declared content-type (default) security.x_content_type_options &amp;#39;nosniff&amp;#39; X-XSS-Protection X-XSS-Protectionは、XSS攻撃が検出された場合のブラウザの動作を決定するためのHTTPヘッダーです。
+# Filter enabled. Rather than sanitize the page, when a XSS attack is detected, # the browser will prevent rendering of the page (default) security.x_xss_protection &amp;#39;1; mode=block&amp;#39;# Filter disabled security.</description>
     </item>
     
     <item>

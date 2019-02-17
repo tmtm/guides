@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Projects: Project Security | Hanami Guides" />
+    <meta name="description" content="Projects: プロジェクトセキュリティ | Hanami Guides" />
 
     <meta property="og:url"          content="https://tmtm.github.io/hanami-guides/projects/security/" />
     <meta property="og:type"         content="article" />
     <meta property="og:locale"       content="en_US" />
     <meta property="og:site_name"    content="Hanami Guides" />
-    <meta property="og:title"        content="Projects: Project Security | Hanami Guides" />
-    <meta property="og:description"  content="Projects: Project Security | Hanami Guides" />
+    <meta property="og:title"        content="Projects: プロジェクトセキュリティ | Hanami Guides" />
+    <meta property="og:description"  content="Projects: プロジェクトセキュリティ | Hanami Guides" />
     <meta property="og:image"        content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
     <meta property="og:image:type"   content="image/png" />
     <meta property="og:image:width"  content="2968" />
@@ -20,11 +20,11 @@
     <meta name="twitter:card"        content="summary" />
     <meta name="twitter:site"        content="@hanamirb" />
     <meta name="twitter:creator"     content="@hanamirb" />
-    <meta name="twitter:title"       content="Projects: Project Security | Hanami Guides" />
-    <meta name="twitter:description" content="Projects: Project Security | Hanami Guides" />
+    <meta name="twitter:title"       content="Projects: プロジェクトセキュリティ | Hanami Guides" />
+    <meta name="twitter:description" content="Projects: プロジェクトセキュリティ | Hanami Guides" />
     <meta name="twitter:image"       content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
 
-    <title>Projects: Project Security | Hanami Guides</title>
+    <title>Projects: プロジェクトセキュリティ | Hanami Guides</title>
 
     <meta name="author" content="Hanami team">
     <meta name="keywords" content="hanami,hanamirb,hanami guides,documentation,lotus,lotusrb,web,framework,ruby,open source,oss,os,software,free,free software,architecture,fast,lightweight,testing,tdd,bdd,test driven development,behaviour driven development,full stack,mvc,model view object,pattern,patterns,design patterns,oop,object oriented programming,testability,http,https,routing,router,http router,restful,resource,resources,convention,controller,models,repository,query,sql,interactors,two-step view,view,template,presenters,render,rendering,helpers,erb,haml,tilt,json,xml,yaml,yml,framwork,framewrok,riby,free sowftare" />
@@ -166,19 +166,19 @@
               
               <li>
               
-                <a href="/hanami-guides/projects/initializers/">Initializers</a>
+                <a href="/hanami-guides/projects/initializers/">イニシャライザ</a>
               </li>
             
               
               <li>
               
-                <a href="/hanami-guides/projects/rack-middleware/">Rack Middleware</a>
+                <a href="/hanami-guides/projects/rack-middleware/">Rackミドルウェア</a>
               </li>
             
               
               <li class="active ct-sidenav-active">
               
-                <a href="/hanami-guides/projects/security/">Project Security</a>
+                <a href="/hanami-guides/projects/security/">プロジェクトセキュリティ</a>
               </li>
             
               
@@ -190,7 +190,7 @@
               
               <li>
               
-                <a href="/hanami-guides/projects/selectively-boot-apps/">Selectively boot apps</a>
+                <a href="/hanami-guides/projects/selectively-boot-apps/">アプリを選択的に起動する</a>
               </li>
             
             </ul>
@@ -812,33 +812,33 @@
       </div>
       <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 ct-content">
         <div class="ct-page-title">
-          <h1 class="ct-title" id="content">Projects: Project Security</h1>
+          <h1 class="ct-title" id="content">Projects: プロジェクトセキュリティ</h1>
           <div class="avatar-group mt-3">
           </div>
         </div>
         <hr>
         
 
-<p>Modern web development has many challenges, and of those security is both very important and often under-emphasized.</p>
+<p>現代のWeb開発は多くの課題を抱えており、それらのセキュリティは非常に重要であり、またしばしば強調されすぎていません。</p>
 
-<p>Hanami provides ways to secure from most common vulnerabilities. Security options can be configured in <code>application.rb</code>.</p>
+<p>Hanamiは脆弱性から保護する最も一般的な方法を提供します。セキュリティオプションは<code>application.rb</code>で設定できます。</p>
 
 <h2 id="x-frame-options">X-Frame-Options</h2>
 
-<p><code>X-Frame-Options</code> is a HTTP header supported by modern browsers. It determines if a web page can or cannot be included via <code>&lt;frame&gt;</code> and <code>&lt;iframe&gt;</code> tags by untrusted domains.</p>
+<p><code>X-Frame-Options</code>は最近のブラウザでサポートされているHTTPヘッダです。信頼できないドメインによって<code>&lt;frame&gt;</code>および<code>&lt;iframe&gt;</code>タグを介してWebページを含めることができるかどうかを決定します。</p>
 
-<p>Web applications can send this header to prevent Clickjacking attacks:</p>
+<p>Clickjacking攻撃を防ぐために、Webアプリケーションはこのヘッダーを送信できます:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Denies all untrusted domains (default)</span>
 <span style="color:#111">security</span><span style="color:#f92672">.</span><span style="color:#111">x_frame_options</span> <span style="color:#d88200">&#39;DENY&#39;</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Allows iframes on example.com</span>
 <span style="color:#111">security</span><span style="color:#f92672">.</span><span style="color:#111">x_frame_options</span> <span style="color:#d88200">&#39;ALLOW-FROM https://example.com/&#39;</span></code></pre></div>
 <h2 id="x-content-type-options">X-Content-Type-Options</h2>
 
-<p><code>X-Content-Type-Options</code> prevents browsers from interpreting files as something else than declared by the content type in the HTTP headers.</p>
+<p><code>X-Content-Type-Options</code>はブラウザがHTTPヘッダのContent-Typeによって宣言されたもの以外のものとしてファイルを解釈するのを防ぎます。</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Will prevent the browser from MIME-sniffing a response away from the declared content-type (default)</span>
 <span style="color:#111">security</span><span style="color:#f92672">.</span><span style="color:#111">x_content_type_options</span> <span style="color:#d88200">&#39;nosniff&#39;</span></code></pre></div>
 <h2 id="x-xss-protection">X-XSS-Protection</h2>
 
-<p><code>X-XSS-Protection</code> is a HTTP header to determine the behavior of the browser in case an XSS attack is detected.</p>
+<p><code>X-XSS-Protection</code>は、XSS攻撃が検出された場合のブラウザの動作を決定するためのHTTPヘッダーです。</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Filter enabled. Rather than sanitize the page, when a XSS attack is detected,</span>
 <span style="color:#75715e"># the browser will prevent rendering of the page (default)</span>
 <span style="color:#111">security</span><span style="color:#f92672">.</span><span style="color:#111">x_xss_protection</span> <span style="color:#d88200">&#39;1; mode=block&#39;</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Filter disabled</span>
@@ -849,17 +849,15 @@
 <span style="color:#111">security</span><span style="color:#f92672">.</span><span style="color:#111">x_xss_protection</span> <span style="color:#d88200">&#39;1; report=http://[YOURDOMAIN]/your_report_URI&#39;</span></code></pre></div>
 <h2 id="content-security-policy">Content-Security-Policy</h2>
 
-<p>Content-Security-Policy (CSP) is a HTTP header supported by modern browsers. It determines trusted sources of execution for dynamic
-contents (JavaScript) or other web related assets: stylesheets, images, fonts, plugins, etc.</p>
+<p>Content-Security-Policy (CSP)は、最近のブラウザでサポートされているHTTPヘッダーです。動的コンテンツ(JavaScript)またはその他のWeb関連アセット(スタイルシート、画像、フォント、プラグインなど)の信頼できるソースを特定します。</p>
 
-<p>Web applications can send this header to mitigate Cross Site Scripting (XSS) attacks.</p>
+<p>Webアプリケーションはこのヘッダーを送信してクロスサイトスクリプティング(XSS)攻撃を軽減することができます。</p>
 
-<p>The default value allows images, scripts, AJAX, fonts and CSS from the same origin, and does not allow any
-other resources to load (eg object, frame, media, etc).</p>
+<p>デフォルト値では、同じoriginの画像、スクリプト、AJAX、フォント、およびCSSが許可され、他のリソース(オブジェクト、フレーム、メディアなど)のロードは許可されません。</p>
 
-<p>Inline JavaScript is NOT allowed. To enable it, please use: <code>script-src &lsquo;unsafe-inline&rsquo;</code>.</p>
+<p>インラインJavaScriptは許可されていません。有効にするには、<code>script-src &lsquo;unsafe-inline&rsquo;</code>を使用してください。</p>
 
-<p>Default value is:</p>
+<p>デフォルト値:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#111">security</span><span style="color:#f92672">.</span><span style="color:#111">content_security_policy</span> <span style="color:#d88200">%{
 </span><span style="color:#d88200">  form-action &#39;self&#39;;
 </span><span style="color:#d88200">  frame-ancestors &#39;self&#39;;
@@ -883,7 +881,7 @@ other resources to load (eg object, frame, media, etc).</p>
               <a href="/hanami-guides/projects/rack-middleware/">
                 <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
                   <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
-                  <span class="btn-inner--text">Projects: Rack Middleware</span>
+                  <span class="btn-inner--text">Projects: Rackミドルウェア</span>
                 </button>
               </a>
               

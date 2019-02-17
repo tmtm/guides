@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Projects: Initializers | Hanami Guides" />
+    <meta name="description" content="Projects: イニシャライザ | Hanami Guides" />
 
     <meta property="og:url"          content="https://tmtm.github.io/hanami-guides/projects/initializers/" />
     <meta property="og:type"         content="article" />
     <meta property="og:locale"       content="en_US" />
     <meta property="og:site_name"    content="Hanami Guides" />
-    <meta property="og:title"        content="Projects: Initializers | Hanami Guides" />
-    <meta property="og:description"  content="Projects: Initializers | Hanami Guides" />
+    <meta property="og:title"        content="Projects: イニシャライザ | Hanami Guides" />
+    <meta property="og:description"  content="Projects: イニシャライザ | Hanami Guides" />
     <meta property="og:image"        content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
     <meta property="og:image:type"   content="image/png" />
     <meta property="og:image:width"  content="2968" />
@@ -20,11 +20,11 @@
     <meta name="twitter:card"        content="summary" />
     <meta name="twitter:site"        content="@hanamirb" />
     <meta name="twitter:creator"     content="@hanamirb" />
-    <meta name="twitter:title"       content="Projects: Initializers | Hanami Guides" />
-    <meta name="twitter:description" content="Projects: Initializers | Hanami Guides" />
+    <meta name="twitter:title"       content="Projects: イニシャライザ | Hanami Guides" />
+    <meta name="twitter:description" content="Projects: イニシャライザ | Hanami Guides" />
     <meta name="twitter:image"       content="https://tmtm.github.io/assets/img/brand/hanami-guides-social.png" />
 
-    <title>Projects: Initializers | Hanami Guides</title>
+    <title>Projects: イニシャライザ | Hanami Guides</title>
 
     <meta name="author" content="Hanami team">
     <meta name="keywords" content="hanami,hanamirb,hanami guides,documentation,lotus,lotusrb,web,framework,ruby,open source,oss,os,software,free,free software,architecture,fast,lightweight,testing,tdd,bdd,test driven development,behaviour driven development,full stack,mvc,model view object,pattern,patterns,design patterns,oop,object oriented programming,testability,http,https,routing,router,http router,restful,resource,resources,convention,controller,models,repository,query,sql,interactors,two-step view,view,template,presenters,render,rendering,helpers,erb,haml,tilt,json,xml,yaml,yml,framwork,framewrok,riby,free sowftare" />
@@ -166,19 +166,19 @@
               
               <li class="active ct-sidenav-active">
               
-                <a href="/hanami-guides/projects/initializers/">Initializers</a>
+                <a href="/hanami-guides/projects/initializers/">イニシャライザ</a>
               </li>
             
               
               <li>
               
-                <a href="/hanami-guides/projects/rack-middleware/">Rack Middleware</a>
+                <a href="/hanami-guides/projects/rack-middleware/">Rackミドルウェア</a>
               </li>
             
               
               <li>
               
-                <a href="/hanami-guides/projects/security/">Project Security</a>
+                <a href="/hanami-guides/projects/security/">プロジェクトセキュリティ</a>
               </li>
             
               
@@ -190,7 +190,7 @@
               
               <li>
               
-                <a href="/hanami-guides/projects/selectively-boot-apps/">Selectively boot apps</a>
+                <a href="/hanami-guides/projects/selectively-boot-apps/">アプリを選択的に起動する</a>
               </li>
             
             </ul>
@@ -788,22 +788,22 @@
       </div>
       <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 ct-content">
         <div class="ct-page-title">
-          <h1 class="ct-title" id="content">Projects: Initializers</h1>
+          <h1 class="ct-title" id="content">Projects: イニシャライザ</h1>
           <div class="avatar-group mt-3">
           </div>
         </div>
         <hr>
-        <p>A project can <strong>optionally</strong> have one or more custom initializers.</p>
+        <p>プロジェクトは<strong>オプションで</strong> 1つ以上のカスタムイニシャライザを持つことができます。</p>
 
 <p class="notice">
-  Initializers are optional
+  イニシャライザはオプションです
 </p>
 
-<p>An initializer is a Ruby file used to setup third-party libraries or some other aspect of the code.</p>
+<p>イニシャライザは、サードパーティのライブラリやその他のコードの側面を設定するために使用されるRubyファイルです。</p>
 
-<p>They are run as the <strong>last</strong> thing after the dependencies, the framework and the project code are loaded, but <strong>before</strong> the server or the console is started.</p>
+<p>これらは、依存関係、フレームワーク、プロジェクトコードがロードされた後 、サーバーまたはコンソールが起動される<strong>前に</strong> <strong>最後に</strong>実行されます。</p>
 
-<p>For instance, if we want to setup <a href="https://bugsnag.com">Bugsnag</a> for our project we can do:</p>
+<p>たとえば、<a href="https://bugsnag.com">Bugsnag</a>を自分のプロジェクト用に設定したい場合は、次のようにします:</p>
 <div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># config/initializers/bugsnag.rb</span>
 <span style="color:#111">require</span> <span style="color:#d88200">&#39;bugsnag&#39;</span>
 
@@ -811,11 +811,11 @@
   <span style="color:#111">config</span><span style="color:#f92672">.</span><span style="color:#111">api_key</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">ENV</span><span style="color:#f92672">[</span><span style="color:#d88200">&#39;BUGSNAG_API_KEY&#39;</span><span style="color:#f92672">]</span>
 <span style="color:#00a8c8">end</span></code></pre></div>
 <p class="convention">
-  Project initializers must be added under <code>config/initializers</code>.
+  プロジェクトイニシャライザは<code>config/initializers</code>下に追加されなければなりません。
 </p>
 
 <p class="warning">
-  Initializers are executed in alphabetical order.
+  イニシャライザはアルファベット順に実行されます。
 </p>
 <hr>
         <div class="container">
@@ -834,7 +834,7 @@
               
               <a href="/hanami-guides/projects/rack-middleware/">
                 <button class="btn btn-icon btn-3 btn-outline-primary" type="button">
-                  <span class="btn-inner--text">Projects: Rack Middleware</span>
+                  <span class="btn-inner--text">Projects: Rackミドルウェア</span>
                   <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
                 </button>
               </a>

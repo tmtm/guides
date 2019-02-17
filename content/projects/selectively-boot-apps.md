@@ -1,16 +1,16 @@
 ---
-title: Selectively boot apps
+title: アプリを選択的に起動する
 order: 80
 ---
 
-With Hanami you can build your project by following the [Monolith-First](/architecture/overview/#monolith-first) principle.
-As you add more code to the project, you can grow it organically, by splitting the project into several Hanami apps.
+Hanamiでは、[Monolith-First](/architecture/overview/#monolith-first)原則に従ってプロジェクトを構築できます。
+プロジェクトにコードを追加するにつれて、プロジェクトを複数のHanamiアプリに分割することで、それを有機的拡張できます。
 
-A real world Hanami project could have **dozens of Hanami apps in the same project** (for example, `web` for the front-end, `admin` for the administration, `api` for a JSON API, etc...)
-You might want to deploy them to different servers, even though they're all a part of the same project.
-For example, most of the servers could be used for the `web` app (for customers on the site), a couple could be used for an `api` (perhaps for customers using mobile apps), and you could have a single server running and `admin` application, since it'll likely get less traffic than the other two.
+実際のHanamiプロジェクトでは、**同じプロジェクト内に多数のHanamiアプリ**(たとえば、フロントエンド用の`web`、管理用の`admin`、JSON API用のAPIなど)を持つことができます。
+それらはすべて同じプロジェクトの一部ですが、異なるサーバーにデプロイしたいかもしれません。
+たとえば、ほとんどのサーバーは`web`アプリ(サイトの顧客用)に、いくつかは`api`(おそらくモバイルアプリを使用する顧客用)に使用し、そして、単一のサーバーでadminアプリを実行することもできます。これは他の2つよりもトラフィックが少なくなる可能性があるためです。
 
-We support this, with _selective booting_:
+_選択的起動_ でこれをサポートします:
 
 ```ruby
 # config/environment.rb
@@ -33,8 +33,8 @@ Hanami.configure do
 end
 ```
 
-You can declare which apps to use with the `HANAMI_APPS` environment variable.
-You can provide a single app, or several apps (joined with commas):
+`HANAMI_APPS`環境変数を使用して、使用するアプリを宣言できます。
+単一のアプリ、または複数のアプリ(コンマで結合)を指定できます:
 
 ```shell
 $ HANAMI_APPS=web,api bundle exec hanami server

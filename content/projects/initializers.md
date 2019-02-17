@@ -1,19 +1,19 @@
 ---
-title: Initializers
+title: イニシャライザ
 order: 40
 ---
 
-A project can **optionally** have one or more custom initializers.
+プロジェクトは**オプションで** 1つ以上のカスタムイニシャライザを持つことができます。
 
 <p class="notice">
-  Initializers are optional
+  イニシャライザはオプションです
 </p>
 
-An initializer is a Ruby file used to setup third-party libraries or some other aspect of the code.
+イニシャライザは、サードパーティのライブラリやその他のコードの側面を設定するために使用されるRubyファイルです。
 
-They are run as the **last** thing after the dependencies, the framework and the project code are loaded, but **before** the server or the console is started.
+これらは、依存関係、フレームワーク、プロジェクトコードがロードされた後 、サーバーまたはコンソールが起動される**前に** **最後に**実行されます。
 
-For instance, if we want to setup [Bugsnag](https://bugsnag.com) for our project we can do:
+たとえば、[Bugsnag](https://bugsnag.com)を自分のプロジェクト用に設定したい場合は、次のようにします:
 
 ```ruby
 # config/initializers/bugsnag.rb
@@ -25,9 +25,9 @@ end
 ```
 
 <p class="convention">
-  Project initializers must be added under <code>config/initializers</code>.
+  プロジェクトイニシャライザは<code>config/initializers</code>下に追加されなければなりません。
 </p>
 
 <p class="warning">
-  Initializers are executed in alphabetical order.
+  イニシャライザはアルファベット順に実行されます。
 </p>

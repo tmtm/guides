@@ -1,9 +1,9 @@
 ---
-title: Rack Middleware
+title: Rackミドルウェア
 order: 50
 ---
 
-Hanami exposes a project level [Rack middleware stack](http://www.rubydoc.info/github/rack/rack/master/file/SPEC) to be configured like this:
+Hanamiはプロジェクトレベルの[Rackミドルウェアスタック](http://www.rubydoc.info/github/rack/rack/master/file/SPEC)を次のように設定します:
 
 ```ruby
 # config/environment.rb
@@ -12,5 +12,5 @@ Hanami.configure do
 end
 ```
 
-It's worth noticing that this is equivalent to add a middleware in `config.ru` file.
-The only difference is that third-party plugins can hook into `Hanami.configure` to inject their own middleware.
+これは`config.ru`ファイルにミドルウェアを追加するのと同じことは注目に値します。
+唯一の違いは、サードパーティのプラグインが`Hanami.configure`にフックして独自のミドルウェアを注入できることです。

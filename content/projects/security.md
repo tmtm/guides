@@ -1,17 +1,17 @@
 ---
-title: Project Security
+title: プロジェクトセキュリティ
 order: 60
 ---
 
-Modern web development has many challenges, and of those security is both very important and often under-emphasized.
+現代のWeb開発は多くの課題を抱えており、それらのセキュリティは非常に重要であり、またしばしば強調されすぎていません。
 
-Hanami provides ways to secure from most common vulnerabilities. Security options can be configured in <code>application.rb</code>.
+Hanamiは脆弱性から保護する最も一般的な方法を提供します。セキュリティオプションは<code>application.rb</code>で設定できます。
 
 ## X-Frame-Options
 
-`X-Frame-Options` is a HTTP header supported by modern browsers. It determines if a web page can or cannot be included via `<frame>` and `<iframe>` tags by untrusted domains.
+`X-Frame-Options`は最近のブラウザでサポートされているHTTPヘッダです。信頼できないドメインによって`<frame>`および`<iframe>`タグを介してWebページを含めることができるかどうかを決定します。
 
-Web applications can send this header to prevent Clickjacking attacks:
+Clickjacking攻撃を防ぐために、Webアプリケーションはこのヘッダーを送信できます:
 
 ```ruby
 # Denies all untrusted domains (default)
@@ -25,7 +25,7 @@ security.x_frame_options 'ALLOW-FROM https://example.com/'
 
 ## X-Content-Type-Options
 
-`X-Content-Type-Options` prevents browsers from interpreting files as something else than declared by the content type in the HTTP headers.
+`X-Content-Type-Options`はブラウザがHTTPヘッダのContent-Typeによって宣言されたもの以外のものとしてファイルを解釈するのを防ぎます。
 
 ```ruby
 # Will prevent the browser from MIME-sniffing a response away from the declared content-type (default)
@@ -34,7 +34,7 @@ security.x_content_type_options 'nosniff'
 
 ## X-XSS-Protection
 
-`X-XSS-Protection` is a HTTP header to determine the behavior of the browser in case an XSS attack is detected.
+`X-XSS-Protection`は、XSS攻撃が検出された場合のブラウザの動作を決定するためのHTTPヘッダーです。
 
 ```ruby
 # Filter enabled. Rather than sanitize the page, when a XSS attack is detected,
@@ -61,17 +61,15 @@ security.x_xss_protection '1; report=http://[YOURDOMAIN]/your_report_URI'
 
 ## Content-Security-Policy
 
-Content-Security-Policy (CSP) is a HTTP header supported by modern browsers. It determines trusted sources of execution for dynamic
-contents (JavaScript) or other web related assets: stylesheets, images, fonts, plugins, etc.
+Content-Security-Policy (CSP)は、最近のブラウザでサポートされているHTTPヘッダーです。動的コンテンツ(JavaScript)またはその他のWeb関連アセット(スタイルシート、画像、フォント、プラグインなど)の信頼できるソースを特定します。
 
-Web applications can send this header to mitigate Cross Site Scripting (XSS) attacks.
+Webアプリケーションはこのヘッダーを送信してクロスサイトスクリプティング(XSS)攻撃を軽減することができます。
 
-The default value allows images, scripts, AJAX, fonts and CSS from the same origin, and does not allow any
-other resources to load (eg object, frame, media, etc).
+デフォルト値では、同じoriginの画像、スクリプト、AJAX、フォント、およびCSSが許可され、他のリソース(オブジェクト、フレーム、メディアなど)のロードは許可されません。
 
-Inline JavaScript is NOT allowed. To enable it, please use: <code>script-src 'unsafe-inline'</code>.
+インラインJavaScriptは許可されていません。有効にするには、<code>script-src 'unsafe-inline'</code>を使用してください。
 
-Default value is:
+デフォルト値:
 
 ```ruby
 security.content_security_policy %{

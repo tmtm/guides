@@ -3,16 +3,16 @@ title: HTTP/2 Early Hints
 order: 70
 ---
 
-A web page may link to external resources such as stylesheets, or images (assets).
-With HTTP/1.1 the browser parses the HTML and for each link, it downloads the asset and eventually take an action on it: renders an image or evaluate JavaScript code.
-With HTTP/2 introduced an enhancement: the server can proactively "push" in parallel both the HTML payload **and** the some assets to the browser. This workflow is allowed due to the HTTP/2 TCP connections are multiplexed. That means many communications can happen at the same time.
+Webページは、スタイルシートや画像(アセット)などの外部リソースにリンクすることがあります。
+HTTP/1.1では、ブラウザはHTMLを解析し、リンクごとにアセットをダウンロードし、最終的にそれに対してアクションを実行します: 画像のレンダリングまたはJavaScriptコードの評価。
+HTTP/2では機能強化が導入されました: サーバーはHTMLペイロード**と**一部のアセットの両方を並行して事前にブラウザーに「プッシュ」することができます。このワークフローは、HTTP/2 TCP接続が多重化されているため許可されています。それは多くのコミュニケーションが同時に起こることができることを意味します。
 
-Unfortunately HTTP/2 adoption is still slow, so the IETF "backported" this workflow to HTTP/1.1 as well, by introducing the HTTP status [`103 Early Hints`](https://datatracker.ietf.org/doc/rfc8297/).
-In this case the server sends **one or more HTTP responses for a single request**. The last one must be the traditional `200 OK` that returns the HTML of the page, whereas the first `n` can include a special header `Link` to tell the browser to fetch the asset ahead of time.
+残念ながらHTTP/2の採用はまだ遅いので、IETFはHTTPステータス[`103 Early Hints`](https://datatracker.ietf.org/doc/rfc8297/)を導入することで、このワークフローをHTTP/1.1にも「バックポート」しました。
+この場合、サーバーは**単一の要求に対して1つ以上のHTTP応答**を送信します。最後のものは、ページのHTMLを返す伝統的な`200 OK`でなければなりませんが、最初の`n`は、ブラウザにアセットを事前に取得するように指示する特別なヘッダ`Link`を含めることができます。
 
-## Setup
+## セットアップ
 
-As first thing, you need [Puma](http://puma.io/) `3.11.0+` with Early-Hints enabled:
+まず最初に、Early-Hintsを有効にした[Puma](http://puma.io/) `3.11.0+` が必要です:
 
 ```ruby
 # Gemfile
@@ -24,7 +24,7 @@ gem "puma"
 early_hints true
 ```
 
-Then from the project configuration, you can simply enable the feature:
+その後、プロジェクト構成から、この機能を簡単に有効にすることができます:
 
 ```ruby
 # config/environment.rb
@@ -34,17 +34,17 @@ Hanami.configure do
 end
 ```
 
-As last step, you need a web server that supports HTTP/2 and Early Hints like [h2o](https://h2o.examp1e.net/).
-When you'll start the server and visit the page, javascripts and stylesheets will be pushed (see [Assets helpers](#assets-helpers) section).
+最後のステップとして、HTTP/2と[h2o](https://h2o.examp1e.net/)のようなEarly HintsをサポートするWebサーバーが必要です。
+サーバーを起動してページにアクセスすると、JavaScriptとスタイルシートがプッシュされます([アセットヘルパー](#assets-helpers)セクションを参照)。
 
-### Other web servers
+### 他のWebサーバー
 
-As of today, only Puma supports Early Hints.
+現在では、PumaだけがEarly Hintsをサポートしています。
 
-## Assets helpers
+## アセットヘルパー
 
-In order to automatically push your assets, you have to use our [assets helpers](/helpers/assets).
-But given to browser limitations (only up to 100 assets can be pushed), Hanami by default sends stylesheets and javascripts only.
+あなたの資産を自動的にプッシュするために、あなたは私たちの[アセットヘルパー](/helpers/assets)を使わなければなりません。
+しかし、ブラウザの制限(最大100アセットまでしかプッシュできません)により、デフォルトではHanamiはスタイルシートとJavaScriptのみを送信します。
 
 <table class="table table-bordered">
   <thead>
@@ -98,34 +98,34 @@ But given to browser limitations (only up to 100 assets can be pushed), Hanami b
   </tbody>
 </table>
 
-You can **opt-in/out** the following types:
+次の種類を**オプトインまたはオプトアウト**できます:
 
-### Javascripts
+### JavaScript
 
-Pushed by default:
+デフォルトでプッシュされます:
 
 ```erb
 <%= javascript "application" %>
 <%= javascript "https://somecdn.test/framework.js", "dashboard" %>
 ```
 
-Opt-out:
+オプトアウト:
 
 ```erb
 <%= javascript "application", push: false %>
 <%= javascript "https://somecdn.test/framework.css", "dashboard", push: false %>
 ```
 
-### Stylesheets
+### スタイルシート
 
-Pushed by default:
+デフォルトでプッシュされます:
 
 ```erb
 <%= stylesheet "application" %>
 <%= stylesheet "https://somecdn.test/framework.css", "dashboard" %>
 ```
 
-Opt-out:
+オプトアウト:
 
 ```erb
 <%= stylesheet "application", push: false %>
@@ -134,29 +134,29 @@ Opt-out:
 
 ### Favicon
 
-Opt-in:
+オプトイン:
 
 ```erb
 <%= favicon "favicon.ico", push: :image %>
 ```
 
-### Image
+### 画像
 
-Opt-in:
+オプトイン:
 
 ```erb
 <%= image "avatar.png", push: :image %>
 ```
 
-### Audio
+### オーディオ
 
-Opt-in:
+オプトイン:
 
 ```erb
 <%= audio "song.ogg", push: true %>
 ```
 
-Block syntax (pushes only `song.ogg`):
+ブロック構文(`song.ogg` のみプッシュ):
 
 ```erb
 <%=
@@ -168,15 +168,15 @@ Block syntax (pushes only `song.ogg`):
 %>
 ```
 
-### Video
+### ビデオ
 
-Opt-in:
+オプトイン:
 
 ```erb
 <%= video "movie.mp4", push: true %>
 ```
 
-Block syntax (pushes only `movie.mp4`):
+ブロック構文(`movie.mp4` のみプッシュ):
 
 ```erb
 <%=
@@ -188,18 +188,18 @@ Block syntax (pushes only `movie.mp4`):
 %>
 ```
 
-### Asset path
+### アセットパス
 
 ```erb
 <%= asset_path "application.js", push: :script %>
 ```
 
-### Asset URL
+### アセットURL
 
 ```erb
 <%= asset_url "https://somecdn.test/framework.js", push: :script %>
 ```
 
-## Demo project
+## デモプロジェクト
 
-If you're looking for a full working example, please check this [demo project](https://github.com/jodosha/hall_of_fame).
+完全に機能する例を探しているなら、この[デモプロジェクト](https://github.com/jodosha/hall_of_fame)をチェックしてください。
